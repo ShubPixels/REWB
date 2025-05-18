@@ -289,7 +289,7 @@ const HomePage = () => {
                 </h2>
 
                 {/* Responsive Grid for Cards */}
-                <div className="container mx-auto px-4 sm:px-8 lg:px-16 flex flex-nowrap justify-between gap-6">
+                <div className="container mx-auto px-4 sm:px-8 lg:px-16 flex flex-col sm:flex-row flex-wrap justify-center gap-6">
                   {services.map((service, index) => (
                     <div
                       key={index}
