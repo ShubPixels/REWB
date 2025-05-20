@@ -288,7 +288,7 @@ const HomePage = () => {
                     Our Wide <span className="text-teal-500">Range of Services</span>
                 </h2>
                 {/* Responsive Grid for Cards */}
-                <div className="container mx-auto px-4 sm:px-8 lg:px-4 flex flex-col sm:flex-row justify-center gap-6">
+                <div className="container mx-auto px-4 sm:px-8  lg:px-12 flex flex-col sm:flex-row justify-center gap-6">
                   {services.map((service, index) => (
                     <div
                       key={index}
