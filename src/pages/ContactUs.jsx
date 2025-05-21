@@ -1,7 +1,77 @@
-import React from "react";
+
 import FadeInSection from "./Fadeinsection";
+import React, { useState, useEffect, useRef } from "react";
 
 const ContactUs = () => {
+// Form state
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    country: "",
+    state: "",
+    city: "",
+    category: "General Inquiry",
+    message: "",
+    terms: false,
+  });
+
+  const [formError, setFormError] = useState("");
+  const [formSuccess, setFormSuccess] = useState("");
+
+  // Handle form input changes
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async () => {
+    // Basic validation
+    if (!formData.name || !formData.email || !formData.company || !formData.country || !formData.state || !formData.city) {
+      setFormError("Please fill in all required fields.");
+      return;
+    }
+    if (!formData.terms) {
+      setFormError("You must agree to the terms and conditions.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setFormSuccess("Your message has been sent successfully!");
+        setFormError("");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          country: "",
+          state: "",
+          city: "",
+          category: "General Inquiry",
+          message: "",
+          terms: false,
+        });
+      } else {
+        setFormError("Failed to send your message. Please try again.");
+      }
+    } catch (error) {
+      setFormError("An error occurred. Please try again later.");
+    }
+  };
   return (
     <FadeInSection>
         <section className="bg-cyan-50 py-16 px-4 md:px-12">
