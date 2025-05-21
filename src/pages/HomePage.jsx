@@ -287,50 +287,6 @@ const HomePage = () => {
         <div className="w-full md:w-1/3 flex">
           <img src={worldmap} alt="World Map" className="max-w-full h-auto" />
         </div>
-<<<<<<< HEAD
-
-        {/* services */}
-        <FadeInSection>
-        <section className="bg-cyan-50 py-12 ">
-                <h2 className="text-center text-4xl sm:text-5xl font-bold mb-12 sm:mb-16">
-                    Our Wide <span className="text-teal-500">Range of Services</span>
-                </h2>
-                {/* Responsive Grid for Cards */}
-                <div className="container mx-auto px-4 sm:px-8  lg:px-12 flex flex-col sm:flex-row justify-center gap-6">
-                  {services.map((service, index) => (
-                    <div
-                      key={index}
-                      className="bg-white rounded-xl shadow-lg w-[360px] p-6 sm:p-8 lg:p-10 transition-transform hover:scale-105"
-                    >
-                      <h3 className="text-lg sm:text-xl font-bold mb-3 text-gray-800">
-                        {service.title}
-                      </h3>
-                      <p className="text-gray-600 mb-3 sm:mb-4">{service.description}</p>
-                      <a href="#" className="text-teal-500 font-semibold hover:underline mb-3 sm:mb-4 block">
-                        SEE MORE →
-                      </a>
-
-                      <div className="overflow-visible rounded-lg">
-                        <img
-                          src={service.image}
-                          alt={service.title}
-                          className="w-full h-40 object-scale-down transition-transform duration-300 hover:scale-150"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-        </section>
-        </FadeInSection>
-
-        {/* carousel */}
-        <div className="container mx-auto">
-          {/* Other homepage content */}
-          
-          <ImageCarousel />
-          
-          {/* More homepage content */}
-=======
         <div className="w-full md:w-2/3 text-center md:text-left space-y-8">
           <div className="flex flex-col md:flex-row items-center md:items-center gap-4 md:gap-6">
             <h2 className="text-3xl font-bold">Get your personalized quote today!</h2>
@@ -352,7 +308,6 @@ const HomePage = () => {
               <p className="text-sm">Experience</p>
             </div>
           </div>
->>>>>>> 3731d630ab1f4542c37a5bd48f9ca98a704ddbfa
         </div>
       </div>
 

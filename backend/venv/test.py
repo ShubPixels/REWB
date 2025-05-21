@@ -1,4 +1,4 @@
-from app import app  # Import the app instance from app.py
+from backend.venv.app import app  # Import the app instance from app.py
 import requests
 
 # Test the /test-smtp route
