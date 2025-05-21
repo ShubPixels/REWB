@@ -22,5 +22,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+<<<<<<< HEAD
 # env
 backend/venv/
+=======
+# Ignore virtual environment
+backend/venv/
+
+
+>>>>>>> c0b83422aad4c61b59d26ac5f45b61ded350b07e
