@@ -74,8 +74,8 @@ const ContactUs = () => {
   };
   return (
     <FadeInSection>
-        <section className="bg-cyan-50 py-16 px-4 md:px-12">
-          <div className="container mx-auto bg-white shadow-lg rounded-lg p-8 flex flex-col lg:flex-row gap-8">
+        <section className="bg-cyan-50 py-16 pt-32 px-4 md:px-12">
+          <div className="container mx-auto bg-white shadow-lg rounded-lg  p-8 flex flex-col lg:flex-row gap-8">
             <div className="w-full lg:w-1/2">
               <h2 className="text-4xl font-bold text-gray-800 mb-6">
                 Connect <span className="text-teal-500">With Us</span>

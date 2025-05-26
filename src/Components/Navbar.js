@@ -42,6 +42,8 @@ const NAVBAR = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [socialOpen, setSocialOpen] = useState(false);
+
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -54,6 +56,10 @@ const NAVBAR = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
+  }, [isMobileMenuOpen]);
+  
 
   const categories = [
     {
@@ -102,25 +108,49 @@ const NAVBAR = () => {
     <div className="font-sans">
       {/* Header */}
       <header className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${isNavVisible ? "translate-y-0" : "-translate-y-full"} bg-white shadow-md`}>
-        <div className="bg-white py-2">
-          <div className="container mx-auto flex flex-wrap justify-between text-sm px-4 md:px-8 text-gray-700">
-            <div className="flex items-center gap-4">
-              <span className="flex items-center gap-2">
-                <img src={call} alt="call" className="w-4 h-4" /> +12 345 6789 0
-              </span>
-              <span className="flex items-center gap-2">
-                <img src={email} alt="email" className="w-4 h-4" /> example@email.com
-              </span>
-            </div>
-            <div className="flex gap-4 items-center">
-              {[YT, ins, face, lindk, twi].map((icon, idx) => (
-                <a href="#" key={idx} className="hover:text-teal-500">
-                  <img src={icon} alt={`Social ${idx}`} className="w-5 h-5" />
-                </a>
-              ))}
-            </div>
+        <div className="bg-white py-2 relative">
+        <div className="container mx-auto flex flex-wrap justify-between text-sm px-4 md:px-8 text-gray-700">
+          {/* Contact Info */}
+          <div className="flex items-center gap-4">
+            <span className="flex items-center gap-2">
+              <img src={call} alt="call" className="w-4 h-4" /> +12 345 6789 0
+            </span>
+            <span className="flex items-center gap-2">
+              <img src={email} alt="email" className="w-4 h-4" /> example@email.com
+            </span>
           </div>
+
+          {/* Desktop Social Icons */}
+          <div className="hidden sm:flex gap-4 items-center">
+            {[YT, ins, face, lindk, twi].map((icon, idx) => (
+              <a href="#" key={idx} className="hover:text-teal-500">
+                <img src={icon} alt={`Social ${idx}`} className="w-5 h-5" />
+              </a>
+            ))}
+          </div>
+
+          {/* Mobile Social Toggle Button */}
+          <button
+            onClick={() => setSocialOpen(!socialOpen)}
+            className="sm:hidden flex items-center"
+          >
+            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </div>
+
+        {/* Sliding Mobile Menu */}
+        {socialOpen && (
+          <div className="absolute right-4 top-full mt-2 bg-white shadow-lg rounded-lg p-3 flex flex-col gap-3 sm:hidden transition-all duration-300 z-10">
+            {[YT, ins, face, lindk, twi].map((icon, idx) => (
+              <a href="#" key={idx} className="hover:text-teal-500">
+                <img src={icon} alt={`Social ${idx}`} className="w-5 h-5" />
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
 
         {/* Navigation */}
         <nav className="bg-white shadow-md">
@@ -136,10 +166,7 @@ const NAVBAR = () => {
 
             {/* Hamburger Menu */}
             <div className="md:hidden">
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-gray-800 focus:outline-none"
-              >
+              <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-gray-800 focus:outline-none">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                   {isMobileMenuOpen ? (
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -208,20 +235,38 @@ const NAVBAR = () => {
 
           {/* Mobile Menu */}
           {isMobileMenuOpen && (
-            <div className="md:hidden w-full bg-white shadow-lg rounded-lg px-4 pb-4 space-y-4">
+            <div className="md:hidden w-full bg-white shadow-lg rounded-lg px-4 pb-4 space-y-4 overflow-y-auto max-h-[80vh]">
               <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="block text-gray-800 hover:text-teal-500">Home</Link>
-              <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="w-full text-left text-gray-800 hover:text-teal-500">
-                Our Products ▾
-              </button>
+
+              <div className="flex justify-between items-center">
+                <Link
+                  to="/category-page"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    setIsDropdownOpen(false);
+                  }}
+                  className="text-gray-800 hover:text-teal-500"
+                >
+                  Our Products
+                </Link>
+                <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="text-gray-800">
+                  ▾
+                </button>
+              </div>
+
               {isDropdownOpen && (
-                <div className="pl-2 space-y-2">
+                <div className="pl-2 max-h-[300px] overflow-y-auto pr-2 space-y-2">
                   {categories.map((category, index) => (
                     <div key={index}>
                       <h4 className="text-teal-600 font-semibold">{category.title}</h4>
                       <ul className="pl-2">
                         {category.products.map((product, idx) => (
                           <li key={idx}>
-                            <Link to={`/products/${product.toLowerCase().replace(/\s+/g, "-")}`} onClick={() => setIsMobileMenuOpen(false)} className="text-sm text-gray-600 hover:text-teal-500">
+                            <Link
+                              to={`/products/${product.toLowerCase().replace(/\s+/g, "-")}`}
+                              onClick={() => setIsMobileMenuOpen(false)}
+                              className="text-sm text-gray-600 hover:text-teal-500"
+                            >
                               {product}
                             </Link>
                           </li>
@@ -231,6 +276,7 @@ const NAVBAR = () => {
                   ))}
                 </div>
               )}
+
               <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="block text-gray-800 hover:text-teal-500">About Us</Link>
               <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="block text-gray-800 hover:text-teal-500">Contact</Link>
             </div>
