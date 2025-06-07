@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/autoplay";
@@ -92,25 +93,25 @@ const services = [
   {
     title: "Waste Management",
     description:
-      "We build the muscle behind recycling industries. Our hydraulic baling presses compact scrap metal into dense, transport-ready blocks. Shredders tear through tires, e-waste, and industrial byproducts.",
+      "Our waste-management products with high hydraulic power and efficient engineering empowers scrap and waste management industries. From high-density balers and drum crushers to shredders and compactors, our machines cut disposal costs, boost recycling yields, and help clients meet environmental compliance targets while advancing their sustainability commitments and CSR. We empower the metal recycling industry worldwide.",
     image: wastemanageimg,
   },
   {
     title: "Industrial Machines",
     description:
-      "When heavy-duty precision matters, we deliver. Our ring rolling machines shape metal rings for wind turbines and ship propellers.",
+      "Our industrial-machine portfolio covers various industries, from forging, machining sheet metal works, etc. Heavy-tonnage hydraulic presses, precision trimming machines, ring rollers, number punchers, etc are engineered for continuous duty, and low maintenance. Each solution integrates energy-efficient hydraulics. We empower industrial manufacturing companies, strengthening their operations.",
     image: industrialimg,
   },
   {
     title: "Special Purpose Machines",
     description:
-      "If it doesn’t exist, we invent it. Over 600 unique machines stand as proof. Clients bring us raw concepts—a specialized cutter for aerospace alloys, or a hybrid machine to streamline complex workflows.",
+      "When standard equipment can’t meet your process, we design and build special-purpose machines that do. Our expertise in industrial automation powered by hydraulics and electrical systems, we will engineer a product that fits your constraints. We will understand your requirements, and facilitate special features in our robust design, ready to ship within 3 to 6 months*.",
     image: specialpurpimg,
   },
   {
     title: "Manufacturing Services",
     description:
-      "Specialize in producing machinery to client-provided designs, ensuring precision and adherence to specifications.",
+      "We manufacture industrial products that can be forged or casted, our cross-holded partner SBUs specialise in industrial components. We have been exporting for 20+ years and follow strict quality, ensuring that every component meets specification, schedule, and cost goals while exceeding client expectations.",
     image: slide_image_5,
   },
 ];
@@ -127,27 +128,36 @@ const HomePage = () => {
       id: 1,
       name: "Rahul Mehta",
       designation: "Operations Manager",
-      company: "Toyota",
-      logo: toyota,
-      text: "We needed a reliable and efficient metal processing machine, and they exceeded our expectations. The machine they provided has not only streamlined our operations but also significantly reduced our waste output. The durability and build quality are truly remarkable.",
+      company: "Mahindra & Mahindra",
+      logo: mahindra,
+      text: "Started with one Rangani hydraulic scrap baler on our Nashik line; cycle time on off-cuts fell 55%. The press’s rugged ram handles oily stampings without stoppage, so forklift runs dropped to once per shift. We now run eleven identical units across all vehicle plants, standardised in our TPM playbook. Scrap resale value climbed, landfill tonnes crashed, ticking both margin and CSR boxes. Service calls are rare, but their techs plug straight into our SAP PM system for spares",
       image: TLDR,
     },
     {
       id: 2,
       name: "Ally Masi",
       designation: "Director of Industries Events Marketing",
-      company: "Tata",
-      logo: tata,
-      text: "We chose Welcome because it’s intuitive, beautifully designed, and made for attendee interaction, making it the perfect way to uplevel our experiences. The Slack-like chat, on-stage Q&A, and polling have increased audience engagement.",
+      company: "Toyota Kirloskar Auto Parts Pvt. Ltd.",
+      logo: toyota,
+      text: 'We needed a baler that fit our compact ‘Toyota Production System’ cell, not a bulky randomised sized frame. Rangani’s team rebuilt the platen, added poka-yoke sensors, and wrote a JIS-compliant PLC routine in three months. The custom low-height hopper slides under our press shop conveyor without layout change. OEE jumped four points, with zero containment alerts since commissioning. They’re now on our ‘A-rank’ vendor list—one of the very few in India.',
       image: TLDR,
     },
     {
       id: 3,
       name: "Ally Masi",
       designation: "Director of Industries Events Marketing",
-      company: "Bajaj",
+      company: "Al Ma Cabrol LLC, Oman",
       logo: bajaj,
-      text: "We chose Welcome because it’s intuitive, beautifully designed, and made for attendee interaction, making it the perfect way to uplevel our experiences. The Slack-like chat, on-stage Q&A, and polling have increased audience engagement.",
+      text:'Our corrugation line needed three machines and a dozen of operators; bottlenecks everywhere. Rangani proposed a single automated cell—servo-controlled feeder, hydraulic former, and inline shear. Throughput increased by significant margins, while headcount per shift dropped to five. Unit landed in Sohar five months after kick-off.',
+      image: TLDR,
+    },
+    {
+      id: 4,
+      name: "Ally Masi",
+      designation: "Director of Industries Events Marketing",
+      company: "Welspun Group",
+      logo: bajaj,
+      text:'Defect scrap—scale, sand, and odd shapes—was piling up beside our DI pipe mill.Rangani co-engineered a heavy-duty shredder with rotary dirt separators and over-belt magnet in one skid. Now we reclaim clean metal chips ready for the melt shop, cutting virgin charge by 8%. We could reuse the material on further operations, improving margins. Seeing the payback, we’ve budgeted two more lines and are planning to include Rangani in other areas.',
       image: TLDR,
     },
   ];
@@ -237,8 +247,8 @@ const HomePage = () => {
   return (
     <div className="font-sans bg-cyan-50">
       <FadeInSection>
-        <section className="widthforherosec bg-cyan-50 mx-auto flex flex-wrap marginTPforhersec items-center pt-6 px-4 md:px-8">
-          <div className="w-full md:w-1/2 text-center md:text-left py-8">
+        <section className="widthforherosec bg-cyan-50 mx-auto flex flex-wrap items-center pt-28 sm:pt-32 md:pt-36 px-4 md:px-8">
+          <div className="w-full md:w-1/2 text-center md:text-left py-8 ">
             <h1 className="text-[clamp(2rem,5vw,3.5rem)] font-bold text-gray-800 leading-tight mb-4">
               REIMAGINING WASTE, <br />
               REENGINEERING <span className="text-teal-500">THE FUTURE</span>
@@ -248,7 +258,7 @@ const HomePage = () => {
             </p>
             <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
               <button className="border-2 border-teal-500 text-teal-500 px-6 py-2 rounded-lg font-medium hover:bg-teal-500 hover:text-white transition">
-                Learn More
+                <Link to="/category-page" className="hover:text-white">View Machines</Link>
               </button>
               <button className="bg-teal-500 text-white px-6 py-2 rounded-lg font-medium hover:opacity-80 transition">
                 Watch Video
@@ -290,11 +300,11 @@ const HomePage = () => {
         <div className="w-full md:w-2/3 text-center md:text-left space-y-8">
           <div className="flex flex-col md:flex-row items-center md:items-center gap-4 md:gap-6">
             <h2 className="text-3xl font-bold">Get your personalized quote today!</h2>
-            <button className="bg-white text-teal-500 px-5 py-2 rounded-full font-semibold shadow-md hover:bg-gray-100">
+            {/* <button className="bg-white text-teal-500 px-5 py-2 rounded-full font-semibold shadow-md hover:bg-gray-100">
               Get a Quote
-            </button>
+            </button> */}
           </div>
-          <div className="flex flex-wrap justify-center md:justify-between gap-8 md:gap-16">
+          <div className="flex flex-wrap justify-center md:justify-between gap-1 md:gap-12">
             <div className="text-center md:text-left">
               <p className="text-3xl font-bold">6000+</p>
               <p className="text-sm">Unique Clients</p>
@@ -326,9 +336,14 @@ const HomePage = () => {
                   {service.title}
                 </h3>
                 <p className="text-gray-600 mb-3 sm:mb-4">{service.description}</p>
-                <a href="#" className="text-teal-500 font-semibold hover:underline mb-3 sm:mb-4 block">
+                <Link 
+                  to={`/category-page?category=${encodeURIComponent(service.title)}`}
+                  className="text-teal-500 font-semibold hover:underline mb-3 sm:mb-4 block"
+                >
                   SEE MORE →
-                </a>
+                </Link>
+
+
                 <div className="overflow-visible rounded-lg">
                   <img
                     src={service.image}
@@ -505,19 +520,19 @@ const HomePage = () => {
                 <span className="material-icons mr-4">email</span>
                 <div>
                   <p className="text-sm">EMAIL US</p>
-                  <p className="text-lg font-bold">vatanrangani4620@gmail.com</p>
+                  <p className="text-lg font-bold">mail@ranganiindia.com</p>
                 </div>
               </div>
               <div className="flex items-center bg-teal-500 text-white p-4 rounded-lg shadow-md mb-4">
                 <span className="material-icons mr-4">phone</span>
                 <div>
                   <p className="text-sm">TALK TO US</p>
-                  <p className="text-lg font-bold">+91-9925036495</p>
+                  <p className="text-lg font-bold">Mobile: +91-8000920222 - Milan Rangani</p>
                 </div>
               </div>
               <div className="text-gray-700">
                 <h4 className="font-bold mb-2">Address:</h4>
-                <p>E-30, Electronic Estate, G. I. D. C., Sector - 26, Gandhinagar - 382 028, Gujarat, India.</p>
+                <p>Survey No. 258, Plot No. 5 To 11, NH-8B, Gondal Road, Near Priyesh Cotton, Shapar, Rajkot-360024, Gujarat, India.</p>
                 <a href="#" className="text-teal-500 font-semibold mt-2 inline-block hover:underline">
                   Get Directions →
                 </a>

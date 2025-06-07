@@ -22,7 +22,7 @@ const AboutUs = () => {
         highlight2: "Scrap",
         ending: "Processing Machinery"
       },
-      description: "We build the muscle behind recycling industries. Our hydraulic baling presses compact scrap metal into dense, transport-ready blocks. Shredders tear through tires, e-waste, and industrial byproducts. Hydraulic breaking machines dismantle outdated component and infrastructural wastes, while scrap cutting systems slice through thick steel like butter."
+      description: "We build the muscle behind recycling industries. Our hydraulic baling presses compact scrap metal into dense, transport-ready blocks. Shredders tear through tires, e-waste, and industrial byproducts. Hydraulic breaking machines dismantle outdated components and infrastructural wastes, while scrap cutting systems slice through thick steel like butter."
     },
     {
       id: 2,
@@ -50,12 +50,23 @@ const AboutUs = () => {
       id: 4,
       image: whatwedo4 , // Replace with actual image path
       title: {
-        highlight1: "Automation",
-        normal: "Systems &",
-        highlight2: "Smart",
-        ending: "Factory Integration"
+        highlight1: "Special-Purpose",
+        normal: "Machinery &",
+        highlight2: "Custom Automation",
+        ending: ""
       },
-      description: "Embracing Industry 4.0, we develop advanced automation systems that transform traditional factories into smart manufacturing facilities. Our solutions include robotic integration, IoT-enabled equipment monitoring, and AI-driven process optimization. These systems increase production efficiency, reduce human error, and provide valuable data analytics for continuous improvement."
+      description: "When off-the-shelf equipment can’t match your process, we design, prototype, and build machines that do. Whether it’s a high-speed assembly cell, a test rig for critical components, or a compact line retrofit, our team integrates hydraulics, motion control, and PLC logic to meet exact cycle-time and quality targets. Each project is delivered with full documentation, operator training, and lifecycle support—putting purpose-built performance directly on your factory floor."
+    },
+    {
+      id: 5,
+      image: whatwedo4 , // Replace with actual image path
+      title: {
+        highlight1: "Precision Manufacturing",
+        normal: "Services",
+        highlight2: "Forging, Casting & CNC",
+        ending: "Machining"
+      },
+      description: "Beyond finished machines, we supply the parts that power them. Tight process controls ensure metallurgical integrity, while in-house heat treatment and surface finishing cut lead times. Learn more by posting about your specific requirements."
     }
   ];
   const awards = [
@@ -142,17 +153,11 @@ const AboutUs = () => {
               </h2>
               
               <p className="text-gray-700 mb-6">
-                Established in 1991, we have engineered over 600 unique machines, ranging 
-                from compact equipment to large-scale industrial machinery. With a client 
-                base that includes top MNCs and government entities worldwide, we prioritize 
-                quality, simplicity, and durability in all our products.
+                Established in 1991, we have engineered over 600 unique machines, ranging from compact equipment to large-scale industrial machinery. With a client base that includes top MNCs, government entities worldwide and numerous SMEs, we deliver solutions that rein in quality, simplicity, and durability.Established in 1991, we have engineered over 600 unique machines, ranging from compact equipment to large-scale industrial machinery. With a client base that includes top MNCs, government entities worldwide and numerous SMEs, we deliver solutions that rein in quality, simplicity, and durability.
               </p>
               
               <p className="text-gray-700">
-                Our offerings encompass cutting-edge solutions for recycling, waste 
-                management, and heavy-duty industrial machinery. Driven by innovation and 
-                the latest technology, we are committed to delivering superior engineering 
-                solutions that exceed client expectations.
+                Our offerings encompass cutting-edge solutions for recycling, waste management, and heavy-duty industrial machinery. Driven by Hydraulics and Automation systems, we are committed to delivering engineering solutions that exceed client expectations.
               </p>
             </div>
             
@@ -400,7 +405,7 @@ const AboutUs = () => {
             </p>
             
             {/* Email Form */}
-            <form onSubmit={handleSubmit} className="mb-8">
+            {/* <form onSubmit={handleSubmit} className="mb-8">
               <div className="flex flex-col md:flex-row gap-4 justify-center">
                 <div className="w-full md:w-auto md:flex-grow">
                   <input
@@ -413,16 +418,16 @@ const AboutUs = () => {
                   />
                 </div>
               </div>
-            </form>
+            </form> */}
             
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="px-8 py-3 bg-teal-500 text-white font-medium rounded hover:bg-teal-600 transition-colors duration-300">
-                Explore Our Machines
+                Email Us
               </button>
-              <button className="px-8 py-3 bg-slate-800 text-white font-medium rounded hover:bg-slate-700 transition-colors duration-300">
+              {/* <button className="px-8 py-3 bg-slate-800 text-white font-medium rounded hover:bg-slate-700 transition-colors duration-300">
                 Start Your Custom Project
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

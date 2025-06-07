@@ -190,19 +190,19 @@ const ContactUs = () => {
                 <span className="material-icons mr-4">email</span>
                 <div>
                   <p className="text-sm">EMAIL US</p>
-                  <p className="text-lg font-bold">vatanrangani4620@gmail.com</p>
+                  <p className="text-lg font-bold">mail@ranganiindia.com</p>
                 </div>
               </div>
               <div className="flex items-center bg-teal-500 text-white p-4 rounded-lg shadow-md mb-4">
                 <span className="material-icons mr-4">phone</span>
                 <div>
                   <p className="text-sm">TALK TO US</p>
-                  <p className="text-lg font-bold">+91-9925036495</p>
+                  <p className="text-lg font-bold">Mobile: +91-8000920222 - Milan Rangani</p>
                 </div>
               </div>
               <div className="text-gray-700">
                 <h4 className="font-bold mb-2">Address:</h4>
-                <p>E-30, Electronic Estate, G. I. D. C., Sector - 26, Gandhinagar - 382 028, Gujarat, India.</p>
+                <p>Survey No. 258, Plot No. 5 To 11, NH-8B, Gondal Road, Near Priyesh Cotton, Shapar, Rajkot-360024, Gujarat, India.</p>
                 <a href="#" className="text-teal-500 font-semibold mt-2 inline-block hover:underline">
                   Get Directions →
                 </a>

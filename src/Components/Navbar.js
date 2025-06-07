@@ -104,6 +104,15 @@ const NAVBAR = () => {
     }
   ];
 
+  // Centralized social media links with icons and URLs
+  const socialMediaLinks = [
+    { icon: YT, alt: "YouTube", url: "https://www.youtube.com/@RanganiEngineeringPvtLtd" },
+    { icon: ins, alt: "Instagram", url: "https://www.instagram.com/rangani_engineering_pvt_ltd" },
+    { icon: face, alt: "Facebook", url: "https://www.facebook.com/people/Rangani-Engineering-Pvt-Ltd/100063895899990/" },
+    // { icon: twi, alt: "Twitter", url: "https://www.twitter.com/" }, // Added Twitter as an example
+    // { icon: lindk, alt: "LinkedIn", url: "https://www.linkedin.com/" } // Added LinkedIn as an example
+  ];
+
   return (
     <div className="font-sans">
       {/* Header */}
@@ -120,32 +129,33 @@ const NAVBAR = () => {
             </span>
           </div>
 
-          {/* Desktop Social Icons */}
+          {/* Desktop Social Icons - now with dynamic links */}
           <div className="hidden sm:flex gap-4 items-center">
-            {[YT, ins, face, lindk, twi].map((icon, idx) => (
-              <a href="#" key={idx} className="hover:text-teal-500">
-                <img src={icon} alt={`Social ${idx}`} className="w-5 h-5" />
+            {socialMediaLinks.map((social, idx) => (
+              <a href={social.url} key={idx} className="hover:text-teal-500" target="_blank" rel="noopener noreferrer">
+                <img src={social.icon} alt={social.alt} className="w-5 h-5" />
               </a>
             ))}
           </div>
 
-          {/* Mobile Social Toggle Button */}
+          {/* Mobile Social Toggle Button - changed icon */}
           <button
             onClick={() => setSocialOpen(!socialOpen)}
             className="sm:hidden flex items-center"
           >
             <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                {/* Icon for social media toggle - e.g., a share icon or three dots */}
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.885 13.995 9 14.659 9 15.324c0 3.003-2.686 5.626-5.83 5.626C2.385 20.95 0 18.573 0 15.324c0-3.003 2.686-5.626 5.83-5.626 1.06 0 2.062.298 2.923.823l5.068-5.068a.955.955 0 0 1 1.348 0l2.534 2.534a.955.955 0 0 1 0 1.348l-2.534 2.534a.955.955 0 0 1-1.348 0L8.684 13.342zM15.324 0a5.83 5.83 0 1 0 0 11.66 5.83 5.83 0 0 0 0-11.66z" />
             </svg>
           </button>
         </div>
 
-        {/* Sliding Mobile Menu */}
+        {/* Sliding Mobile Menu - now with dynamic links */}
         {socialOpen && (
           <div className="absolute right-4 top-full mt-2 bg-white shadow-lg rounded-lg p-3 flex flex-col gap-3 sm:hidden transition-all duration-300 z-10">
-            {[YT, ins, face, lindk, twi].map((icon, idx) => (
-              <a href="#" key={idx} className="hover:text-teal-500">
-                <img src={icon} alt={`Social ${idx}`} className="w-5 h-5" />
+            {socialMediaLinks.map((social, idx) => (
+              <a href={social.url} key={idx} className="hover:text-teal-500" target="_blank" rel="noopener noreferrer">
+                <img src={social.icon} alt={social.alt} className="w-5 h-5" />
               </a>
             ))}
           </div>
@@ -178,7 +188,8 @@ const NAVBAR = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <ul className="hidden md:flex gap-6 text-gray-800 font-medium">
+            {/* Adjusted layout for navigation after removing search */}
+            <ul className="hidden md:flex gap-6 text-gray-800 font-medium"> {/* Removed w-auto and flex-grow from parent to rely on gap-6 */}
               <li><Link to="/" className="hover:text-teal-500">Home</Link></li>
               <li
                 className="relative group"
@@ -187,7 +198,7 @@ const NAVBAR = () => {
               >
                 <Link to="/category-page" className="hover:text-teal-500 flex items-center cursor-pointer">Our Products ▾</Link>
                 {isDropdownOpen && (
-                  <div className="absolute top-full left-0 bg-white shadow-lg border border-gray-200 rounded-lg w-[700px] flex z-50">
+                  <div className="absolute top-full right-0 bg-white shadow-lg border border-gray-200 rounded-lg w-[700px] flex z-50">
                     <div className="w-1/3 bg-gray-100 p-4 rounded-l-lg">
                       <ul>
                         {categories.map((category, index) => (
@@ -223,7 +234,8 @@ const NAVBAR = () => {
               <li><Link to="/contact" className="hover:text-teal-500">Contact</Link></li>
             </ul>
 
-            {/* Search Box */}
+            {/* Search Box - COMMENTED OUT */}
+            {/*
             <div className={`transition-all duration-300 border-2 border-teal-500 rounded-full flex items-center overflow-hidden ${isHovered ? "w-64" : "w-12 h-10"}`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
               {isHovered ? (
                 <input type="text" placeholder="Search..." className="w-full px-4 py-2 outline-none text-gray-800" />
@@ -231,6 +243,7 @@ const NAVBAR = () => {
                 <button className="flex items-center justify-center w-12 h-full bg-teal-500 text-white text-sm">🔍</button>
               )}
             </div>
+            */}
           </div>
 
           {/* Mobile Menu */}

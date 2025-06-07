@@ -1,5 +1,6 @@
 import React from "react";
 import rewblogo from "../images/logo.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -19,23 +20,29 @@ const Footer = () => {
           <h4 className="text-xl font-bold mb-4">Company</h4>
           <ul className="text-gray-400">
             <li>
-              <a href="#home" className="hover:underline">Home</a>
+              <Link to="/" className="hover:text-teal-500 hover:underline">Home</Link>
             </li>
             <li>
-              <a href="#products" className="hover:underline">Products</a>
+              
+              <Link to="/category-page" className="hover:text-teal-500 hover:underline">Products</Link>
             </li>
             <li>
-              <a href="#about-us" className="hover:underline">About Us</a>
+              
+              <Link to="/about" className="hover:text-teal-500 hover:underline">About Us</Link>
             </li>
             <li>
-              <a href="#contact" className="hover:underline">Contact</a>
+              
+              <Link to="/contact" className="hover:text-teal-500 hover:underline">Contact</Link>
             </li>
           </ul>
         </div>
         <div className="w-full lg:w-1/3">
           <h4 className="text-xl font-bold mb-4">Contact</h4>
           <ul className="text-gray-400">
-            <li>Email: vatanrangani4620@gmail.com</li>
+            <li>Mobile: +91-9825075813 - Kanjibhai Rangani</li>
+            <li>Mobile: +91-8000920222 - Milan Rangani</li>
+            <li>Email: mail@ranganiindia.com</li>
+            <li>Address: Survey No. 258, Plot No. 5 To 11, NH-8B, Gondal Road, Near Priyesh Cotton, Shapar, Rajkot-360024, Gujarat, India</li>
           </ul>
         </div>
       </div>
