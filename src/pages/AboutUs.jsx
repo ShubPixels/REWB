@@ -109,26 +109,27 @@ const AboutUs = () => {
 
   return (
     <>
-    {/* hero */}     
-    <div className="relative w-full h-32 md:h-40 mt-24 lg:h-48 bg-cyan-50 overflow-hidden">
-        {/* Image Background - Using placeholder since we can't import actual images */}
-        <div>
-          <img
-          src={heroabout} 
-          className="absolute w-full inset-0 bg-gray-600" 
-          aria-label="Industrial recycling facility with worker"
-          />
+    {/* HERO SECTION */}
+    <div className="relative w-full h-64 md:h-80 lg:h-96 mt-24">
+      {/* Background Image */}
+      <img
+        src={heroabout}
+        className="absolute inset-0 w-full h-full object-cover"
+        alt="Industrial recycling facility with a worker"
+      />
+
+      {/* Dark Overlay for Text Readability */}
+      <div className="absolute inset-0 bg-black opacity-50"></div>
+
+      {/* Content */}
+      <div className="relative h-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight md:leading-snug">
+            Leading the Future: Innovating Sustainability for a Cleaner, <br className="hidden md:block" />
+            <span className="text-emerald-400">Greener World.</span>
+          </h1>
         </div>
-        
-        {/* Overlay with text */}
-        <div className="relative h-full flex items-center px-4 md:px-8 lg:px-16">
-          <div className="w-full md:text-center">
-            <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
-              Leading the Future: Innovating Sustainability for a Cleaner,{' '}
-              <span className="text-emerald-400">Greener World.</span>
-            </h1>
-          </div>
-        </div>
+      </div>
     </div>
 
     <div className="w-full bg-cyan-50 py-10 px-4 md:px-8 lg:px-16">
