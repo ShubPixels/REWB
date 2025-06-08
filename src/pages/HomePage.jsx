@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../App.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/autoplay";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import BalingPressMachines from "../images/PHOTO EDIT 6.png";
 import ScrapShearingMachine from "../images/PHOTO EDIT 7.png";
 import ForgingRingRollingMachines from "../images/PHOTO EDIT 21.png";
@@ -14,10 +14,10 @@ import * as THREE from "three";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 import TLDR from "../images/tldr.jpg";
 import FadeInSection from "./Fadeinsection";
 import ImageCarousel from '../Components/ImageCarousel';
-import { EffectCoverflow, Navigation } from "swiper/modules";
 import slide_image_1 from "../images/PHOTO EDIT 22.png";
 import slide_image_2 from "../images/PHOTO EDIT 23.png";
 import slide_image_3 from "../images/PHOTO EDIT 24.png";
@@ -247,39 +247,43 @@ const HomePage = () => {
   return (
     <div className="font-sans bg-cyan-50">
       <FadeInSection>
-        <section className="widthforherosec bg-cyan-50 mx-auto flex flex-wrap items-center pt-28 sm:pt-32 md:pt-36 px-4 md:px-8">
-          <div className="w-full md:w-1/2 text-center md:text-left py-8 ">
-            <h1 className="text-[clamp(2rem,5vw,3.5rem)] font-bold text-gray-800 leading-tight mb-4">
-              REIMAGINING WASTE, <br />
-              REENGINEERING <span className="text-teal-500">THE FUTURE</span>
-            </h1>
-            <p className="text-gray-600 text-[clamp(1rem,2vw,1.25rem)] mb-6">
-              Empowering Industries with Advanced Engineering Solutions
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
-              <button className="border-2 border-teal-500 text-teal-500 px-6 py-2 rounded-lg font-medium hover:bg-teal-500 hover:text-white transition">
-                <Link to="/category-page" className="hover:text-white">View Machines</Link>
-              </button>
-              <button className="bg-teal-500 text-white px-6 py-2 rounded-lg font-medium hover:opacity-80 transition">
-                Watch Video
-              </button>
+        <section className="bg-cyan-50">
+            <div className="widthforherosec mx-auto flex flex-col lg:flex-row items-center justify-between pt-32 sm:pt-36 lg:pt-40 px-4 md:px-8">
+                {/* Left Side: Text Content */}
+                <div className="w-full lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0">
+                    <h1 className="text-[clamp(2.5rem,5vw,4rem)] font-bold text-gray-800 leading-tight mb-4">
+                        REIMAGINING WASTE, <br />
+                        REENGINEERING <span className="text-teal-500">THE FUTURE</span>
+                    </h1>
+                    <p className="text-gray-600 text-[clamp(1rem,2vw,1.25rem)] mb-8 max-w-xl mx-auto lg:mx-0">
+                        Empowering Industries with Advanced Engineering Solutions
+                    </p>
+                    <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                        <button className="border-2 border-teal-500 text-teal-500 px-8 py-3 rounded-lg font-medium hover:bg-teal-500 hover:text-white transition-colors duration-300">
+                            <Link to="/category-page" className="hover:text-white">View Machines</Link>
+                        </button>
+                        <button className="bg-teal-500 text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity duration-300">
+                            Watch Video
+                        </button>
+                    </div>
+                </div>
+                {/* Right Side: Image Swiper */}
+                <div className="w-full md:w-3/4 lg:w-1/2">
+                    <Swiper
+                        modules={[Autoplay]}
+                        autoplay={{ delay: 3000, disableOnInteraction: false }}
+                        loop={true}
+                        slidesPerView={1}
+                        className="max-w-full rounded-lg"
+                    >
+                        {[slide1, slide2, slide3].map((img, index) => (
+                            <SwiperSlide key={index}>
+                                <img src={img} alt={`Hero Slide ${index + 1}`} className="w-full h-auto object-contain rounded-lg" />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
             </div>
-          </div>
-          <div className="w-full md:w-1/2 flex pl-3 marginTPforhersec justify-center md:justify-end">
-            <Swiper
-              modules={[Autoplay]}
-              autoplay={{ delay: 3000, disableOnInteraction: false }}
-              loop={true}
-              slidesPerView={1}
-              className="max-w-full"
-            >
-              {[slide1, slide2, slide3].map((img, index) => (
-                <SwiperSlide key={index}>
-                  <img src={img} alt={`Hero Slide ${index + 1}`} className=" object-contain rounded-lg" />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
         </section>
       </FadeInSection>
 
@@ -300,9 +304,6 @@ const HomePage = () => {
         <div className="w-full md:w-2/3 text-center md:text-left space-y-8">
           <div className="flex flex-col md:flex-row items-center md:items-center gap-4 md:gap-6">
             <h2 className="text-3xl font-bold">Get your personalized quote today!</h2>
-            {/* <button className="bg-white text-teal-500 px-5 py-2 rounded-full font-semibold shadow-md hover:bg-gray-100">
-              Get a Quote
-            </button> */}
           </div>
           <div className="flex flex-wrap justify-center md:justify-between gap-1 md:gap-12">
             <div className="text-center md:text-left">
@@ -320,39 +321,39 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-
+      
       <FadeInSection>
-        <section className="bg-cyan-50 py-12 ">
-          <h2 className="text-center text-4xl sm:text-5xl font-bold mb-12 sm:mb-16">
+        <section className="bg-cyan-50 py-16">
+          <h2 className="text-center text-4xl sm:text-5xl font-bold mb-12 sm:mb-16 px-4">
             Our Wide <span className="text-teal-500">Range of Services</span>
           </h2>
-          <div className="container mx-auto px-4 sm:px-8 lg:px-4 flex flex-col sm:flex-row justify-center gap-6">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl shadow-lg w-[360px] p-6 sm:p-8 lg:p-10 transition-transform hover:scale-105"
-              >
-                <h3 className="text-lg sm:text-xl font-bold mb-3 text-gray-800">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 mb-3 sm:mb-4">{service.description}</p>
-                <Link 
-                  to={`/category-page?category=${encodeURIComponent(service.title)}`}
-                  className="text-teal-500 font-semibold hover:underline mb-3 sm:mb-4 block"
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {services.map((service, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-xl shadow-lg p-6 sm:p-8 flex flex-col transition-transform hover:scale-105 w-full"
                 >
-                  SEE MORE →
-                </Link>
-
-
-                <div className="overflow-visible rounded-lg">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-40 object-scale-down transition-transform duration-300 hover:scale-150"
-                  />
+                  <h3 className="text-xl sm:text-2xl font-bold mb-4 text-gray-800">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4 flex-grow">{service.description}</p>
+                  <Link 
+                    to={`/category-page?category=${encodeURIComponent(service.title)}`}
+                    className="text-teal-500 font-semibold hover:underline mb-4 block"
+                  >
+                    SEE MORE →
+                  </Link>
+                  <div className="overflow-hidden rounded-lg mt-auto">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-48 object-contain transition-transform duration-300 hover:scale-110"
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
       </FadeInSection>
@@ -360,45 +361,50 @@ const HomePage = () => {
       <div className="container mx-auto">
         <ImageCarousel />
       </div>
-
+      
+      {/* =================================================================
+          TESTIMONIALS SECTION - REWORKED
+      ================================================================= */}
       <FadeInSection>
         <section className="bg-cyan-50 py-12 px-4 md:px-12">
           <div className="container mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-8">
+            <h2 className="text-4xl font-bold text-center mb-12">
               Experiences <span className="text-teal-500">That Matter</span>
             </h2>
-            <div className="flex flex-wrap justify-center">
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              loop={true}
+              spaceBetween={30}
+              slidesPerView={1}
+              navigation
+              pagination={{ clickable: true }}
+              className="testimonial-swiper pb-10"
+            >
               {testimonials.map((testimonial) => (
-                <div
-                  key={testimonial.id}
-                  className="bg-white shadow-lg rounded-lg m-4 max-w-md p-6"
-                >
-                  <p className="text-lg mb-4">"{testimonial.text}"</p>
-                  <div className="flex items-center">
-                    <img
-                      src={testimonial.image}
-                      alt={`${testimonial.name}'s image`}
-                      className="h-12 w-12 rounded-full mr-4"
-                    />
-                    <div>
-                      <p className="font-semibold">{testimonial.name}</p>
-                      <p className="text-sm">{testimonial.designation}</p>
+                <SwiperSlide key={testimonial.id}>
+                  <div className="text-center px-4 md:px-16 flex flex-col items-center justify-center min-h-[320px]">
+                    <p className="text-gray-700 mb-8 text-lg md:text-xl italic leading-relaxed max-w-3xl mx-auto">
+                      "{testimonial.text}"
+                    </p>
+                    <div className="flex flex-col items-center mt-auto">
+                      <img
+                        src={testimonial.logo}
+                        alt={`${testimonial.company} logo`}
+                        className="testimonial-logo" 
+                      />
+                      <div>
+                        <p className="font-bold text-gray-800 text-lg">{testimonial.company}</p>
+                        <p className="text-sm text-gray-500">{testimonial.name}, {testimonial.designation}</p>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex justify-end mt-4">
-                    <img src={testimonial.logo} alt={`${testimonial.company} logo`} className="h-8" />
-                  </div>
-                </div>
+                </SwiperSlide>
               ))}
-            </div>
-            <div className="flex justify-center mt-8">
-              <button className="mx-2 px-4 py-2 bg-teal-500 text-white rounded-full shadow hover:bg-teal-600">
-                ❮
-              </button>
-              <button className="mx-2 px-4 py-2 bg-teal-500 text-white rounded-full shadow hover:bg-teal-600">
-                ❯
-              </button>
-            </div>
+            </Swiper>
           </div>
         </section>
       </FadeInSection>
