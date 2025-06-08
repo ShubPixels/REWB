@@ -366,48 +366,54 @@ const HomePage = () => {
           TESTIMONIALS SECTION - REWORKED
       ================================================================= */}
       <FadeInSection>
-        <section className="bg-cyan-50 py-12 px-4 md:px-12">
-          <div className="container mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">
-              Experiences <span className="text-teal-500">That Matter</span>
-            </h2>
-            <Swiper
-              modules={[Navigation, Pagination, Autoplay]}
-              autoplay={{
-                delay: 4000,
-                disableOnInteraction: false,
-              }}
-              loop={true}
-              spaceBetween={30}
-              slidesPerView={1}
-              navigation
-              pagination={{ clickable: true }}
-              className="testimonial-swiper pb-10"
-            >
-              {testimonials.map((testimonial) => (
-                <SwiperSlide key={testimonial.id}>
-                  <div className="text-center px-4 md:px-16 flex flex-col items-center justify-center min-h-[320px]">
-                    <p className="text-gray-700 mb-8 text-lg md:text-xl italic leading-relaxed max-w-3xl mx-auto">
-                      "{testimonial.text}"
-                    </p>
-                    <div className="flex flex-col items-center mt-auto">
-                      <img
-                        src={testimonial.logo}
-                        alt={`${testimonial.company} logo`}
-                        className="testimonial-logo" 
-                      />
-                      <div>
-                        <p className="font-bold text-gray-800 text-lg">{testimonial.company}</p>
-                        <p className="text-sm text-gray-500">{testimonial.name}, {testimonial.designation}</p>
-                      </div>
+      <section className="bg-cyan-50 py-12 px-4">
+        <div className="container mx-auto">
+          {/* Heading is now responsive */}
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">
+            Experiences <span className="text-teal-500">That Matter</span>
+          </h2>
+
+          {/* Added back testimonial-swiper class to enable correct styling */}
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+            }}
+            loop={true}
+            spaceBetween={30}
+            slidesPerView={1}
+            navigation
+            pagination={{ clickable: true }}
+            className="testimonial-swiper pb-10"
+          >
+            {testimonials.map((testimonial) => (
+              <SwiperSlide key={testimonial.id}>
+                {/* Removed fixed height and adjusted padding for better responsiveness */}
+                <div className="text-center px-6 sm:px-8 md:px-16 py-8 flex flex-col items-center justify-center">
+                  {/* Text size is now responsive */}
+                  <p className="text-gray-700 mb-8 text-base sm:text-lg md:text-xl italic leading-relaxed max-w-3xl mx-auto">
+                    "{testimonial.text}"
+                  </p>
+                  <div className="flex flex-col items-center mt-auto">
+                    {/* Correctly using className for the logo styling */}
+                    <img
+                      src={testimonial.logo}
+                      alt={`${testimonial.company} logo`}
+                      className="testimonial-logo"
+                    />
+                    <div>
+                      <p className="font-bold text-gray-800 text-base sm:text-lg">{testimonial.company}</p>
+                      <p className="text-sm text-gray-500">{testimonial.name}, {testimonial.designation}</p>
                     </div>
                   </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        </section>
-      </FadeInSection>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </section>
+    </FadeInSection>
 
       <FadeInSection>
         <section className="bg-cyan-50 py-16 px-4 md:px-12">

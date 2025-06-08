@@ -29,19 +29,19 @@
   position: relative;
 }
 
-@media (max-width: 500px) {
+/* @media (max-width: 500px) {
   .swiper_container {
     height: 47rem;
     padding-top: 20px;
     padding-bottom: 20px;
   }
   .swiper-slide {
-    width: 28rem !important;
-    height: 36rem !important;
+    width: 28rem ;
+    height: 36rem;
   }
   .swiper-slide img {
-    width: 28rem !important;
-    height: 36rem !important;
+    width: 28rem ;
+    height: 36rem ;
   }
 }
 
@@ -50,7 +50,7 @@
   height: 42rem;
   border-radius: 2rem;
   object-fit: contain;
-}
+} */
 
 .swiper-slide-shadow-left,
 .swiper-slide-shadow-right {
@@ -157,11 +157,25 @@
 }
 
 /* New class for the testimonial logo to prevent conflicts with '.swiper-slide img' */
-.testimonial-logo {
-  width: auto;
-  height: 6rem;
+-testimonial-logo {
+  /* width: 2rem;
+  height: 1rem; */
   max-width: 150px;
   border-radius: 0;
   object-fit: contain;
   margin-bottom: 1rem;
+  scale: 75%;
+}
+
+-imgscalefortest{
+  scale: 75%
+}
+
+/* Add this to the end of your index.css file */
+
+@media (max-width: 640px) {
+  .testimonial-swiper .swiper-button-next,
+  .testimonial-swiper .swiper-button-prev {
+    display: none;
+  }
 }
