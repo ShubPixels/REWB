@@ -247,7 +247,7 @@ const HomePage = () => {
   return (
     <div className="font-sans bg-cyan-50">
       <FadeInSection>
-        <section className="bg-cyan-50">
+        <section className="bg-cyan-50 pb-20">
             <div className="widthforherosec mx-auto flex flex-col lg:flex-row items-center justify-between pt-32 sm:pt-36 lg:pt-40 px-4 md:px-8">
                 {/* Left Side: Text Content */}
                 <div className="w-full lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0">
@@ -375,7 +375,7 @@ const HomePage = () => {
 
           {/* Added back testimonial-swiper class to enable correct styling */}
           <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
+            modules={[Navigation,  Autoplay]}
             autoplay={{
               delay: 4000,
               disableOnInteraction: false,

@@ -66,19 +66,21 @@ const ProductPage = () => {
               className="pb-4"
               name={product.name}
               tagline={product.tagline}
+              benifits={product.benifits}
             />
             <TabComponent
               description={product.description}
               specifications={product.specifications}
+              applications={product.applications}
             />
-            <div className="flex gap-4 mt-6">
+            {/* <div className="flex gap-4 mt-6">
               <button className="bg-cyan-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-cyan-600 transition">
                 Get a Quote
               </button>
               <button className="border-2 border-cyan-500 text-cyan-500 px-6 py-3 rounded-lg hover:bg-cyan-500 hover:text-white transition">
                 Contact Us
               </button>
-            </div>
+            </div> */}
           </div>
         </section>
       </div>
@@ -87,8 +89,8 @@ const ProductPage = () => {
         <div className="container mx-auto">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold text-gray-800">
-              More from{" "}
-              <span className="text-teal-500">{currentProductCategory}</span>
+              More from the category
+              {/* <span className="text-teal-500">{currentProductCategory}</span> */}
             </h2>
             <Link
               to="/products"
