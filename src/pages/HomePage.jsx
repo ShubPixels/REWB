@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import call from "../images/Vector.png";
+import email from "../images/Vector 2.png";
 import { Link } from "react-router-dom";
 import "../App.css";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -299,72 +301,76 @@ const HomePage = () => {
         <ScrollingLogoBanner/>
       </FadeInSection>
 
-      <div className="container mx-auto rounded-2xl bg-gradient-to-tr from-teal-500 to-cyan-600 text-white shadow-2xl">
-        <div className="mx-auto flex flex-col md:flex-row items-center justify-between p-8 md:p-12 gap-8 md:gap-12">
+      <FadeInSection>
+        <div className="container mx-auto rounded-2xl bg-gradient-to-tr from-teal-500 to-cyan-600 text-white shadow-2xl">
+          <div className="mx-auto flex flex-col md:flex-row items-center justify-between p-8 md:p-12 gap-8 md:gap-12">
 
-          {/* Left Side: Image */}
-          {/* We'll make the map feel more integrated and subtle */}
-          <div className="w-full md:w-2/5 flex justify-center opacity-80 md:opacity-100">
-            <img src={worldmap} alt="World Map" className="max-w-xs md:max-w-full h-auto" />
-          </div>
-
-          {/* Right Side: Content */}
-          <div className="w-full md:w-3/5 text-center md:text-left">
-            {/* Main Headline & Sub-headline */}
-            <div className="space-y-4">
-              <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
-                Ready to take the next step?
-              </h2>
-              <p className="text-lg text-cyan-100">
-                Get a personalized, no-obligation quote from our team today.
-              </p>
+            {/* Left Side: Image */}
+            {/* We'll make the map feel more integrated and subtle */}
+            <div className="w-full md:w-2/5 flex justify-center opacity-80 md:opacity-100">
+              <img src={worldmap} alt="World Map" className="max-w-xs md:max-w-full h-auto" />
             </div>
 
-            {/* Animated Stats Section */}
-            <div className="my-8 flex flex-wrap justify-center md:justify-start gap-8 md:gap-10">
-              {/* Stat 1: Unique Clients */}
-              <div className="flex items-center gap-3">
-                <FaUsers className="text-3xl text-cyan-200" />
-                <div>
-                  <p className="text-3xl font-bold">
-                    <CountUp end={6000} duration={3} enableScrollSpy scrollSpyOnce />+
-                  </p>
-                  <p className="text-sm text-cyan-100">Unique Clients</p>
+            {/* Right Side: Content */}
+            <div className="w-full md:w-3/5 text-center md:text-left">
+              {/* Main Headline & Sub-headline */}
+              <div className="space-y-4">
+                <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
+                  Ready to take the next step?
+                </h2>
+                <p className="text-lg text-cyan-100">
+                  Get a personalized, no-obligation quote from our team today.
+                </p>
+              </div>
+
+              {/* Animated Stats Section */}
+              <div className="my-8 flex flex-wrap justify-center md:justify-start gap-8 md:gap-10">
+                {/* Stat 1: Unique Clients */}
+                <div className="flex items-center gap-3">
+                  <FaUsers className="text-3xl text-cyan-200" />
+                  <div>
+                    <p className="text-3xl font-bold">
+                      <CountUp end={6000} duration={3} enableScrollSpy scrollSpyOnce />+
+                    </p>
+                    <p className="text-sm text-cyan-100">Unique Clients</p>
+                  </div>
+                </div>
+
+                {/* Stat 2: Worldwide Reach */}
+                <div className="flex items-center gap-3">
+                  <FaGlobeAmericas className="text-3xl text-cyan-200" />
+                  <div>
+                    <p className="text-3xl font-bold">
+                      <CountUp end={15} duration={3} enableScrollSpy scrollSpyOnce />+
+                    </p>
+                    <p className="text-sm text-cyan-100">Countries Served</p>
+                  </div>
+                </div>
+
+                {/* Stat 3: Experience */}
+                <div className="flex items-center gap-3">
+                  <FaAward className="text-3xl text-cyan-200" />
+                  <div>
+                    <p className="text-3xl font-bold">
+                      <CountUp end={30} duration={3} enableScrollSpy scrollSpyOnce />+
+                    </p>
+                    <p className="text-sm text-cyan-100">Years of Experience</p>
+                  </div>
                 </div>
               </div>
 
-              {/* Stat 2: Worldwide Reach */}
-              <div className="flex items-center gap-3">
-                <FaGlobeAmericas className="text-3xl text-cyan-200" />
-                <div>
-                  <p className="text-3xl font-bold">
-                    <CountUp end={15} duration={3} enableScrollSpy scrollSpyOnce />+
-                  </p>
-                  <p className="text-sm text-cyan-100">Countries Served</p>
-                </div>
+              {/* The Call-to-Action Button */}
+              <div>
+                <Link to="/contact">
+                  <button className="bg-white text-teal-600 font-bold py-3 px-8 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-cyan-300">
+                    Contact Us Now
+                  </button>
+                </Link>  
               </div>
-
-              {/* Stat 3: Experience */}
-              <div className="flex items-center gap-3">
-                <FaAward className="text-3xl text-cyan-200" />
-                <div>
-                  <p className="text-3xl font-bold">
-                    <CountUp end={30} duration={3} enableScrollSpy scrollSpyOnce />+
-                  </p>
-                  <p className="text-sm text-cyan-100">Years of Experience</p>
-                </div>
-              </div>
-            </div>
-
-            {/* The Call-to-Action Button */}
-            <div>
-              <button className="bg-white text-teal-600 font-bold py-3 px-8 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-cyan-300">
-                Contact Us Now
-              </button>
             </div>
           </div>
         </div>
-      </div>
+      </FadeInSection>
       
       <FadeInSection>
         <section className="bg-cyan-50 py-16">
@@ -402,9 +408,11 @@ const HomePage = () => {
         </section>
       </FadeInSection>
 
-      <div className="container mx-auto">
-        <ImageCarousel />
-      </div>
+      <FadeInSection>
+        <div className="container mx-auto">
+          <ImageCarousel />
+        </div>
+      </FadeInSection>
       
       {/* =================================================================
           TESTIMONIALS SECTION - REWORKED
@@ -448,7 +456,7 @@ const HomePage = () => {
                     />
                     <div>
                       <p className="font-bold text-gray-800 text-base sm:text-lg">{testimonial.company}</p>
-                      <p className="text-sm text-gray-500">{testimonial.name}, {testimonial.designation}</p>
+                      {/* <p className="text-sm text-gray-500">{testimonial.name}, {testimonial.designation}</p> */}
                     </div>
                   </div>
                 </div>
@@ -573,14 +581,14 @@ const HomePage = () => {
                 24/7 service support and technical assistance. Visit our office for more insights.
               </p>
               <div className="flex items-center bg-teal-500 text-white p-4 rounded-lg shadow-md mb-4">
-                <span className="material-icons mr-4">email</span>
+                <img src={email} className="pr-4"></img>
                 <div>
                   <p className="text-sm">EMAIL US</p>
                   <p className="text-lg font-bold">mail@ranganiindia.com</p>
                 </div>
               </div>
               <div className="flex items-center bg-teal-500 text-white p-4 rounded-lg shadow-md mb-4">
-                <span className="material-icons mr-4">phone</span>
+                <img src={call} className="pr-4"></img>
                 <div>
                   <p className="text-sm">TALK TO US</p>
                   <p className="text-lg font-bold">Mobile: +91-8000920222 - Milan Rangani</p>

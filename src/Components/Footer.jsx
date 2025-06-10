@@ -31,7 +31,6 @@ const Footer = () => {
               <Link to="/about" className="hover:text-teal-500 hover:underline">About Us</Link>
             </li>
             <li>
-              
               <Link to="/contact" className="hover:text-teal-500 hover:underline">Contact</Link>
             </li>
           </ul>

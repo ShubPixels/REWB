@@ -190,7 +190,7 @@
 .scrolling-banner {
   display: flex; /* <-- THE KEY FIX: Use Flexbox */
   align-items: center; /* Vertically centers logos if they have different heights */
-  animation: scroll-left 45s linear infinite;
+  animation: scroll-left 18s linear infinite;
 }
 
 /* Keyframes for the horizontal scroll (no change here) */
@@ -215,5 +215,12 @@
 @media (min-width: 768px) {
   .scrolling-banner img {
     height: 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .scrolling-banner {
+    /* 3. Simply change the variable's value for mobile */
+    --scroll-duration: 1s; 
   }
 }

@@ -102,10 +102,12 @@ const ProductPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {relatedProducts.map((relatedProduct) => (
+              // The card has a simple layout again. No 'group' needed on the main div.
               <div
                 key={relatedProduct.key}
-                className="bg-white rounded-lg shadow-md p-4 transition hover:shadow-lg flex flex-col"
+                className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col p-4"
               >
+                {/* 1. Simple Image Area */}
                 <div className="h-40 bg-white flex justify-center items-center rounded-md mb-4">
                   <img
                     src={relatedProduct.image[0]}
@@ -113,18 +115,41 @@ const ProductPage = () => {
                     className="h-full max-w-full object-contain"
                   />
                 </div>
-                <h3 className="text-lg font-semibold">
-                  {relatedProduct.name}
-                </h3>
-                <p className="text-sm text-gray-500 flex-grow">
+
+                {/* 2. Simple Text Area */}
+                <h3 className="text-lg font-semibold">{relatedProduct.name}</h3>
+                <p className="text-sm text-gray-500 flex-grow mb-4">
                   {relatedProduct.tagline}
                 </p>
-                <Link
-                  to={`/product/${relatedProduct.key}`}
-                  className="mt-4 bg-teal-500 text-white py-2 w-full rounded-md flex items-center justify-center gap-2 transition hover:bg-teal-600 text-center"
-                >
-                  📖 Learn more
-                </Link>
+
+                {/* 3. THE NEW LAYERED "GLASS" BUTTON */}
+                <div className="mt-auto">
+                  <Link
+                    to={`/product/${relatedProduct.key}`}
+                    className="group relative inline-flex items-center justify-center"
+                  >
+                    {/* Layer 1: The blurred blue "glow" below */}
+                    <div
+                      className="
+                        absolute -inset-1 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500
+                        blur-md opacity-30
+                        transition-all duration-300 group-hover:opacity-45 group-hover:blur-lg
+                      "
+                    ></div>
+
+                    {/* Layer 2: The "glass" surface on top */}
+                    <span
+                      className="
+                        relative w-full px-5 py-2 rounded-full
+                        text-sm font-semibold text-gray-800
+                        bg-white/80 border border-white/60 backdrop-blur-sm
+                        transition-colors duration-300 group-hover:bg-white
+                      "
+                    >
+                      📖 Learn more
+                    </span>
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
@@ -143,35 +168,64 @@ const ProductPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Category Cards */}
-            {["Special Purpose Machines", "Industrial Machines"].map(
-              (category, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-lg shadow-md p-4 transition hover:shadow-lg"
-                >
-                  <div className="h-40 bg-gray-200 rounded-md">
-                    {/* Placeholder for category images */}
-                  </div>
-                  <h3 className="text-lg font-semibold mt-4">{category}</h3>
-                  <button className="mt-4 bg-teal-500 text-white py-2 w-full rounded-md flex items-center justify-center gap-2 transition hover:bg-teal-600">
-                    📖 Learn more
-                  </button>
+            {/* --- Category Cards with the new button --- */}
+            {["Special Purpose Machines", "Industrial Machines"].map((category, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col p-4"
+              >
+                <div className="h-40 bg-gray-200 rounded-md flex items-center justify-center">
+                  {/* Placeholder for category images */}
                 </div>
-              )
-            )}
+                <h3 className="text-lg font-semibold mt-4 flex-grow">{category}</h3>
 
-            {/* Contact Us Card */}
-            <div className="bg-white rounded-lg shadow-md p-6 flex flex-col justify-between transition hover:shadow-lg">
-              <p className="text-lg font-bold">
-                Got something in your{" "}
-                <span className="text-teal-500">MIND</span>? <br />
-                Let's work{" "}
-                <span className="text-teal-600 font-bold">Together!!</span>
+                {/* The new consistent button */}
+                <div className="mt-4">
+                  <Link
+                    to="/products"
+                    className="group relative inline-flex items-center justify-center"
+                  >
+                    <div
+                      className="
+                        absolute -inset-1 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500
+                        blur-md opacity-30
+                        transition-all duration-300 group-hover:opacity-45 group-hover:blur-lg
+                      "
+                    ></div>
+                    <span
+                      className="
+                        relative w-full px-5 py-2 rounded-full
+                        text-sm font-semibold text-gray-800
+                        bg-white/80 border border-white/60 backdrop-blur-sm
+                        transition-colors duration-300 group-hover:bg-white
+                      "
+                    >
+                      📖 Learn more
+                    </span>
+                  </Link>
+                </div>
+              </div>
+            ))}
+
+            {/* --- Featured "Contact Us" Card (no changes needed) --- */}
+            <div
+              className="
+                rounded-lg shadow-md p-6 flex flex-col justify-between 
+                transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl
+                bg-gradient-to-br from-teal-500 to-cyan-600 text-white
+              "
+            >
+              {/* ... contact content remains the same ... */}
+              
+              <p className="text-xl font-bold">
+                Got something on your mind? <br />
+                Let's work <span className="font-extrabold text-cyan-200">Together!</span>
               </p>
-              <button className="mt-6 bg-teal-500 text-white py-2 w-full rounded-md transition hover:bg-teal-600">
+              <Link to="/contact">
+              <button className="mt-6 bg-white text-teal-600 font-bold py-2 w-full rounded-md transition-transform duration-300 hover:scale-105">
                 CONTACT US
               </button>
+              </Link>
             </div>
           </div>
         </div>

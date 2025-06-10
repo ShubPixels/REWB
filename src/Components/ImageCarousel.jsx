@@ -1,19 +1,19 @@
 // src/components/ImageCarousel.jsx
 import React, { useState, useEffect } from 'react';
-import slide_image_1 from "../images/PHOTO EDIT 22.png";
-import slide_image_2 from "../images/PHOTO EDIT 23.png";
-import slide_image_3 from "../images/PHOTO EDIT 24.png";
-import slide_image_4 from "../images/PHOTO EDIT 25.png";
-import slide_image_5 from "../images/PHOTO EDIT 6.png";
+import Continuous_Scrapping_Machine from "../images/bluemach.png";
+import Hydrotest_machine from "../images/PHOTO EDIT 25.png";
+import Cold_Shearing_Machine from "../images/PHOTO EDIT 1.png";
+import Continuous_Baling_Machine from "../images/PHOTO EDIT 6.png";
+import DI_Pipe_Breaking_Machine from "../images/v1_website_photos_data/IND - WM - DI  Pipe Breaking Machine/DIPIPE.png";
 
 
 const ImageCarousel = () => {
   const images = [
-    { id: 1, src: slide_image_1, alt: "Industrial machinery", title: "Precision Engineering" },
-    { id: 2, src: slide_image_2, alt: "Modern architecture", title: "Architectural Design" },
-    { id: 3, src: slide_image_3, alt: "Technology workspace", title: "Tech Solutions" },
-    { id: 4, src: slide_image_4, alt: "Manufacturing equipment", title: "Advanced Manufacturing" },
-    { id: 5, src: slide_image_5, alt: "Design studio", title: "Creative Workspace" }
+    { id: 1, src: Continuous_Scrapping_Machine, alt: "Industrial machinery", title: "Continuous Scrapping Machine" },
+    { id: 2, src: Hydrotest_machine, alt: "Modern architecture", title: "Hydrotest machine" },
+    { id: 3, src: Cold_Shearing_Machine, alt: "Technology workspace", title: "Cold Shearing Machine" },
+    { id: 4, src: Continuous_Baling_Machine, alt: "Manufacturing equipment", title: "Continuous Baling Machine" },
+    { id: 5, src: DI_Pipe_Breaking_Machine, alt: "Design studio", title: "DI - Pipe Breaking Machine" }
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -115,8 +115,22 @@ const ImageCarousel = () => {
         </button>
       </div>
 
+      {/* Image Title Section */}
+      <div className="flex justify-center mt-4">
+        <div 
+          className="px-6 py-2 rounded-full transition-all duration-300"
+          style={{
+            backgroundColor: "rgba(229, 231, 235, 0.5)", // Light greyish with opacity
+            backdropFilter: "blur(10px)", // Glassy effect
+            border: "1px solid rgba(229, 231, 235, 0.7)", // Thin border
+          }}
+        >
+          <h3 className="text-gray-800 text-lg font-semibold">{images[currentIndex].title}</h3>
+        </div>
+      </div>
+
       {/* Dots navigation */}
-      <div className="flex justify-center mt-6 space-x-2">
+      <div className="flex justify-center mt-4 space-x-2">
         {images.map((_, index) => (
           <button
             key={index}

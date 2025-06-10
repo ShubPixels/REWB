@@ -10,6 +10,7 @@ import rattanaward from "../images/DSC_0023.JPG";
 import prideofIND from "../images/DSC_0022.JPG";
 import IOBRD from "../images/DSC_0020.JPG";
 import ctaaboutus from "../images/cta_about.png";
+import { Link } from "react-router-dom";
 
 const AboutUs = () => {
   const services = [
@@ -422,14 +423,16 @@ const AboutUs = () => {
             </form> */}
             
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-3 bg-teal-500 text-white font-medium rounded hover:bg-teal-600 transition-colors duration-300">
-                Email Us
-              </button>
-              {/* <button className="px-8 py-3 bg-slate-800 text-white font-medium rounded hover:bg-slate-700 transition-colors duration-300">
-                Start Your Custom Project
-              </button> */}
-            </div>
+            <Link to="/contact">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button className="px-8 py-3 bg-teal-500 text-white font-medium rounded hover:bg-teal-600 transition-colors duration-300">
+                  Email Us
+                </button>
+                {/* <button className="px-8 py-3 bg-slate-800 text-white font-medium rounded hover:bg-slate-700 transition-colors duration-300">
+                  Start Your Custom Project
+                </button> */}
+              </div>
+            </Link>
           </div>
         </div>
       </div>

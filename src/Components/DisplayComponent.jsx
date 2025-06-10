@@ -4,9 +4,9 @@ export default function DisplayComponent(props) {
   return (
     <div className="w-full max-w-3xl p-4 mb-2 border rounded-lg shadow-md bg-white">
       {/* Tab Headers */}
-      <div className="flex border-b">
+      {/* <div className="flex border-b">
         <h2><p className="font-bold">{props.name}</p></h2>
-      </div>
+      </div> */}
 
       {/* Tab Content */}
       <div className="p-4">

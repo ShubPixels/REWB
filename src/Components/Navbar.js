@@ -6,6 +6,7 @@ import "swiper/css/autoplay";
 
 // Import images
 import rewblogo from "../images/logo.png";
+import sociallogo from "../images/sociallogo.png";
 import call from "../images/Vector.png";
 import email from "../images/Vector 2.png";
 import face from "../images/face.png";
@@ -122,10 +123,10 @@ const NAVBAR = () => {
           {/* Contact Info */}
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-2">
-              <img src={call} alt="call" className="w-4 h-4" /> +12 345 6789 0
+              <img src={call} alt="call" className="w-4 h-4" /> +918000920222
             </span>
             <span className="flex items-center gap-2">
-              <img src={email} alt="email" className="w-4 h-4" /> example@email.com
+              <img src={email} alt="email" className="w-4 h-4" /> mail@ranganiindia.com
             </span>
           </div>
 
@@ -133,7 +134,7 @@ const NAVBAR = () => {
           <div className="hidden sm:flex gap-4 items-center">
             {socialMediaLinks.map((social, idx) => (
               <a href={social.url} key={idx} className="hover:text-teal-500" target="_blank" rel="noopener noreferrer">
-                <img src={social.icon} alt={social.alt} className="w-5 h-5" />
+                <img src={social.icon} alt={social.alt} className="w-10 h-10" />
               </a>
             ))}
           </div>
@@ -143,10 +144,11 @@ const NAVBAR = () => {
             onClick={() => setSocialOpen(!socialOpen)}
             className="sm:hidden flex items-center"
           >
-            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {/* Icon for social media toggle - e.g., a share icon or three dots */}
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.885 13.995 9 14.659 9 15.324c0 3.003-2.686 5.626-5.83 5.626C2.385 20.95 0 18.573 0 15.324c0-3.003 2.686-5.626 5.83-5.626 1.06 0 2.062.298 2.923.823l5.068-5.068a.955.955 0 0 1 1.348 0l2.534 2.534a.955.955 0 0 1 0 1.348l-2.534 2.534a.955.955 0 0 1-1.348 0L8.684 13.342zM15.324 0a5.83 5.83 0 1 0 0 11.66 5.83 5.83 0 0 0 0-11.66z" />
-            </svg>
+            <img
+              src={sociallogo} // <-- Add the correct path to your logo
+              alt="Toggle Social Links"    // <-- Add descriptive alt text
+              className="w-12 h-12 rounded-full object-cover" // object-cover is useful if the logo isn't perfectly square
+            />
           </button>
         </div>
 
@@ -167,11 +169,13 @@ const NAVBAR = () => {
           <div className="container mx-auto flex items-center justify-between px-4 md:px-8 py-3">
             {/* Logo */}
             <div className="flex items-center gap-3">
-              <img src={rewblogo} alt="Logo" className="w-10 h-10 md:w-14 md:h-14" />
-              <h1 className="text-xl md:text-2xl font-bold text-gray-800">
-                RANGANI <br />
-                <span className="text-teal-500">ENGINEERING</span>
-              </h1>
+              <Link to="/"><img src={rewblogo} alt="Logo" className="w-10 h-10 md:w-14 md:h-14" /></Link>
+              <Link to="/">
+                <h1 className="text-xl md:text-2xl font-bold text-gray-800">
+                  RANGANI <br />
+                  <span className="text-teal-500">ENGINEERING</span>
+                </h1>
+              </Link>  
             </div>
 
             {/* Hamburger Menu */}

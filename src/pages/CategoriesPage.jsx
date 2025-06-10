@@ -143,24 +143,63 @@ const ProductsPage = () => {
         {/* Category Navigation --- REF ATTACHED HERE --- */}
         <div ref={categoriesRef} className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {categories.map((category, index) => (
-            <div 
+            <div
               key={category.id}
-              className={`cursor-pointer border-2 rounded-lg overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-xl ${
-                activeCategory === index 
-                  ? 'border-emerald-500 shadow-lg' 
-                  : 'border bg-white hover:border-emerald-300'
-              }`}
               onClick={() => handleCategoryChange(index)}
+              // The "group" class is essential for the hover effect on the capsule
+              className={`
+                group cursor-pointer rounded-lg overflow-hidden
+                transition-all duration-300 transform hover:scale-105 hover:shadow-xl
+                ${
+                  activeCategory === index
+                    ? 'border-2 border-emerald-500 shadow-lg'
+                    : 'border border-gray-200 hover:border-emerald-300'
+                }
+              `}
             >
-              <div className="aspect-square w-full bg-white flex shadow-lg items-center justify-center p-2">
-                <div className="w-full h-32 flex items-center justify-center">
-                    <img src={category.image} alt={category.name}/>
+              {/* This div is now RELATIVE to contain the absolutely positioned capsule */}
+              <div className="relative w-full aspect-square bg-white">
+                
+                {/* The category image */}
+                <div className="w-full h-full flex items-center justify-center p-4">
+                  <img
+                    src={category.image}
+                    alt={category.name}
+                    className="max-h-full max-w-full object-contain"
+                  />
                 </div>
-              </div>
-              <div className="p-2 bg-white">
-                <h3 className="font-bold text-center text-sm md:text-base">
-                  {category.name}
-                </h3>
+
+                {/* The Glassmorphism Capsule for the Category Name */}
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-auto whitespace-nowrap">
+                  <div
+                    className={`
+                      px-4 py-2 rounded-full shadow-md
+                      transition-all duration-300 ease-in-out
+                      ${
+                        activeCategory === index
+                          ? /* --- ACTIVE STATE --- */
+                            'bg-emerald-900 border-emerald-1000'
+                          : /* --- DEFAULT & HOVER STATES --- */
+                            `bg-white/20 backdrop-blur-sm border-white/30
+                            group-hover:bg-white/60 group-hover:border-blue-400/70 group-hover:shadow-lg`
+                      }
+                    `}
+                  >
+                    <h3
+                      className={`
+                        font-bold text-center text-sm md:text-base
+                        transition-colors duration-300
+                        ${
+                          activeCategory === index
+                            ? 'text-white' // White text for the active state
+                            : 'text-black' // Black text for the default state
+                        }
+                      `}
+                    >
+                      {category.name}
+                    </h3>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
@@ -179,20 +218,46 @@ const ProductsPage = () => {
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {generateProducts(activeCategory).map((product) => (
-                      <div 
-                        key={product.id} 
-                        className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-md hover:border-emerald-300 transition-all duration-300 transform hover:scale-105 cursor-pointer"
+                      <div
+                        key={product.id}
+                        className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-md hover:border-emerald-300 transition-all duration-300 transform hover:scale-105"
                       >
+                        {/*
+                          STEP 1: Add the "group" class to the link.
+                          Now, child elements can react when this Link is hovered.
+                        */}
                         <Link
                           to={`/products/${product.name.toLowerCase().replace(/\s+/g, "-")}`}
-                          className="flex flex-col items-center text-center text-gray-700 hover:text-teal-500 transition"
+                          className="block group" // <-- ADDED "group"
                         >
-                          <div className="p-4 flex flex-col h-full">
-                            <div className="h-48 mb-4 flex items-center justify-center">
-                              <img src={product.productImage} alt={product.name}/>
+                          <div className="relative">
+                            <div className="h-48 flex items-center justify-center p-4">
+                              <img src={product.productImage} alt={product.name} className="max-h-full max-w-full object-contain" />
                             </div>
-                            <div className="flex-grow flex items-end justify-center">
-                              <h3 className="font-medium">{product.name}</h3>
+
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-auto whitespace-nowrap">
+                              {/*
+                                STEP 2 & 3: Add transition and group-hover classes to the capsule.
+                              */}
+                              <div
+                                className="
+                                  px-4 py-2 rounded-full shadow-md
+                                  bg-white/20 backdrop-blur-sm border border-white/30
+                                  
+                                  /* --- TRANSITION CLASSES --- */
+                                  transition-all duration-300 ease-in-out
+
+                                  /* --- HOVER STATE CLASSES (using group-hover) --- */
+                                  group-hover:bg-white/60
+                                  group-hover:border-blue-400/70
+                                  group-hover:shadow-lg
+                                "
+                              >
+                                {/* The product name */}
+                                <h3 className="font-semibold text-black text-sm">
+                                  {product.name}
+                                </h3>
+                              </div>
                             </div>
                           </div>
                         </Link>
