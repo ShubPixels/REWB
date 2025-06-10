@@ -179,3 +179,41 @@
     display: none;
   }
 }
+/* Container for the scrolling logos */
+.scrolling-banner-container {
+  overflow: hidden;
+  width: 100%;
+  /* No white-space: nowrap; needed with Flexbox */
+}
+
+/* The element that will be animated */
+.scrolling-banner {
+  display: flex; /* <-- THE KEY FIX: Use Flexbox */
+  align-items: center; /* Vertically centers logos if they have different heights */
+  animation: scroll-left 45s linear infinite;
+}
+
+/* Keyframes for the horizontal scroll (no change here) */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Styling for individual logos */
+.scrolling-banner img {
+  height: 3.5rem; /* Base size for mobile */
+  margin: 0 2rem; /* Spacing between logos */
+  flex-shrink: 0; /* Prevents logos from shrinking */
+  object-fit: contain;
+}
+
+/* Media query for tablets and desktops */
+@media (min-width: 768px) {
+  .scrolling-banner img {
+    height: 4rem;
+  }
+}

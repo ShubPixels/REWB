@@ -40,6 +40,14 @@ import laval from "../images/laval.png";
 import slide1 from "../images/Group 9245.png";
 import slide2 from "../images/Group 9246.png";
 import slide3 from "../images/Group 9247.png";
+import koh from "../images/kohler.png";
+import herocorp from "../images/Hero MotoCorp logo.jpeg";
+import ada from "../images/adani.png";
+import ambuja from "../images/ambuja-logo-png_seeklogo-434902.png";
+import orient from "../images/orient.png";
+import ScrollingLogoBanner from "../Components/ScrollingLogoBanner";
+import CountUp from 'react-countup';
+import { FaUsers, FaGlobeAmericas, FaAward } from 'react-icons/fa';
 
 const RotatingSphere = () => {
   const globeRef = useRef();
@@ -117,7 +125,7 @@ const services = [
 ];
 
 const HomePage = () => {
-  const partnerLogos = [toyota, tata, pepsi, mahindra, essar, bajaj, laval];
+  const partnerLogos = [toyota, tata, pepsi, mahindra, essar, bajaj, laval, koh, herocorp, ada, ambuja, orient];
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [isTopButtonVisible, setIsTopButtonVisible] = useState(false);
   const [clients, clientsRef] = useCountUp(0, 6000, 2000);
@@ -247,7 +255,7 @@ const HomePage = () => {
   return (
     <div className="font-sans bg-cyan-50">
       <FadeInSection>
-        <section className="bg-cyan-50 pb-20">
+        <section className="bg-cyan-50 pb-10">
             <div className="widthforherosec mx-auto flex flex-col lg:flex-row items-center justify-between pt-32 sm:pt-36 lg:pt-40 px-4 md:px-8">
                 {/* Left Side: Text Content */}
                 <div className="w-full lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0">
@@ -288,35 +296,71 @@ const HomePage = () => {
       </FadeInSection>
 
       <FadeInSection>
-        <section className="bg-cyan-50 py-12 marginTP px-4 md:px-8">
-          <div className=" mx-auto flex flex-wrap justify-center items-center  md:gap-24">
-            {partnerLogos.map((logo, idx) => (
-              <img key={idx} src={logo} alt={`Partner ${idx}`} className="h-12 md:h-16 object-contain" />
-            ))}
-          </div>
-        </section>
+        <ScrollingLogoBanner/>
       </FadeInSection>
 
-      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between bg-teal-500 text-white p-6 rounded-2xl shadow-lg gap-8">
-        <div className="w-full md:w-1/3 flex">
-          <img src={worldmap} alt="World Map" className="max-w-full h-auto" />
-        </div>
-        <div className="w-full md:w-2/3 text-center md:text-left space-y-8">
-          <div className="flex flex-col md:flex-row items-center md:items-center gap-4 md:gap-6">
-            <h2 className="text-3xl font-bold">Get your personalized quote today!</h2>
+      <div className="container mx-auto rounded-2xl bg-gradient-to-tr from-teal-500 to-cyan-600 text-white shadow-2xl">
+        <div className="mx-auto flex flex-col md:flex-row items-center justify-between p-8 md:p-12 gap-8 md:gap-12">
+
+          {/* Left Side: Image */}
+          {/* We'll make the map feel more integrated and subtle */}
+          <div className="w-full md:w-2/5 flex justify-center opacity-80 md:opacity-100">
+            <img src={worldmap} alt="World Map" className="max-w-xs md:max-w-full h-auto" />
           </div>
-          <div className="flex flex-wrap justify-center md:justify-between gap-1 md:gap-12">
-            <div className="text-center md:text-left">
-              <p className="text-3xl font-bold">6000+</p>
-              <p className="text-sm">Unique Clients</p>
+
+          {/* Right Side: Content */}
+          <div className="w-full md:w-3/5 text-center md:text-left">
+            {/* Main Headline & Sub-headline */}
+            <div className="space-y-4">
+              <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
+                Ready to take the next step?
+              </h2>
+              <p className="text-lg text-cyan-100">
+                Get a personalized, no-obligation quote from our team today.
+              </p>
             </div>
-            <div className="text-center md:text-left">
-              <p className="text-3xl font-bold">15+ Countries</p>
-              <p className="text-sm">Worldwide Reach</p>
+
+            {/* Animated Stats Section */}
+            <div className="my-8 flex flex-wrap justify-center md:justify-start gap-8 md:gap-10">
+              {/* Stat 1: Unique Clients */}
+              <div className="flex items-center gap-3">
+                <FaUsers className="text-3xl text-cyan-200" />
+                <div>
+                  <p className="text-3xl font-bold">
+                    <CountUp end={6000} duration={3} enableScrollSpy scrollSpyOnce />+
+                  </p>
+                  <p className="text-sm text-cyan-100">Unique Clients</p>
+                </div>
+              </div>
+
+              {/* Stat 2: Worldwide Reach */}
+              <div className="flex items-center gap-3">
+                <FaGlobeAmericas className="text-3xl text-cyan-200" />
+                <div>
+                  <p className="text-3xl font-bold">
+                    <CountUp end={15} duration={3} enableScrollSpy scrollSpyOnce />+
+                  </p>
+                  <p className="text-sm text-cyan-100">Countries Served</p>
+                </div>
+              </div>
+
+              {/* Stat 3: Experience */}
+              <div className="flex items-center gap-3">
+                <FaAward className="text-3xl text-cyan-200" />
+                <div>
+                  <p className="text-3xl font-bold">
+                    <CountUp end={30} duration={3} enableScrollSpy scrollSpyOnce />+
+                  </p>
+                  <p className="text-sm text-cyan-100">Years of Experience</p>
+                </div>
+              </div>
             </div>
-            <div className="text-center md:text-left">
-              <p className="text-3xl font-bold">30+ Years</p>
-              <p className="text-sm">Experience</p>
+
+            {/* The Call-to-Action Button */}
+            <div>
+              <button className="bg-white text-teal-600 font-bold py-3 px-8 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-cyan-300">
+                Contact Us Now
+              </button>
             </div>
           </div>
         </div>
