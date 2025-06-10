@@ -147,7 +147,7 @@ const NAVBAR = () => {
             <img
               src={sociallogo} // <-- Add the correct path to your logo
               alt="Toggle Social Links"    // <-- Add descriptive alt text
-              className="w-10 h-10 rounded-full object-cover" // object-cover is useful if the logo isn't perfectly square
+              className="w-8 h-8 rounded-full object-cover" // object-cover is useful if the logo isn't perfectly square
             />
           </button>
         </div>
