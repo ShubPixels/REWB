@@ -102,6 +102,11 @@ export default function TabComponent(props) {
           </div>
         )}
       </div>
+
+      {/* Disclaimer */}
+      <div className="px-4 pb-4">
+        <p className="text-xs text-gray-500 italic">*Numbers may vary*</p>
+      </div>
     </div>
   );
 }

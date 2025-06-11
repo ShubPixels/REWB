@@ -1,15 +1,21 @@
+// File: ProductPage.jsx
+
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import productsData from "./ProductData";
 import TabComponent from "../Components/TabComponent";
 import DisplayComponent from "../Components/DisplayComponent";
 
+// --- STEP 1: Import the category images ---
+import wastemanageimg from "../images/bluemach.png";
+import industrialimg from "../images/Cold Shearing Machine.jpg";
+import specialpurpimg from "../images/Pipe Sizing and Guaging Machine.jpg";
+
+
 const ProductPage = () => {
   const { productName } = useParams();
   const product = productsData[productName];
 
-  // --- Logic for Randomized Related Products ---
-  // Ensure product exists before trying to access its category
   const currentProductCategory = product ? product.category : "";
   const relatedProducts = product
     ? Object.keys(productsData)
@@ -26,7 +32,24 @@ const ProductPage = () => {
         .slice(0, 4)
     : [];
 
-  // Handle case where product is not found
+  const allMainCategories = [
+    "Waste Management",
+    "Industrial Machines",
+    "Special Purpose Machines",
+  ];
+
+  const otherCategoriesToShow = allMainCategories.filter(
+    (cat) => cat !== currentProductCategory
+  );
+
+  // --- STEP 2: Create a map to link category names to the imported images ---
+  const categoryImageMap = {
+    "Waste Management": wastemanageimg,
+    "Industrial Machines": industrialimg,
+    "Special Purpose Machines": specialpurpimg,
+  };
+
+
   if (!product) {
     return (
       <div className="container mx-auto p-6 pt-32 text-center">
@@ -42,16 +65,13 @@ const ProductPage = () => {
   }
 
   return (
-    // --- CHANGE 1: Added top padding (pt-28) to offset the fixed navbar ---
     <div className="bg-white pt-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* --- CHANGE 2: Centered Product Name --- */}
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
           {product.name}
         </h1>
 
         <section className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-          {/* --- CHANGE 3: Sized Image Container --- */}
           <div className="w-full lg:w-1/2 h-80 md:h-[500px]">
             <img
               src={product.image[0]}
@@ -60,7 +80,6 @@ const ProductPage = () => {
             />
           </div>
 
-          {/* Product Details Section */}
           <div className="w-full lg:w-1/2">
             <DisplayComponent
               className="pb-4"
@@ -73,14 +92,6 @@ const ProductPage = () => {
               specifications={product.specifications}
               applications={product.applications}
             />
-            {/* <div className="flex gap-4 mt-6">
-              <button className="bg-cyan-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-cyan-600 transition">
-                Get a Quote
-              </button>
-              <button className="border-2 border-cyan-500 text-cyan-500 px-6 py-3 rounded-lg hover:bg-cyan-500 hover:text-white transition">
-                Contact Us
-              </button>
-            </div> */}
           </div>
         </section>
       </div>
@@ -90,10 +101,10 @@ const ProductPage = () => {
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold text-gray-800">
               More from the category
-              {/* <span className="text-teal-500">{currentProductCategory}</span> */}
             </h2>
             <Link
-              to="/products"
+              to="/category-page"
+              state={{ category: currentProductCategory }}
               className="text-teal-500 font-semibold hover:underline"
             >
               View all →
@@ -102,12 +113,10 @@ const ProductPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {relatedProducts.map((relatedProduct) => (
-              // The card has a simple layout again. No 'group' needed on the main div.
               <div
                 key={relatedProduct.key}
                 className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col p-4"
               >
-                {/* 1. Simple Image Area */}
                 <div className="h-40 bg-white flex justify-center items-center rounded-md mb-4">
                   <img
                     src={relatedProduct.image[0]}
@@ -116,19 +125,16 @@ const ProductPage = () => {
                   />
                 </div>
 
-                {/* 2. Simple Text Area */}
                 <h3 className="text-lg font-semibold">{relatedProduct.name}</h3>
                 <p className="text-sm text-gray-500 flex-grow mb-4">
                   {relatedProduct.tagline}
                 </p>
 
-                {/* 3. THE NEW LAYERED "GLASS" BUTTON */}
                 <div className="mt-auto">
                   <Link
-                    to={`/product/${relatedProduct.key}`}
+                    to={`/products/${relatedProduct.key}`}
                     className="group relative inline-flex items-center justify-center"
                   >
-                    {/* Layer 1: The blurred blue "glow" below */}
                     <div
                       className="
                         absolute -inset-1 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500
@@ -137,7 +143,6 @@ const ProductPage = () => {
                       "
                     ></div>
 
-                    {/* Layer 2: The "glass" surface on top */}
                     <span
                       className="
                         relative w-full px-5 py-2 rounded-full
@@ -154,13 +159,12 @@ const ProductPage = () => {
             ))}
           </div>
 
-          {/* --- CHANGE 4: Restored "Other Categories" and "Contact Us" sections --- */}
           <div className="flex justify-between items-center mt-12 mb-4">
             <h2 className="text-xl font-bold text-gray-800">
               Other <span className="text-teal-500">Categories</span>
             </h2>
             <Link
-              to="/products"
+              to="/category-page"
               className="text-teal-500 font-semibold hover:underline"
             >
               View all →
@@ -168,21 +172,25 @@ const ProductPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* --- Category Cards with the new button --- */}
-            {["Special Purpose Machines", "Industrial Machines"].map((category, index) => (
+            {otherCategoriesToShow.map((category, index) => (
               <div
                 key={index}
                 className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col p-4"
               >
-                <div className="h-40 bg-gray-200 rounded-md flex items-center justify-center">
-                  {/* Placeholder for category images */}
+                {/* --- STEP 3: Replace the grey div with a dynamic image --- */}
+                <div className="h-40 bg-white rounded-md flex items-center justify-center p-4">
+                  <img
+                    src={categoryImageMap[category]}
+                    alt={category}
+                    className="max-h-full max-w-full object-contain"
+                  />
                 </div>
                 <h3 className="text-lg font-semibold mt-4 flex-grow">{category}</h3>
 
-                {/* The new consistent button */}
                 <div className="mt-4">
                   <Link
-                    to="/products"
+                    to="/category-page"
+                    state={{ category: category }}
                     className="group relative inline-flex items-center justify-center"
                   >
                     <div
@@ -207,7 +215,6 @@ const ProductPage = () => {
               </div>
             ))}
 
-            {/* --- Featured "Contact Us" Card (no changes needed) --- */}
             <div
               className="
                 rounded-lg shadow-md p-6 flex flex-col justify-between 
@@ -215,7 +222,6 @@ const ProductPage = () => {
                 bg-gradient-to-br from-teal-500 to-cyan-600 text-white
               "
             >
-              {/* ... contact content remains the same ... */}
               
               <p className="text-xl font-bold">
                 Got something on your mind? <br />

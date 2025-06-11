@@ -1,61 +1,43 @@
+// File: CategoriesPage.jsx
+
 import React, { useState, useEffect, useRef } from 'react';
 import wastemanageimg from "../images/bluemach.png";
 import industrialimg from "../images/Cold Shearing Machine.jpg";
 import specialpurpimg from "../images/Pipe Sizing and Guaging Machine.jpg";
 import productsData from './ProductData';
 import manufacimagequ from "../images/Illustration.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const ProductsPage = () => {
-  // State to track which category is active. Null means no category is selected initially.
-  const [activeCategory, setActiveCategory] = useState(null);
-  
-  // State to control the visibility and animation of the content section.
-  const [isContentVisible, setIsContentVisible] = useState(false);
-
-  // Ref to the category cards container for scrolling.
+  const location = useLocation();
   const categoriesRef = useRef(null);
 
-  // Product categories data
+  // The categories array remains the same
   const categories = [
     { id: 0, name: 'Waste Management', image: wastemanageimg, count: 11,
       products: [
-        "triple-action-scrap-baling-press",
-        "double-action-scrap-baling-press",
-        "pet-bottle-baling-press",
-        "continuous-paper-baler-machine",
-        "continuous-baler-machine",
-        "continuous-scrapper-machine",
-        "shredder-machine",
-        "jumbo-scrap-baling-press",
-        "car-baler-machine",
-        "bid-breaking-machine",
+        "triple-action-scrap-baling-press", "double-action-scrap-baling-press", "pet-bottle-baling-press",
+        "continuous-paper-baler-machine", "continuous-baler-machine", "continuous-scrapper-machine",
+        "shredder-machine", "jumbo-scrap-baling-press", "car-baler-machine", "bid-breaking-machine",
         "scrap-shearing-machine-(kechi)"
       ]
     },
     { id: 1, name: 'Industrial Machines', image: industrialimg, count: 5,
       products: [
-        "ring-rolling-machine",
-        "cold-shearing-machine",
-        "heavy-duty-lathe-machine",
-        "number-punching-machine",
-        "sheet-slitting-machine"
+        "ring-rolling-machine", "cold-shearing-machine", "heavy-duty-lathe-machine",
+        "number-punching-machine", "sheet-slitting-machine"
       ]
     },
     { id: 2, name: 'Special Purpose Machines', image: specialpurpimg, count: 6,
       products: [
-        "di-pipe-breaking-machine",
-        "pipe-hydrotest-machine",
-        "big-pipe-gauging-and-sizing-machine",
-        "hydraulic-press-(customized)",
-        "sheet-plate-bending-machine",
-        "manual-paper-baling-machine"
+        "di-pipe-breaking-machine", "pipe-hydrotest-machine", "big-pipe-gauging-and-sizing-machine",
+        "hydraulic-press-(customized)", "sheet-plate-bending-machine", "manual-paper-baling-machine"
       ]
     },
     { id: 3, name: 'Manufacturing Services', image: specialpurpimg, count: 0 }
   ];
 
-  // Sample category descriptions
+  // --- FIX: The missing categoryDescriptions array is re-added here ---
   const categoryDescriptions = [
     "Client needed a high-capacity pipe bending machine for oil & energy infrastructure projects across Denmark. Established in 1991, we have engineered over 600 unique machines, ranging from compact equipment to large-scale industrial machinery. With a client base that includes top MNCs and government entities worldwide, we prioritize quality, simplicity, and durability in all our products.",
     "Our industrial machines combine durability with cutting-edge technology, designed for continuous operation in demanding environments. Each machine is built to withstand industrial rigors while maintaining precision performance.",
@@ -63,44 +45,43 @@ const ProductsPage = () => {
     ""
   ];
 
-  // This effect handles the scrolling and fade-in animation when a category is selected.
+  const getInitialCategory = () => {
+    const categoryName = location.state?.category;
+    if (categoryName) {
+      const index = categories.findIndex(cat => cat.name === categoryName);
+      return index !== -1 ? index : null;
+    }
+    return null;
+  };
+
+  const [activeCategory, setActiveCategory] = useState(getInitialCategory);
+  const [isContentVisible, setIsContentVisible] = useState(getInitialCategory() !== null);
+
   useEffect(() => {
-    // Only proceed if a category has been selected.
     if (activeCategory !== null) {
-      // Scroll the category cards to the top of the viewport.
       categoriesRef.current?.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
-      
-      // Use a timeout to make the content fade in after the scroll starts.
       const timer = setTimeout(() => {
         setIsContentVisible(true);
-      }, 300); // 300ms delay for a smooth effect.
-
+      }, 300);
       return () => clearTimeout(timer);
     }
   }, [activeCategory]);
 
-
-  // Handle category change.
   const handleCategoryChange = (index) => {
-    // Do nothing if the same category is clicked again.
     if (index === activeCategory) return;
-    
-    // If content is already visible (i.e., switching categories), fade it out first.
     if (isContentVisible) {
       setIsContentVisible(false);
       setTimeout(() => {
-        setActiveCategory(index); // Set the new category after the fade-out.
-      }, 300); // This duration should match the fade-out transition.
+        setActiveCategory(index);
+      }, 300);
     } else {
-      // If no category was selected, just set the new one.
       setActiveCategory(index);
     }
   };
-  
-  // Generate products based on the active category.
+
   const generateProducts = (categoryId) => {
     return categories[categoryId].products.map((productKey, i) => ({
       id: i + 1,
@@ -109,7 +90,6 @@ const ProductsPage = () => {
     }));
   };
 
-  // Data for "Manufacturing Services" category.
   const serviceFeatures = [
     { icon: "📋", title: "Custom Manufacturing Excellence", description: "Specialized in producing machinery to client-provided designs, ensuring precision and adherence to specifications." },
     { icon: "🔄", title: "Collaborative Design Refinement", description: "Provide proactive input on design feasibility, material selection, and operational efficiency. Flexible approach to client-driven revisions while maintaining project timelines." },
@@ -125,28 +105,25 @@ const ProductsPage = () => {
     outcome: "On-time delivery and seamless integration into client operations. Established a long-term partnership with continued collaboration."
   };
 
+
+  // The rest of the component's JSX remains the same
   return (
     <div className="bg-cyan-50 py-8">
       <div className="container mx-auto mt-32 px-4 bg-cyan-50">
-        {/* Section Title */}
         <h2 className="text-3xl font-bold text-center mb-4">
           Our <span className="text-emerald-500">Products</span>
         </h2>
-
-        {/* --- NEW: Introductory Paragraph --- */}
         <p className="text-center text-gray-700 max-w-3xl mx-auto mb-10 text-lg">
             Rangani Engineering Pvt Ltd designs and builds four complementary lines to keep factories productive and sustainable: waste-management equipment that cuts disposal costs, 
             industrial presses and handling systems for daily production, tailor-made special-purpose machines for unique processes, and end-to-end manufacturing services. 
             Explore each category to see how our practical solutions can fit your operation.
         </p>
 
-        {/* Category Navigation --- REF ATTACHED HERE --- */}
         <div ref={categoriesRef} className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {categories.map((category, index) => (
             <div
               key={category.id}
               onClick={() => handleCategoryChange(index)}
-              // The "group" class is essential for the hover effect on the capsule
               className={`
                 group cursor-pointer rounded-lg overflow-hidden
                 transition-all duration-300 transform hover:scale-105 hover:shadow-xl
@@ -157,10 +134,7 @@ const ProductsPage = () => {
                 }
               `}
             >
-              {/* This div is now RELATIVE to contain the absolutely positioned capsule */}
               <div className="relative w-full aspect-square bg-white">
-                
-                {/* The category image */}
                 <div className="w-full h-full flex items-center justify-center p-4">
                   <img
                     src={category.image}
@@ -168,8 +142,6 @@ const ProductsPage = () => {
                     className="max-h-full max-w-full object-contain"
                   />
                 </div>
-
-                {/* The Glassmorphism Capsule for the Category Name */}
                 <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-auto whitespace-nowrap">
                   <div
                     className={`
@@ -177,10 +149,8 @@ const ProductsPage = () => {
                       transition-all duration-300 ease-in-out
                       ${
                         activeCategory === index
-                          ? /* --- ACTIVE STATE --- */
-                            'bg-emerald-900 border-emerald-1000'
-                          : /* --- DEFAULT & HOVER STATES --- */
-                            `bg-white/20 backdrop-blur-sm border-white/30
+                          ? 'bg-emerald-900 border-emerald-1000'
+                          : `bg-white/20 backdrop-blur-sm border-white/30
                             group-hover:bg-white/60 group-hover:border-blue-400/70 group-hover:shadow-lg`
                       }
                     `}
@@ -191,8 +161,8 @@ const ProductsPage = () => {
                         transition-colors duration-300
                         ${
                           activeCategory === index
-                            ? 'text-white' // White text for the active state
-                            : 'text-black' // Black text for the default state
+                            ? 'text-white'
+                            : 'text-black'
                         }
                       `}
                     >
@@ -205,13 +175,10 @@ const ProductsPage = () => {
           ))}
         </div>
 
-        {/* --- MODIFIED: Content section with fade-in/out transition --- */}
         <div className={`transition-opacity duration-300 ${isContentVisible ? 'opacity-100' : 'opacity-0'}`}>
-          {/* Content is only rendered if a category is active to improve performance */}
           {activeCategory !== null && (
             <>
               {activeCategory !== 3 ? (
-                // Regular product category display
                 <div>
                   <div className="p-6 rounded-lg mb-8 border shadow-lg bg-white border-gray-100">
                     <p className="text-gray-600 text-[clamp(1rem,2vw,1.25rem)]">{categoryDescriptions[activeCategory]}</p>
@@ -222,38 +189,25 @@ const ProductsPage = () => {
                         key={product.id}
                         className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-md hover:border-emerald-300 transition-all duration-300 transform hover:scale-105"
                       >
-                        {/*
-                          STEP 1: Add the "group" class to the link.
-                          Now, child elements can react when this Link is hovered.
-                        */}
                         <Link
                           to={`/products/${product.name.toLowerCase().replace(/\s+/g, "-")}`}
-                          className="block group" // <-- ADDED "group"
+                          className="block group"
                         >
                           <div className="relative">
                             <div className="h-48 flex items-center justify-center p-4">
                               <img src={product.productImage} alt={product.name} className="max-h-full max-w-full object-contain" />
                             </div>
-
                             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-auto whitespace-nowrap">
-                              {/*
-                                STEP 2 & 3: Add transition and group-hover classes to the capsule.
-                              */}
                               <div
                                 className="
                                   px-4 py-2 rounded-full shadow-md
                                   bg-white/20 backdrop-blur-sm border border-white/30
-                                  
-                                  /* --- TRANSITION CLASSES --- */
                                   transition-all duration-300 ease-in-out
-
-                                  /* --- HOVER STATE CLASSES (using group-hover) --- */
                                   group-hover:bg-white/60
                                   group-hover:border-blue-400/70
                                   group-hover:shadow-lg
                                 "
                               >
-                                {/* The product name */}
                                 <h3 className="font-semibold text-black text-sm">
                                   {product.name}
                                 </h3>
@@ -266,9 +220,7 @@ const ProductsPage = () => {
                   </div>
                 </div>
               ) : (
-                // Manufacturing Services display
                 <div>
-                  {/* ... (rest of the Manufacturing Services JSX remains the same) ... */}
                   <div className="bg-white rounded-lg shadow-lg border border-gray-100 mb-8 overflow-hidden">
                     <div className="p-6 text-center border-b border-gray-100">
                       <h3 className="text-2xl font-bold">

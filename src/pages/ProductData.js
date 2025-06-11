@@ -24,6 +24,7 @@ import manualpaperbaler from "../images/Manual Paper Baler Machine.jpg";
 const productsData = {
     //Waste Management
     "triple-action-scrap-baling-press": {
+      category: "Waste Management",
       name: "Triple Action Scrap Baling Press",
       tagline:"The Ultimate Solution for Metal Scrap Management",
       heading:"industry",
@@ -45,6 +46,7 @@ const productsData = {
       ]
     },
     "double-action-scrap-baling-press": {
+      category: "Waste Management",
       name: "Double Action Scrap Baling Press",
       tagline:"Dual Compression Power for High Scrap Efficiency",
       heading:"purpose",
@@ -64,6 +66,7 @@ const productsData = {
       ]
     },
     "pet-bottle-baling-press": {
+      category: "Waste Management",
       name: "PET Bottle Baling Press",
       tagline:"Transform Bottle Waste into Compact, Recyclable Assets",
       description: "The PET Bottle Press Machine is a cost-effective, one-action solution tailored for handling low-strength materials such as plastic bottles, clothes, and large hollow metal objects. Ideal for smaller operations, this press offers a low-cost way to efficiently process and compact materials. The standard sizes starts from 12” up to 24” with lowest bale weight from 30 Kg.",
@@ -82,6 +85,7 @@ const productsData = {
       ]
     },
     "continuous-paper-baler-machine": {
+      category: "Waste Management",
       name: "Continuous Paper Baling Machine",
       tagline:"Uninterrupted Efficiency for Paper Recycling",
       description: "The Continuous Paper Baler Machine is equipped with an automatic paper tying system, often complemented by a conveyor system for effortless material handling. This machine is designed to streamline the baling process for paper and cardboard waste, making it an excellent choice for high-volume paper recycling operations. On the starting capacity, It processes 30 bales a day on the with bale weight 100 Kg.",
@@ -99,6 +103,7 @@ const productsData = {
       ]
     },
     "continuous-baler-machine": {
+      category: "Waste Management",
       name: "Continuous Metal Baling Machine",
       tagline:"Relentless Power for High-Volume Metal Recycling",
       description: "The Continuous Metal Baler Machine is an automated solution tailored for high-standard, manpower-free plants. Integrated with a feeding conveyor system, this machine ensures seamless and efficient metal baling operations. Designed to handle large quantities of scrap metal with minimal human intervention, it enhances productivity and operational efficiency, making it ideal for large-scale recycling facilities that prioritize automation and quality. It can output 10 tons of scrap and more, depending on custom requirements.",
@@ -118,6 +123,7 @@ const productsData = {
       ]
     },
     "continuous-scrapper-machine": {
+      category: "Waste Management",
       name: "Continuous Scrapping Machine",
       tagline:"Unstoppable Efficiency for Scrap Cutting",
       description: "The Continuous Scrapper Machine is designed for high-speed, automated processing of both hollow and solid waste materials. Capable of handling large metal components and robust scrap, this machine maximizes operational efficiency by reducing manual intervention. The machine can process 20 tons of scrap and goes up to 40 tons of scrap in a day.",
@@ -135,6 +141,7 @@ const productsData = {
       ]
     },
     "shredder-machine": {
+      category: "Waste Management",
       name: "Shredder Machine",
       tagline:"Cut through anything",
       description: "The Shredder Machine offers versatile shredding solutions for a wide range of materials, including plastics, metals, paper, and wood. Engineered with powerful motors and cutting-edge blade technology, it ensures efficient and fast material reduction. The durable construction and high-torque mechanism allow it to handle even the toughest waste with ease. It can process various materials like wood, metal, rubber, etc and shred up to 40 tons of scrap in a day.",
@@ -152,6 +159,7 @@ const productsData = {
       ]
     },
     "jumbo-scrap-baling-press": {
+      category: "Waste Management",
       name: "Jumbo Scrap Baling Press",
       tagline:"Power Meets Precision in Large-Scale Scrap Management",
       description: "The Jumbo Baling Press is engineered to handle high-volume baling operations with unmatched efficiency. It’s built for maximum durability, making it ideal for large-scale industries dealing with vast quantities of scrap material. This powerful machine ensures you achieve the highest compacting force with minimal operational effort. Custom-built to meet strict industrial requirements, it can handle invariable scrap and can process up to 25 tons of scrap a day.",
@@ -170,6 +178,7 @@ const productsData = {
       ]
     },
     "car-baler-machine": {
+      category: "Waste Management",
       name: "Car Baler Machine",
       tagline:"Transform End-of-Life Vehicles into Compact, Recyclable Assets",
       description: "The Car Baler Machine is specifically designed for the automotive industry, providing a robust solution for compressing and baling old cars and metal remnants. It's built with heavy-duty components to withstand rigorous use, making it the go-to choice for automotive recyclers and government-oriented scrap yards and projects. It has capacity to output up to 800 Kg of bales and comes with a max compression force of 500 tons.",
@@ -188,6 +197,7 @@ const productsData = {
       ]
     },
     "bid-breaking-machine": {
+      category: "Waste Management",
       name: "Bid breaking machine",
       tagline:"Breaking the Unbreakable",
       description: "Built to process large, solid materials like ore boulders, engine castings, and scrap metal, our Bid Breaking Machine employs ultra-high hydraulic force to fragment tough materials into manageable pieces. It possess the ability to process up to 5 tons of non-conventional materials and comes with a pressing force of up to 1.5 K Tons.",
@@ -203,6 +213,7 @@ const productsData = {
       ]
     },
     "scrap-shearing-machine-(kechi)": {
+      category: "Waste Management",
       name: "Scrap Shearing Machine (kechi)",
       tagline:"A Compact Cutting Solution",
       description: "Engineered for high-volume recycling operations, our Scrap Shearing Machine efficiently processes bulky metal scrap into compact, recyclable fragments. Powered by a high-torque hydraulic system, it delivers clean, forceful cuts through ferrous and non-ferrous materials, including steel, aluminum, and copper, without thermal distortion. Ideal for scrap yards, foundries, and metal recycling plants. It can cut through 25 mm solid material and possess cutting capacity of up to 400 tons.",
@@ -220,6 +231,7 @@ const productsData = {
 
     //Industrial Machines
     "ring-rolling-machine": {
+      category: "Industrial Machines",
       name: "Ring Rolling Machine",
       tagline:"Precise Ring Forming",
       description: "Ring Rolling Machine is engineered for precision hot or cold forming of seamless metal rings, essential for applications in aerospace, energy, and heavy machinery. Equipped with advanced hydraulic systems, it ensures uniform material flow and exact dimensional tolerances for rings ranging from small bearings to large flanges. Customizable roller configurations adapt to various alloys, including steel, titanium, and copper, while integrated thermal management prevents deformation. It comes with capacity of materials with diameter between 150 to 400 mm, with thickness up to 100 mm.",
@@ -236,6 +248,7 @@ const productsData = {
     },
 
     "cold-shearing-machine": {
+      category: "Industrial Machines",
       name: "Cold Shearing Machine",
       tagline:"Cut Billets at Unmatched Speed, Zero Heat, Zero Waste.",
       description: "The Cold Shearing Machine is an innovative solution for fast and efficient billet production. Designed for volume production, this machine eliminates the need for traditional banshaw usage, offering an automatic and streamlined shearing process. Its robust construction and advanced technology ensure precise billet size cutting and high-speed operations, making it an essential tool for industries aiming to enhance their billet production capabilities. It can easily cut through solids of up to 80 mm in diameter in a single shot. It comes with a capacity of 1200 tons of force.",
@@ -254,6 +267,7 @@ const productsData = {
     },
 
     "heavy-duty-lathe-machine": {
+      category: "Industrial Machines",
       name: "Heavy Duty Lathe Machine",
       tagline:"Customized Precision on Any Scale",
       description: "The Lathe Machine is versatile and customizable, designed to handle operations from small precision components to large workpieces meters in length. Each machine is built to your specific requirements, ensuring it meets the unique demands of your workshop or factory. With precision engineering, the Lathe Machine delivers smooth and stable turning, shaping, and drilling operations. It can process jobs from 5 mm to 500 mm diameter, and up to 14 meters in length (between tail stock distance).",
@@ -269,6 +283,7 @@ const productsData = {
       ]
     },
     "number-punching-machine": {
+      category: "Industrial Machines",
       name: "Number Punching Machine",
       tagline:"Precision Marking, From Micro to Macro",
       description: "The Number Punching Machine is highly compact and efficient, designed to handle a wide range of circular jobs from diameter sizes from 30 mm to 300 mm and thickness range from 5 mm to 50 mm. Ideal for precise number punching tasks, this versatile machine ensures accuracy and reliability in all your marking applications.",
@@ -286,6 +301,7 @@ const productsData = {
     },
 
     "sheet-slitting-machine": {
+      category: "Industrial Machines",
       name: "Sheet Slitting Machine",
       tagline:"Precision Slitting, Uninterrupted Productivity",
       description: "The Sheet Slitting Machine is designed to provide precise and efficient slitting of various materials. Equipped with a decoiler and a cut-to-length setup, it offers seamless operation for continuous production. This machine is ideal for industries requiring consistent and accurate slitting, ensuring minimal material wastage and maximized productivity. The machine can handle coils up to 2.5 meters in diameter with maximum thickness of 6 mm.",
@@ -303,6 +319,7 @@ const productsData = {
 
     //Special Purpose Machines
     "di-pipe-breaking-machine": {
+      category: "Special Purpose Machines",
       name: "DI Pipe Breaking Machine",
       tagline:"Revolutionizing Pipe Recycling and boosting operational efficiency",
       description: "The DI Pipe Breaking Machine falls under the SPM category, specifically created to recycle pipes and similar products for manufacturing plants. This automated machine features a conveyor feeding system that ensures smooth material handling. The broken pipes are fed out through a conveyor system that leads into a magnetic separator and dust separator, ensuring clean and efficient recycling. This solution can recover 95% waste from pipes up to 1200 mm in diameter with capacity of 25 tons a day.",
@@ -319,6 +336,7 @@ const productsData = {
       ]
     },
     "pipe-hydrotest-machine": {
+      category: "Special Purpose Machines",
       name: "Pipe Hydrotest Machine",
       tagline:"Uncompromised Safety checking for Pipelines",
       description: "A semi-automatic Special Purpose Machine (SPM) designed to rigorously test the integrity and leak resistance of large-diameter pipes, ensuring compliance with global safety and quality standards. Capable of handling pipes up to 3 meters in diameter, this machine uses high-pressure water injection to simulate extreme operating conditions, identifying weaknesses, cracks, or flaws in pipelines. The semi-automatic system features variable pressure cycles, real-time digital monitoring, and automated shut-off valves to prevent over-pressurization. The machine can handle pipes up to 750 mm in diameter and 6 meters in length, with a maximum pressure of 500 bar.",
@@ -334,6 +352,7 @@ const productsData = {
       ]
     },
     "big-pipe-gauging-and-sizing-machine": {
+      category: "Special Purpose Machines",
       name: "Big Pipe Gauging and Sizing Machine",
       tagline:"Engineered for Correcting Pipeline Geometry",
       description: "The Machine verifies the dimensional accuracy of large pipes, ensuring adherence to strict tolerances for diameter, ovality, and straightness. Equipped with contact probes, and rotary encoders, it automatically measures and records geometric parameters of pipes up to 4 meters in diameter and 12 meters in length. The adjustable mandrel and roller system accommodates varying pipe materials, while a user-friendly HMI interface allows operators to set tolerance thresholds and generate compliance reports. The machine can straighten pipes of up to 12 meters in a single shot with diameters ranging from 500 mm to 2500 mm.",
@@ -351,7 +370,8 @@ const productsData = {
       ]
     },
     "hydraulic-press-(customized)": {
-      name: "Hydraulic Press Range",
+      category: "Special Purpose Machines",
+      name: "Hydraulic Press (customized)",
       tagline:"Power Meets Precision for Every Industrial Challenge",
       description: "Our Hydraulic Press range spans from 50-ton to 5000-ton capacity, catering to various industrial needs from standard pressing to heavy-duty tasks like bid breaking and cast iron crushing. Known for its durability, each press is built to last for decades under rigorous use. The hydraulic control mechanisms provide smooth, high-precision operations, making it suitable for applications requiring both power and finesse. Customizable to your specific requirements, the Hydraulic Press is a reliable and robust solution for industries demanding exceptional performance and longevity.",
       image: [hydraulic_cus],
@@ -370,6 +390,7 @@ const productsData = {
       ]
     },
     'sheet-plate-bending-machine': {
+      category: "Special Purpose Machines",
       name: "Sheet Plate Bending Machine",
       tagline:"",
       description: "Designed for shaping metal plates and sheets into arcs, cylinders, or complex profiles, our hydraulic Plate/Sheet Bending Machine delivers features include angle presets, automatic clamping, and overload protection for operator safety. Optional conveyor-fed loading systems streamline high-volume tasks in shipbuilding, construction, and automotive industries. With quick-change tooling and minimal setup time, this machine enhances productivity while maintaining stringent quality standards for structural and decorative components. The machine can process sheets with span of up to 4 meters and 20 mm thickness.",
@@ -378,6 +399,7 @@ const productsData = {
       specifications: []
     },
     "manual-paper-baling-machine": {
+      category: "Special Purpose Machines",
       name: "Manual paper baling machine",
       tagline:"Compact, Efficient, and Built for Small-Scale Recycling",
       description: "A compact, user-friendly solution for recycling facilities, this manual baling machine efficiently compresses paper, cardboard, and lightweight plastics into dense, stackable bales. Constructed with reinforced steel frames and a heavy-duty compression chamber, it handles volumes up to 500 kg with an adjustable lever system for customizable bale sizes. Ergonomic handles and safety locks ensure easy operation and prevent accidental release. Portable and maintenance-free, it optimizes storage space and reduces transportation costs for small to medium enterprises.",
@@ -389,6 +411,6 @@ const productsData = {
       ]
     },
 
-};
+}
   
 export default productsData;
