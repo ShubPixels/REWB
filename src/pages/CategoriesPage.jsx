@@ -39,9 +39,9 @@ const ProductsPage = () => {
 
   // --- FIX: The missing categoryDescriptions array is re-added here ---
   const categoryDescriptions = [
-    "Client needed a high-capacity pipe bending machine for oil & energy infrastructure projects across Denmark. Established in 1991, we have engineered over 600 unique machines, ranging from compact equipment to large-scale industrial machinery. With a client base that includes top MNCs and government entities worldwide, we prioritize quality, simplicity, and durability in all our products.",
-    "Our industrial machines combine durability with cutting-edge technology, designed for continuous operation in demanding environments. Each machine is built to withstand industrial rigors while maintaining precision performance.",
-    "Our special purpose machines are custom-engineered solutions designed to address unique manufacturing challenges. These specialized machines help improve efficiency and solve production bottlenecks across various industries.",
+    "Our waste-management products with high hydraulic power and efficient engineering empowers scrap and waste management industries. From high-density balers and drum crushers to shredders and compactors, our machines cut disposal costs, boost recycling yields, and help clients meet environmental compliance targets while advancing their sustainability commitments and CSR. We empower the metal recycling industry worldwide.",
+    "Our industrial-machine portfolio covers various industries, from forging, machining sheet metal works, etc. Heavy-tonnage hydraulic presses, precision trimming machines, ring rollers, number punchers, etc are engineered for continuous duty, and low maintenance. Each solution integrates energy-efficient hydraulics. We empower industrial manufacturing companies, strengthening their operations.",
+    "When standard equipment can’t meet your process, we design and build special-purpose machines that do. Our expertise in industrial automation powered by hydraulics and electrical systems, we will engineer a product that fits your constraints. We will understand your requirements, and facilitate special features in our robust design, ready to ship within 3 to 6 months*.",
     ""
   ];
 
@@ -181,6 +181,7 @@ const ProductsPage = () => {
               {activeCategory !== 3 ? (
                 <div>
                   <div className="p-6 rounded-lg mb-8 border shadow-lg bg-white border-gray-100">
+                    <p className="text-black font-bold text-2xl mb-3">Categoty Description:</p>
                     <p className="text-gray-600 text-[clamp(1rem,2vw,1.25rem)]">{categoryDescriptions[activeCategory]}</p>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

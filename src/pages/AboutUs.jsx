@@ -11,12 +11,18 @@ import prideofIND from "../images/DSC_0022.JPG";
 import IOBRD from "../images/DSC_0020.JPG";
 import ctaaboutus from "../images/cta_about.png";
 import { Link } from "react-router-dom";
+import wastemab from "../images/Waste management.jpg";
+import manfac from "../images/manufacturing services.jpg";
+import missicon from "../images/Group.png";
+import innicon from "../images/Group 926565.png";
+import specialpab from "../images/Special purpose _ custom machines.jpeg";
+import sustaintech from "../images/collaboration for sustainable future.png";
 
 const AboutUs = () => {
   const services = [
     {
       id: 1,
-      image: whatwedo1 , // Replace with actual image path
+      image: wastemab , // Replace with actual image path
       title: {
         highlight1: "Waste",
         normal: "Management &",
@@ -38,7 +44,7 @@ const AboutUs = () => {
     },
     {
       id: 3,
-      image: whatwedo3 , // Replace with actual image path
+      image: sustaintech , // Replace with actual image path
       title: {
         highlight1: "Sustainable",
         normal: "Technologies for",
@@ -49,7 +55,7 @@ const AboutUs = () => {
     },
     {
       id: 4,
-      image: whatwedo4 , // Replace with actual image path
+      image: specialpab , // Replace with actual image path
       title: {
         highlight1: "Special-Purpose",
         normal: "Machinery &",
@@ -60,7 +66,7 @@ const AboutUs = () => {
     },
     {
       id: 5,
-      image: whatwedo4 , // Replace with actual image path
+      image: manfac , // Replace with actual image path
       title: {
         highlight1: "Precision Manufacturing",
         normal: "Services",
@@ -202,10 +208,9 @@ const AboutUs = () => {
           <div className="bg-blue-100 rounded-lg p-6 shadow-md">
             <div className="flex items-center mb-4">
               <h2 className="text-2xl font-bold mr-2">Our <span className="text-teal-500">Mission</span></h2>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-teal-500">
-                <path d="M10.5 1.875a1.125 1.125 0 012.25 0v8.219c.517.384 1.651 1.459 1.651 3.281 0 1.93-1.57 3.5-3.5 3.5s-3.5-1.57-3.5-3.5c0-1.822 1.134-2.897 1.65-3.281V1.875z" />
-                <path d="M12 16.5a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z" />
-              </svg>
+              <img src={innicon}viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-teal-500"/>
+                
+              
             </div>
             <p className="text-gray-700">
               To engineer innovative and sustainable solutions for waste management and industrial applications,
@@ -251,11 +256,9 @@ const AboutUs = () => {
 
             {/* Feature 2 */}
             <div className="flex flex-col items-center">
-              <div className="bg-amber-200 p-4 rounded-lg mb-4 w-20 h-20 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-12 h-12 text-amber-600">
-                  <path d="M12 .75a8.25 8.25 0 00-4.135 15.39c.686.398 1.115 1.008 1.134 1.623a.75.75 0 00.577.706c.352.083.71.148 1.074.195.323.041.6-.218.6-.544v-4.661a6.75 6.75 0 1113.5 0v4.661c0 .326.277.585.6.544.364-.047.722-.112 1.074-.195a.75.75 0 00.577-.706c.02-.615.448-1.225 1.134-1.623A8.25 8.25 0 0012 .75z" />
-                  <path fillRule="evenodd" d="M9.75 15.75a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V16.5a.75.75 0 01.75-.75zm4.5 0a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V16.5a.75.75 0 01.75-.75z" clipRule="evenodd" />
-                </svg>
+              <div className="bg-gray-200 p-4 rounded-lg mb-4 w-20 h-20 flex items-center justify-center">
+                <img src={missicon} viewBox="0 0 24 24" fill="currentColor" className="w-12 h-12 text-amber-600"/>
+                  
               </div>
               <h3 className="text-lg font-semibold text-center">
                 <span className="text-teal-500">Innovation</span> In User<br />Experience
@@ -330,10 +333,10 @@ const AboutUs = () => {
               
               {/* Content */}
               <div className="md:w-1/2 p-6 md:p-8 text-white">
-                <h3 className="text-2xl font-bold mb-4">
+                <h3 className="text-3xl font-bold mb-4">
                   <span className="text-teal-400">{service.title.highlight1}</span> {service.title.normal} <span className="text-teal-400">{service.title.highlight2}</span> {service.title.ending}
                 </h3>
-                <p className="text-gray-200">
+                <p className="text-gray-200 text-2xl ">
                   {service.description}
                 </p>
               </div>
