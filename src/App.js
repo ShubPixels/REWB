@@ -3,6 +3,7 @@ import Footer from "./Components/Footer";
 import ProductPage from "./pages/ProductPage";
 import HomePage from "./pages/HomePage";
 import NAVBAR from "./Components/Navbar";
+import ScrollToTop from "./Components/ScrollToTop";
 import { Routes, Route } from "react-router-dom"; // ✅ Correct import
 import "swiper/css";
 import "swiper/css/autoplay";
@@ -26,6 +27,7 @@ const App = () => {  // ✅ Fixed Function Definition
   return (
     <>
       <NAVBAR />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/category-page" element={<CategoryPage />} />

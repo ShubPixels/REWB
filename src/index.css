@@ -99,6 +99,13 @@
   }
 }
 
+html, body {
+  overscroll-behavior: none;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+
 .slider-controler .slider-arrow {
   background: var(--white);
   width: 3.5rem;

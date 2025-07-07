@@ -47,19 +47,21 @@ const NAVBAR = () => {
 
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setIsNavVisible(currentScrollY <= lastScrollY);
-      lastScrollY = currentScrollY;
-    };
+  let lastScrollY = window.scrollY;
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    // iOS can emit negative scroll values
+    const adjustedScrollY = Math.max(currentScrollY, 0);
+
+    setIsNavVisible(adjustedScrollY <= lastScrollY || adjustedScrollY < 10);
+    lastScrollY = adjustedScrollY;
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  useEffect(() => {
-    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
-  }, [isMobileMenuOpen]);
   
 
   const categories = [
