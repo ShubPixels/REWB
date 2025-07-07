@@ -27,6 +27,7 @@
   /* width: 37rem !important; */
   height: 42rem;
   position: relative;
+  will-change: transform, opacity;
 }
 
 /* @media (max-width: 500px) {

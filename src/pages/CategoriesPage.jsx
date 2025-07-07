@@ -7,6 +7,7 @@ import specialpurpimg from "../images/Pipe Sizing and Guaging Machine.jpg";
 import productsData from './ProductData';
 import manufacimagequ from "../images/Illustration.png";
 import { Link, useLocation } from "react-router-dom";
+import FadeInSection from "./Fadeinsection";
 
 const ProductsPage = () => {
   const location = useLocation();
@@ -109,6 +110,7 @@ const ProductsPage = () => {
   // The rest of the component's JSX remains the same
   return (
     <div className="bg-cyan-50 py-8">
+      <FadeInSection>
       <div className="container mx-auto mt-32 px-4 bg-cyan-50">
         <h2 className="text-3xl font-bold text-center mb-4">
           Our <span className="text-emerald-500">Products</span>
@@ -285,6 +287,7 @@ const ProductsPage = () => {
           )}
         </div>
       </div>
+      </FadeInSection>
     </div>
   );
 };

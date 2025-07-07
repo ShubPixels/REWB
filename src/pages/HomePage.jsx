@@ -17,16 +17,11 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { motion, Variants } from 'framer-motion';
 import TLDR from "../images/tldr.jpg";
 import FadeInSection from "./Fadeinsection";
 import ImageCarousel from '../Components/ImageCarousel';
-import slide_image_1 from "../images/PHOTO EDIT 22.png";
-import slide_image_2 from "../images/PHOTO EDIT 23.png";
-import slide_image_3 from "../images/PHOTO EDIT 24.png";
-import slide_image_4 from "../images/PHOTO EDIT 25.png";
 import slide_image_5 from "../images/PHOTO EDIT 6.png";
-import slide_image_6 from "../images/PHOTO EDIT 7.png";
-import slide_image_7 from "../images/PHOTO EDIT 21.png";
 import worldmap from "../images/world map.png";
 import wastemanageimg from "../images/bluemach.png";
 import industrialimg from "../images/Cold Shearing Machine.jpg";
@@ -51,36 +46,6 @@ import ScrollingLogoBanner from "../Components/ScrollingLogoBanner";
 import CountUp from 'react-countup';
 import { FaUsers, FaGlobeAmericas, FaAward } from 'react-icons/fa';
 
-const RotatingSphere = () => {
-  const globeRef = useRef();
-  useFrame(() => {
-    if (globeRef.current) {
-      globeRef.current.rotation.y += 0.002;
-    }
-  });
-  return (
-    <mesh ref={globeRef}>
-      <sphereGeometry args={[2, 32, 32]} />
-      <meshStandardMaterial wireframe color="cyan" />
-    </mesh>
-  );
-};
-
-const WireframeGlobe = () => {
-  return (
-    <Canvas camera={{ position: [0, 0, 5] }}>
-      <OrbitControls enableZoom={false} />
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[2, 2, 2]} intensity={1} />
-      <RotatingSphere />
-      <lineSegments>
-        <edgesGeometry args={[new THREE.SphereGeometry(2.1, 32, 32)]} />
-        <lineBasicMaterial color="cyan" />
-      </lineSegments>
-    </Canvas>
-  );
-};
-
 const useCountUp = (start, end, duration) => {
   const [count, setCount] = useState(start);
   const { ref, inView } = useInView({ triggerOnce: true });
@@ -97,6 +62,24 @@ const useCountUp = (start, end, duration) => {
     }
   }, [inView, start, end, duration]);
   return [count, ref];
+};
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      when: 'beforeChildren',
+      staggerChildren: 0.2,
+      duration: 0.6,
+      ease: 'easeOut',
+    },
+  },
+};
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 };
 
 const services = [
@@ -129,6 +112,7 @@ const services = [
 const HomePage = () => {
   const partnerLogos = [toyota, tata, pepsi, mahindra, essar, bajaj, laval, koh, herocorp, ada, ambuja, orient];
   const [isNavVisible, setIsNavVisible] = useState(true);
+  const [activeHeroIndex, setActiveHeroIndex] = useState(0);
   const [isTopButtonVisible, setIsTopButtonVisible] = useState(false);
   const [clients, clientsRef] = useCountUp(0, 6000, 2000);
   const [countries, countriesRef] = useCountUp(0, 15, 1500);
@@ -260,46 +244,93 @@ const HomePage = () => {
         <section className="bg-cyan-50 pb-10">
             <div className="widthforherosec mx-auto flex flex-col lg:flex-row items-center justify-between pt-32 sm:pt-36 lg:pt-40 px-4 md:px-8">
                 {/* Left Side: Text Content */}
-                <div className="w-full lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0">
-                    <h1 className="text-[clamp(2.5rem,5vw,4rem)] font-bold text-gray-800 leading-tight mb-4">
-                        REIMAGINING WASTE, <br />
-                        REENGINEERING <span className="text-teal-500">THE FUTURE</span>
-                    </h1>
-                    <p className="text-gray-600 text-[clamp(1rem,2vw,1.25rem)] mb-8 max-w-xl mx-auto lg:mx-0">
-                        Empowering Industries with Advanced Engineering Solutions
-                    </p>
-                    <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
-                        <button className="border-2 border-teal-500 text-teal-500 px-8 py-3 rounded-lg font-medium hover:bg-teal-500 hover:text-white transition-colors duration-300">
-                            <Link to="/category-page" className="hover:text-white">View Machines</Link>
-                        </button>
-                        <button className="bg-teal-500 text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity duration-300">
-                            Watch Video
-                        </button>
-                    </div>
-                </div>
-                {/* Right Side: Image Swiper */}
-                <div className="w-full md:w-3/4 lg:w-1/2">
-                    <Swiper
-                        modules={[Autoplay]}
-                        autoplay={{ delay: 3000, disableOnInteraction: false }}
-                        loop={true}
-                        slidesPerView={1}
-                        className="max-w-full rounded-lg"
+                <motion.div
+                  className="w-full lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0"
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, ease: 'easeOut' }}
+                >
+                  <motion.h1
+                    className="text-[clamp(2.5rem,5vw,4rem)] font-bold text-gray-800 leading-tight mb-4"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                  >
+                    REIMAGINING WASTE, <br />
+                    REENGINEERING <span className="text-teal-500">THE FUTURE</span>
+                  </motion.h1>
+
+                  <motion.p
+                    className="text-gray-600 text-[clamp(1rem,2vw,1.25rem)] mb-8 max-w-xl mx-auto lg:mx-0"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                  >
+                    Empowering Industries with Advanced Engineering Solutions
+                  </motion.p>
+
+                  <motion.div
+                    className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6, duration: 0.6 }}
+                  >
+                    <motion.button
+                      className="border-2 border-teal-500 text-teal-500 px-8 py-3 rounded-lg font-medium hover:bg-teal-500 hover:text-white transition-colors duration-300"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                        {[slide1, slide2, slide3].map((img, index) => (
-                            <SwiperSlide key={index}>
-                                <img src={img} alt={`Hero Slide ${index + 1}`} className="w-full h-auto object-contain rounded-lg" />
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
-                </div>
+                      <Link to="/category-page" className="hover:text-white">
+                        View Machines
+                      </Link>
+                    </motion.button>
+
+                    <motion.button
+                      className="bg-teal-500 text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity duration-300"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Watch Video
+                    </motion.button>
+                  </motion.div>
+                </motion.div>
+
+                {/* Right Side: Image Swiper */}
+                <motion.div className="w-full md:w-3/4 lg:w-1/2" variants={itemVariants}>
+                  <Swiper
+                    modules={[Autoplay]}
+                    autoplay={{ delay: 3000, disableOnInteraction: false }}
+                    loop
+                    slidesPerView={1}
+                    onSlideChange={({ activeIndex }) => setActiveHeroIndex(activeIndex)}
+                    className="max-w-full rounded-lg"
+                  >
+                    {[slide1, slide2, slide3].map((img, i) => (
+                      <SwiperSlide key={i}>
+                        <motion.img
+                          src={img}
+                          alt={`Hero Slide ${i + 1}`}
+                          loading="lazy"
+                          initial={{ opacity: 0.8, scale: 0.95 }}
+                          animate={
+                            activeHeroIndex === i
+                              ? { opacity: 1, scale: 1, transition: { duration: 0.8, ease: 'easeOut' } }
+                              : { opacity: 0.8, scale: 0.95, transition: { duration: 0.8, ease: 'easeOut' } }
+                          }
+                          className="w-full h-auto object-contain rounded-lg"
+                        />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </motion.div>
             </div>
         </section>
       </FadeInSection>
 
-      <FadeInSection>
-        <ScrollingLogoBanner/>
-      </FadeInSection>
+      
+      <ScrollingLogoBanner/>
+      
 
       <FadeInSection>
         <div className="container mx-auto rounded-2xl bg-gradient-to-tr from-teal-500 to-cyan-600 text-white shadow-2xl">

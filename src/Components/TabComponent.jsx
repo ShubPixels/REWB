@@ -98,7 +98,27 @@ export default function TabComponent(props) {
 
         {activeTab === "applications" && (
           <div>
-            <p className="text-gray-700">{props.applications}</p>
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">Material Suitable:</h3>
+                <ul className="list-disc list-inside text-gray-700 space-y-1">
+                  {props.applications?.materials?.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+
+              {props.applications?.industries && (
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-800 mb-2">Industries Served:</h3>
+                  <ul className="list-disc list-inside text-gray-700 space-y-1">
+                    {props.applications.industries.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>

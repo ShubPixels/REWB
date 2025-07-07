@@ -17,6 +17,36 @@ import missicon from "../images/Group.png";
 import innicon from "../images/Group 926565.png";
 import specialpab from "../images/Special purpose _ custom machines.jpeg";
 import sustaintech from "../images/collaboration for sustainable future.png";
+import { motion, Variants } from 'framer-motion';
+import FadeInSection from "./Fadeinsection";
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      when: 'beforeChildren',
+      staggerChildren: 0.2,
+      duration: 0.6,
+      ease: 'easeOut',
+    },
+  },
+};
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+const SectionWrapper = ({ children, delay = 0 }) => (
+  <motion.div
+    className="rounded-lg p-6 shadow-md"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ delay, duration: 0.6 }}
+  >
+    {children}
+  </motion.div>
+);
 
 const AboutUs = () => {
   const services = [
@@ -117,9 +147,15 @@ const AboutUs = () => {
   return (
     <>
     {/* HERO SECTION */}
-    <div className="relative w-full h-64 md:h-80 lg:h-96 mt-24">
+    <motion.div 
+      className="relative w-full h-64 md:h-80 lg:h-96 mt-24"
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, ease: 'easeOut' }}
+      >
       {/* Background Image */}
-      <img
+      <motion.img
         src={heroabout}
         className="absolute inset-0 w-full h-full object-cover"
         alt="Industrial recycling facility with a worker"
@@ -131,119 +167,239 @@ const AboutUs = () => {
       {/* Content */}
       <div className="relative h-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight md:leading-snug">
+          <motion.h1 
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight md:leading-snug"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.6 }}      
+            >
             Leading the Future: Innovating Sustainability for a Cleaner, <br className="hidden md:block" />
             <span className="text-emerald-400">Greener World.</span>
-          </h1>
+          </motion.h1>
         </div>
       </div>
-    </div>
+    </motion.div>
 
     <div className="w-full bg-cyan-50 py-10 px-4 md:px-8 lg:px-16">
-
-
       {/* nav and our story*/}
       <div className=" container mx-auto bg-gray-50 py-8 md:py-12">
         <div className="mx-auto px-4">
           {/* Navigation */}
-          <div className="mb-4 text-sm">
+          {/* <div className="mb-4 text-sm">
             <span className="text-gray-400">Home</span>
             <span className="mx-2 text-gray-400">/</span>
             <span className="text-emerald-500">About Us</span>
-          </div>
+          </div> */}
           
           {/* Content Section */}
-          <div className="flex flex-col lg:flex-row gap-8 items-start">
+          <motion.div 
+            className="flex flex-col lg:flex-row gap-8 items-start"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            >
             {/* Text Content */}
             <div className="lg:w-2/3">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              <motion.h2 
+               className="text-3xl md:text-4xl font-bold mb-6"
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               transition={{ delay: 0.5, duration: 0.6 }}
+              >
                 Our <span className="text-emerald-500">Story</span>
-              </h2>
+              </motion.h2>
               
-              <p className="text-gray-700 mb-6">
+              <motion.p 
+              className="text-gray-700 mb-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+              >
                 Established in 1991, we have engineered over 600 unique machines, ranging from compact equipment to large-scale industrial machinery. With a client base that includes top MNCs, government entities worldwide and numerous SMEs, we deliver solutions that rein in quality, simplicity, and durability.Established in 1991, we have engineered over 600 unique machines, ranging from compact equipment to large-scale industrial machinery. With a client base that includes top MNCs, government entities worldwide and numerous SMEs, we deliver solutions that rein in quality, simplicity, and durability.
-              </p>
+              </motion.p>
               
-              <p className="text-gray-700">
+              <motion.p 
+              className="text-gray-700"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.1, duration: 0.6 }}
+              >
                 Our offerings encompass cutting-edge solutions for recycling, waste management, and heavy-duty industrial machinery. Driven by Hydraulics and Automation systems, we are committed to delivering engineering solutions that exceed client expectations.
-              </p>
+              </motion.p>
             </div>
             
             {/* Image */}
             <div className="lg:w-1/3">
               <div className="rounded-lg overflow-hidden shadow-lg">
                 <div>
-                  <img
+                  <motion.img
                   src={ourstoryimg}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 0.6 }}
                   className="w-full h-64 bg-gray-300" 
                   aria-label="Industrial facility with large silos and manufacturing building"
                   />
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
       {/* vision mission */}
-      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <motion.div 
+        className="container mx-auto grid grid-cols-1 mt-12 lg:grid-cols-2 gap-6"
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+       >
         {/* Left Column */}
         <div className="flex flex-col gap-6">
           {/* Vision Section */}
-          <div className="bg-slate-700 text-white rounded-lg p-6 shadow-md">
+          <motion.div 
+            className="bg-slate-700 text-white rounded-lg p-6 shadow-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
             <div className="flex items-center mb-4">
-              <h2 className="text-2xl font-bold mr-2">Our <span className="text-teal-400">Vision</span></h2>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-teal-400">
+              <motion.h2 
+                className="text-2xl font-bold mr-2"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                >
+                Our <span className="text-teal-400">Vision</span>
+              </motion.h2>
+              <motion.svg 
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-teal-400"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.0, duration: 0.6 }}
+                >
                 <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
                 <path fillRule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" clipRule="evenodd" />
-              </svg>
+              </motion.svg>
             </div>
-            <p className="text-gray-200">
+            <motion.p 
+            className="text-gray-200"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.6 }}>
               To be the world's leading provider of advanced engineering solutions, specializing in machinery that
               promotes sustainability and operational excellence.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
           {/* Mission Section */}
-          <div className="bg-blue-100 rounded-lg p-6 shadow-md">
+          <motion.div 
+            className="bg-blue-100 rounded-lg p-6 shadow-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
             <div className="flex items-center mb-4">
-              <h2 className="text-2xl font-bold mr-2">Our <span className="text-teal-500">Mission</span></h2>
-              <img src={innicon}viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-teal-500"/>
-                
-              
+              <motion.h2 
+                className="text-2xl font-bold mr-2"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+              >
+                Our <span className="text-teal-500">Mission</span>
+              </motion.h2>
+              <motion.img 
+                src={innicon}
+                alt="Mission Icon"
+                className="w-6 h-6 text-teal-500"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+              />
             </div>
-            <p className="text-gray-700">
+            <motion.p 
+              className="text-gray-700"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+            >
               To engineer innovative and sustainable solutions for waste management and industrial applications,
               providing reliable and efficient machinery to enhance operational efficiency for our clients worldwide.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
           {/* Quality and Sustainability Section */}
-          <div className="bg-white rounded-lg p-6 shadow-md">
+          <motion.div 
+            className="bg-white rounded-lg p-6 shadow-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
             <div className="flex items-center mb-4">
-              <h2 className="text-2xl font-bold">
+              <motion.h2 
+                className="text-2xl font-bold"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+              >
                 <span className="text-teal-500">Quality</span> and <span className="text-teal-500">Sustainability</span>
-              </h2>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-teal-500 ml-2">
+              </motion.h2>
+              <motion.svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 24 24" 
+                fill="currentColor" 
+                className="w-6 h-6 text-teal-500 ml-2"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+              >
                 <path fillRule="evenodd" d="M15.97 2.47a.75.75 0 011.06 0l4.5 4.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 11-1.06-1.06l3.22-3.22H7.5a.75.75 0 010-1.5h11.69l-3.22-3.22a.75.75 0 010-1.06zm-7.94 9a.75.75 0 010 1.06l-3.22 3.22H16.5a.75.75 0 010 1.5H4.81l3.22 3.22a.75.75 0 11-1.06 1.06l-4.5-4.5a.75.75 0 010-1.06l4.5-4.5a.75.75 0 011.06 0z" clipRule="evenodd" />
-              </svg>
+              </motion.svg>
             </div>
-            <p className="text-gray-700">
+            <motion.p 
+              className="text-gray-700"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+            >
               Our Philosophy is simple: Build machines that last. We prioritize durability and build quality, ensuring
               each machine we produce withstand the test of time and environment. This emphasis on quality has
               landed us with multiple MNC's & government projects overseas, and are recognized as top
               manufacturer and exporter by government of India.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
+
         </div>
 
         {/* Right Column */}
-        <div className="bg-blue-50 rounded-lg p-6 shadow-md">
-          <h2 className="text-2xl font-bold mb-8 text-center">Why Choose <span className="text-teal-500">Us</span> ?</h2>
+        <motion.div 
+          className="bg-blue-50 rounded-lg p-6 shadow-md"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+        >
+          <motion.h2 
+            className="text-2xl font-bold mb-8 text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
+            Why Choose <span className="text-teal-500">Us</span> ?
+          </motion.h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Feature 1 */}
-            <div className="flex flex-col items-center">
+            <motion.div 
+              className="flex flex-col items-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+            >
               <div className="bg-teal-200 p-4 rounded-lg mb-4 w-20 h-20 flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-12 h-12 text-teal-700">
                   <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
@@ -252,21 +408,30 @@ const AboutUs = () => {
               <h3 className="text-lg font-semibold text-center">
                 <span className="text-teal-500">Tailored</span> Solutions
               </h3>
-            </div>
+            </motion.div>
 
             {/* Feature 2 */}
-            <div className="flex flex-col items-center">
+            <motion.div 
+              className="flex flex-col items-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+            >
               <div className="bg-gray-200 p-4 rounded-lg mb-4 w-20 h-20 flex items-center justify-center">
-                <img src={missicon} viewBox="0 0 24 24" fill="currentColor" className="w-12 h-12 text-amber-600"/>
-                  
+                <img src={missicon} alt="Innovation" className="w-12 h-12 text-amber-600" />
               </div>
               <h3 className="text-lg font-semibold text-center">
                 <span className="text-teal-500">Innovation</span> In User<br />Experience
               </h3>
-            </div>
+            </motion.div>
 
             {/* Feature 3 */}
-            <div className="flex flex-col items-center">
+            <motion.div 
+              className="flex flex-col items-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+            >
               <div className="bg-blue-200 p-4 rounded-lg mb-4 w-20 h-20 flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-12 h-12 text-blue-700">
                   <path d="M10.5 18.75a.75.75 0 000 1.5h3a.75.75 0 000-1.5h-3z" />
@@ -276,10 +441,15 @@ const AboutUs = () => {
               <h3 className="text-lg font-semibold text-center">
                 <span className="text-teal-500">SME</span> Partnership
               </h3>
-            </div>
+            </motion.div>
 
             {/* Feature 4 */}
-            <div className="flex flex-col items-center">
+            <motion.div 
+              className="flex flex-col items-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+            >
               <div className="bg-gray-200 p-4 rounded-lg mb-4 w-20 h-20 flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-12 h-12 text-teal-700">
                   <path fillRule="evenodd" d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
@@ -288,64 +458,95 @@ const AboutUs = () => {
               <h3 className="text-lg font-semibold text-center">
                 <span className="text-teal-500">Commitment</span> to Safety
               </h3>
-            </div>
+            </motion.div>
           </div>
 
-          <div className="mt-8">
+          <motion.div 
+            className="mt-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.9, duration: 0.6 }}
+          >
             <p className="text-gray-700">
               We are not just another manufacturer; we are your partner in industrial efficiency
               and sustainability. Our user-friendly machines simplify operations and boost
               productivity. Choose us for reliability, sustainability, and excellence.
             </p>
-          </div>
-        </div>
-      </div>
+          </motion.div>
+        </motion.div>
+
+      </motion.div>
 
       {/* what we do */}
-      <div className="container mx-auto mt-14">
+      <motion.div 
+        className="container mx-auto mt-14"
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        >
         {/* Section Title */}
         <div className="flex items-center justify-center mb-12">
-          <h2 className="text-4xl font-bold text-center">
+          <motion.h2 
+          className="text-4xl font-bold text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          >
             What We <span className="text-teal-500">Do</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 ml-2 inline-block text-gray-700">
+            <motion.svg 
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 ml-2 inline-block text-gray-700"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            >
               <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
-            </svg>
-          </h2>
+            </motion.svg>
+          </motion.h2>
         </div>
 
         {/* Service Cards */}
         <div className="flex flex-col space-y-8">
-          {services.map((service, index) => (
-            <div 
-              key={service.id} 
-              className={`bg-slate-700 rounded-lg overflow-hidden shadow-lg ${
-                index % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row'
-              } flex flex-col md:flex-row`}
-            >
-              {/* Image */}
-              <div className="md:w-1/2">
-                <img 
-                  src={service.image} 
-                  alt={`${service.title.highlight1} ${service.title.highlight2}`}
-                  className="w-full h-64 md:h-full object-cover"
-                />
-              </div>
-              
-              {/* Content */}
-              <div className="md:w-1/2 p-6 md:p-8 text-white">
-                <h3 className="text-3xl font-bold mb-4">
-                  <span className="text-teal-400">{service.title.highlight1}</span> {service.title.normal} <span className="text-teal-400">{service.title.highlight2}</span> {service.title.ending}
-                </h3>
-                <p className="text-gray-200 text-2xl ">
-                  {service.description}
-                </p>
-              </div>
-            </div>
-          ))}
+          {services.map((service, index) => {
+            const isEven = index % 2 === 0;
+            const direction = isEven ? -100 : 100; // left for even, right for odd
+
+            return (
+              <motion.div
+                key={service.id}
+                className={`bg-slate-700 rounded-lg overflow-hidden shadow-lg ${
+                  isEven ? 'md:flex-row' : 'md:flex-row-reverse'
+                } flex flex-col md:flex-row`}
+                initial={{ opacity: 0, x: direction }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                {/* Image */}
+                <div className="md:w-1/2">
+                  <img
+                    src={service.image}
+                    alt={`${service.title.highlight1} ${service.title.highlight2}`}
+                    className="w-full h-64 md:h-full object-cover"
+                  />
+                </div>
+
+                {/* Content */}
+                <div className="md:w-1/2 p-6 md:p-8 text-white">
+                  <h3 className="text-3xl font-bold mb-4">
+                    <span className="text-teal-400">{service.title.highlight1}</span> {service.title.normal} <span className="text-teal-400">{service.title.highlight2}</span> {service.title.ending}
+                  </h3>
+                  <p className="text-gray-200 text-2xl">
+                    {service.description}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
-      </div>
+      </motion.div>
 
       {/* awards */}
+      <FadeInSection>
       <div className="w-full bg-cyan-50 py-16 px-4 md:px-8 lg:px-16">
         <div className="container mx-auto">
           {/* Section Title */}
@@ -380,10 +581,11 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
+      </FadeInSection>
 
     </div>
-    
       {/* explore cta */}
+      <FadeInSection>
       <div className="w-full relative">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
@@ -439,6 +641,7 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
+      </FadeInSection>
     </>
       
   );

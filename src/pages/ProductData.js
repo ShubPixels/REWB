@@ -43,7 +43,17 @@ const productsData = {
         { "Size": "12\" x 12\"", "Bale Weight": "50 Kg", "Idle Cycle Time": "60 Sec" },
         { "Size": "14\" x 14\"", "Bale Weight": "70 Kg", "Idle Cycle Time": "60 Sec" },
         { "Size": "16\" x 16\"", "Bale Weight": "125 Kg", "Idle Cycle Time": "80 Sec" }
+      ],
+      applications: {
+      materials: [
+        "Mild Steel",
+        "Stainless Steel",
+        "Aluminum",
+        "Copper",
+        "Commercial Scrap",
+        "Plastic / Paper"
       ]
+    }
     },
     "double-action-scrap-baling-press": {
       category: "Waste Management",
@@ -63,7 +73,17 @@ const productsData = {
         { "Size": "10\" x 10\"", "Bale Weight": "Up to 15 Kg", "Idle Cycle Time": "55 Sec"},
         { "Size": "15\" x 15\"", "Bale Weight": "Up to 45 Kg", "Idle Cycle Time": "60 Sec" },
         { "Size": "20\" x 20\"", "Bale Weight": "Up to 90 Kg", "Idle Cycle Time": "80 Sec"}
-      ]
+      ],
+      applications: {
+       materials: [
+        "Mild Steel",
+        "Stainless Steel",
+        "Aluminum",
+        "Copper",
+        "Commercial Scrap",
+        "Plastic / Paper"
+       ]
+      }
     },
     "pet-bottle-baling-press": {
       category: "Waste Management",
@@ -82,7 +102,15 @@ const productsData = {
       specifications: [
         { "Bale Size": "26\" x 36\"", "Bale Weight": "150 Kg" },
         { "Bale Size": "36\" x 40\"", "Bale Weight": "Up to 400 Kg" }
-      ]
+      ],
+      applications: {
+        materials: [
+          "PET Plastic Bottles (all sizes)",
+          "HDPE Containers (optional customization)",
+          "Lightweight Plastic Packaging",
+          "Cotton and Cloth Wastes"
+        ]
+      }
     },
     "continuous-paper-baler-machine": {
       category: "Waste Management",
@@ -100,7 +128,21 @@ const productsData = {
         
         {  "Bale Weight": "1 Ton", "Motor HP": "60 Hp", "Conveyor HP": "10 Hp" },
         {  "Bale Weight": "Custom", "Motor HP": "As per req", "Conveyor HP": "As per req" }
-      ]
+      ],
+      applications: {
+        materials: [
+          "Corrugated Cardboard",
+          "Office Paper, Newspapers, Magazines",
+          "Mixed Paper Streams (sorted/unsorted)",
+          "Lightweight Packaging Materials (e.g., kraft paper, fiberboard)"
+        ],
+        industries: [
+          "Recycling Facilities",
+          "E-commerce Warehouses (cardboard waste)",
+          "Printing/Publishing Companies",
+          "Municipal Waste Management Centers"
+        ]
+      }
     },
     "continuous-baler-machine": {
       category: "Waste Management",
@@ -120,7 +162,21 @@ const productsData = {
         { "Size": "8\" x 8\"", "Throughput / day": "25 tons Approx", "Bale Weight": "25 Kgs" },
         { "Size": "12\" x 12\"", "Throughput / day": "65 tons Approx", "Bale Weight": "50 Kgs" },
         { "Size": "14\" x 14\"", "Throughput / day": "100 tons Approx", "Bale Weight": "70 Kgs" }
-      ]
+      ],
+      applications: {
+        materials: [
+          "Ferrous Metals (Steel, Iron, Auto Scrap)",
+          "Non-Ferrous Metals (Aluminum, Copper, Brass)",
+          "Mixed Metal Shredder Residue",
+          "Sheet Metal, Wire, and Turnings"
+        ],
+        industries: [
+          "Scrap Metal Yards",
+          "Automative Manufacturing and other manufacturing recycling",
+          "Electronics and Electricals recycling plants",
+          "Foundries and Steel Mills"
+        ]
+      }
     },
     "continuous-scrapper-machine": {
       category: "Waste Management",
@@ -138,7 +194,24 @@ const productsData = {
       specifications: [
         { "Input Size": "Up to 24\" x 24\"", "Output Size": "2\"-8\" Chips", "Throughput / day": "10-20 Tons" },
         { "Input Size": "Up to 36\" x 36\"", "Output Size": "2\"-8\" Chips", "Throughput / day": "10-20 Tons" }
-      ]
+      ],
+      applications: {
+        materials: [
+          "Ferrous Metals (steel beams, automotive scrap, rebar)",
+          "Non-Ferrous Metals (aluminum, copper cables, brass fixtures)",
+          "Mixed Scrap (e-waste, appliances, industrial machinery)",
+          "Light Contaminants (rubber, plastic-coated metals)"
+        ],
+        industries: [
+          "Scrap Metal Recycling Facilities",
+          "Automotive Dismantling Plants",
+          "E-Waste Recycling Centers",
+          "Scrap Metal Yards",
+          "Automative Manufacturing and other manufacturing recycling",
+          "Electronics and Electricals recycling plants",
+          "Foundries and Steel Mills"
+        ]
+      }
     },
     "shredder-machine": {
       category: "Waste Management",
@@ -156,7 +229,23 @@ const productsData = {
         { "Shredding Capacity": "500-800 Kg", "Max Material Thickness": "10 mm (Metal)", "Throughput/Hour": "1-2 Tons"},
         { "Shredding Capacity": "1-1.5 Tons", "Max Material Thickness": "15 mm (Metal)", "Throughput/Hour": "3-5 Tons"},
         { "Shredding Capacity": "2-3 Tons", "Max Material Thickness": "30 mm (Metal)", "Throughput/Hour": "6-9 Tons"}
-      ]
+      ],
+      applications: {
+        materials: [
+          "Metals: Steel sheets, aluminum profiles, copper cables, automotive scrap",
+          "Plastics: PET bottles, HDPE containers, PVC pipes, industrial plastic waste",
+          "Paper/Cardboard: Confidential documents, corrugated boxes, mixed paper streams",
+          "E-Waste: Circuit boards, hard drives, cables, appliances",
+          "Organic Waste: Wood pallets, biomass, agricultural residues"
+        ],
+        industries: [
+          "Scrap Metal Recycling Facilities",
+          "E-Waste Recycling Centers",
+          "Manufacturing Plants (post-production scrap)",
+          "Waste Management Companies (bulk material processing)",
+          "Government/Military (secure data disposal)"
+        ]
+      }
     },
     "jumbo-scrap-baling-press": {
       category: "Waste Management",
@@ -175,7 +264,24 @@ const productsData = {
         { "Bale Size": "18\" x 18\"", "Bale Weight": "Up to 250 Kg", "Idle Cycle Time": "120 sec"},
         { "Bale Size": "20\" x 20\"", "Bale Weight": "Up to 350 Kg", "Idle Cycle Time": "140 sec"},
         { "Bale Size": "24\" x 24\"", "Bale Weight": "Up to 450 Kg", "Idle Cycle Time": "150 sec"}
-      ]
+      ],
+      applications: {
+        materials: [
+          "Ferrous Metals (Small Rusty Steel Beams, Automotive Scrap, Machinery Parts)",
+          "Non-Ferrous Metals (Aluminum Castings, Copper Wire Bundles)",
+          "Mixed Industrial Scrap (Metal + Plastic Hybrid Waste)",
+          "Textile Bulk Waste (Carpet, Fabric Rolls)",
+          "Agricultural Waste (Plastic Mulch, Silage Wrap)"
+        ],
+        industries: [
+          "Mega-Scale Recycling Facilities",
+          "Steel and Aluminum Production Plants",
+          "Textile Manufacturing Hubs",
+          "Agricultural Cooperatives",
+          "Manufacturing Plants (post-production scrap)",
+          "Waste Management Companies (bulk material processing)"
+        ]
+      }
     },
     "car-baler-machine": {
       category: "Waste Management",
@@ -194,7 +300,20 @@ const productsData = {
         { "Bale Size": "16\" x 16\"", "Bale Weight": "Up to 250 Kg (metal)", "Max Output/day": "40-80 Tons" },
         { "Bale Size": "18\" x 18\"", "Bale Weight": "Up to 350 Kg",  "Max Output/day": "80-120 Tons"},
         { "Bale Size": "Custom Bigger Size", "Bale Weight": "350+ Kg",  "Max Output/day": "120+ Tons" }
-      ]
+      ],
+      applications: {
+        materials: [
+          "End-of-life vehicles (cars, trucks, buses)",
+          "Automotive scrap (steel frames, aluminum engines, copper wiring)",
+          "Government-seized vehicles (confiscated cars, damaged fleet vehicles)"
+        ],
+        industries: [
+          "Automotive recycling facilities",
+          "Government scrap yards and public waste projects",
+          "Metal recovery plants processing ELV (End-of-Life Vehicles)",
+          "Demolition companies handling fleet vehicles or industrial machinery"
+        ]
+      }
     },
     "bid-breaking-machine": {
       category: "Waste Management",
@@ -210,7 +329,16 @@ const productsData = {
         { "Bed Size": "4 x 6 ft",  "Idle Cycle Time sec": "60 sec", "Hydraulic Force": "600-800 Ton" },
         { "Bed Size": "5 x 7 ft",  "Idle Cycle Time sec": "60+ sec", "Hydraulic Force": "800-1000 Tons" },
         { "Bed Size": "Custom size",  "Idle Cycle Time sec": "As per req", "Hydraulic Force": "1000+ Tons" }
-      ]
+      ],
+      applications: {
+        materials: [
+          "Ore boulders (iron, copper, gold)",
+          "Engine blocks, gearboxes, and industrial castings",
+          "Scrap metal slabs, steel beams, and machinery parts",
+          "Demolition debris (concrete-reinforced metal, structural steel)",
+          "Aerospace components (titanium, alloy remnants)"
+        ]
+      }
     },
     "scrap-shearing-machine-(kechi)": {
       category: "Waste Management",
@@ -226,7 +354,22 @@ const productsData = {
       specifications: [
         { "Input Size": "Up to 32 mm (round bar)", "Max Cuts / min": "30" },
         { "Input Size": "Up to 40 mm", "Max Cuts / min": "25" }
-      ]
+      ],
+      applications: {
+        materials: [
+          "Ferrous Metals: Steel beams, rebar, automotive scrap, machinery parts",
+          "Non-Ferrous Metals: Aluminum sheets, copper pipes, brass fixtures",
+          "Mixed Scrap: Shredder residue, demolition waste, industrial castings",
+          "Specialty Metals: Stainless steel, titanium aerospace components"
+        ],
+        industries: [
+          "Scrap Metal Recycling Facilities",
+          "Automotive Dismantling Plants",
+          "E-Waste Recycling Centers",
+          "Demolition and Construction Sites",
+          "Manufacturing Plants (post-production scrap)"
+        ]
+      }
     },
 
     //Industrial Machines
@@ -244,7 +387,22 @@ const productsData = {
         { "Ring Diameter": "Up to 200 mm", "Material Thickness": "10-20 mm", "Max. Ring Weight": "3 Kg"},
         { "Ring Diameter": "Up to 350 mm", "Material Thickness": "20-30 mm", "Max. Ring Weight": "5 Kg"},
         { "Ring Diameter": "Custom Size", "Material Thickness": "30+ mm", "Max. Ring Weight": "5+ Kg"}
-      ]
+      ],
+      applications: {
+        materials: [
+          "Ferrous Metals: Major Types",
+          "Steel Alloys: Carbon steel, stainless steel.",
+          "High-Temp Alloys: Inconel, Hastelloy, nickel-based superalloys.",
+          "Non-Ferrous: Copper, brass, bronze."
+        ],
+        industries: [
+          "Aerospace: Engine casings, turbine discs, landing gear rings.",
+          "Energy: Wind turbine hubs, nuclear reactor flanges, oil rig components.",
+          "Heavy Machinery: Gears, bearings, hydraulic cylinder bands.",
+          "Automotive: Transmission rings, EV battery housings.",
+          "Defense: Armored vehicle wheel rims, missile guidance systems."
+        ]
+      }
     },
 
     "cold-shearing-machine": {
@@ -263,7 +421,18 @@ const productsData = {
         { "Max Billet Size": "Up to 60 x 60 mm", "Cycle Time": "12-20 Sec" },
         { "Max Billet Size": "Up to 100 x 100 mm", "Cycle Time": "16-24 Sec"},
         { "Max Billet Size": "Custom Size", "Cycle Time": "24+ Sec" }
-      ]
+      ],
+      applications: {
+        materials: [
+          "Ferrous Steel: Carbon steel, alloy steel, stainless steel.",
+          "Non-Ferrous: Aluminum, copper, brass billets.",
+          "Custom Profiles: Round, square, or rectangular cross-sections."
+        ],
+        industries: [
+          "Forging Plants",
+          "Metal Billet Plants"
+        ]
+      }
     },
 
     "heavy-duty-lathe-machine": {
@@ -280,7 +449,22 @@ const productsData = {
         { "Max Length": "3-6 Meters", "Max Diameter": "800 mm", "Motor Power hp": "3" },
         { "Max Length": "6-9 Meters", "Max Diameter": "1200 mm", "Motor Power hp": "5" },
         { "Max Length": "9+ meters", "Max Diameter": "Custom size", "Motor Power hp": "custom" }
-      ]
+      ],
+      applications: {
+        materials: [
+          "Metals: Steel, stainless steel, aluminum, etc.",
+          "Plastics: Engineering-grade polymers, PTFE, nylon.",
+          "Composites: Carbon fiber, fiberglass-reinforced materials.",
+          "Custom Applications: Rotors, shafts, flanges, gears, and prototypes."
+        ],
+        industries: [
+          "Automotive: Crankshafts, brake drums, transmission components.",
+          "Aerospace: Turbine blades, landing gear parts, engine housings.",
+          "Energy: Wind turbine shafts, pipeline valves, hydraulic cylinders.",
+          "Marine: Propeller shafts, rudder stocks, dock machinery.",
+          "General Manufacturing: Custom molds, rollers, and industrial tooling"
+        ]
+      }
     },
     "number-punching-machine": {
       category: "Industrial Machines",
@@ -297,7 +481,19 @@ const productsData = {
       specifications: [
         { "Diameter Range": "40-150 mm", "Stroke / min": "10-30", "Motor Power": "2 Hp" },
         { "Diameter Range": "Custom Size", "Stroke / min": "-", "Motor Power": "-" }
-      ]
+      ],
+      applications: {
+        materials: [
+          "Metals: Steel, aluminum, brass, copper.",
+          "Plastics: ABS, PVC, polycarbonate.",
+          "Composites: Fiberglass, carbon fiber panels.",
+          "Engineered Materials: Ceramics (with specialized tooling)."
+        ],
+        industries: [
+          "Forging: Rings and circular objects",
+          "General Manufacturing of round objects"
+        ]
+      }
     },
 
     "sheet-slitting-machine": {
@@ -314,7 +510,20 @@ const productsData = {
       specifications: [
         { "Max Material width": "1000 mm", "Thickness": "8 mm", "Strokes / Hour": "20", "Servo Motor Power": "7.5 KW" },
         { "Max Material width": "Custom Size", "Thickness": "-", "Strokes / Hour": "-", "Servo Motor Power": "-" }
-      ]
+      ],
+      applications: {
+        materials: [
+          "Metals: Steel coils, aluminum sheets, copper foils.",
+          "Plastics: PVC, PET, polypropylene films.",
+          "Composites: Fiberglass, carbon fiber laminates.",
+          "Specialty Materials: Adhesive tapes, insulating films, flexible circuits."
+        ],
+        industries: [
+          "Metal Fabrication: Automotive body panels, HVAC components, roofing sheets.",
+          "Packaging: Film slitting for food wrappers, labels, and industrial packaging.",
+          "Electronics: Precision slitting for flexible circuits, battery foils, and insulation."
+        ]
+      }
     },
 
     //Special Purpose Machines
@@ -333,7 +542,20 @@ const productsData = {
         { "Max pipe diameter": "1000 mm", "Thickness": "8 mm", "output / day": "60-70 Ton", "Motor Power": "50 HP" },
         { "Max pipe diameter": "1250 mm", "Thickness": "10 mm", "output / day": "80-100 Ton", "Motor Power": "75 HP" },
         { "Max pipe diameter": "Custom Size", "Thickness": "-", "output / day": "-", "Motor Power": "-" }
-      ]
+      ],
+      applications: {
+        materials: [
+          "Ductile Iron (DI) Pipes",
+          "Cast Iron Pipes",
+          "Concrete-Lined Metal Pipes",
+          "Mixed Construction Debris (with ferrous content)"
+        ],
+        industries: [
+          "Pipe manufacturing plants",
+          "Construction industry",
+          "Recycling industry"
+        ]
+      }
     },
     "pipe-hydrotest-machine": {
       category: "Special Purpose Machines",
@@ -349,7 +571,23 @@ const productsData = {
       specifications: [
         { "Max pipe diameter": "2500 mm", "Pressure Range": "5-50 bar", "Automation level": "Semi", "Motor Power": "50 hp", "Water Pump": "30 KW" },
         { "Max pipe diameter": "Custom Size", "Pressure Range": "-", "Automation level": "Semi / auto cycle", "Motor Power": "-", "Water Pump": "-" }
-      ]
+      ],
+      applications: {
+        materials: [
+          "Metal pipes: Steel, ductile iron, stainless steel.",
+          "Plastics: PVC, HDPE, reinforced composites.",
+          "Concrete-Lined Pipes: Pre-stressed or hybrid materials.",
+          "Coated Pipes: Epoxy, bitumen, or corrosion-resistant layers."
+        ],
+        industries: [
+          "Pipe manufacturing plants.",
+          "Oil & Gas: Subsea pipelines, refinery networks.",
+          "Water Infrastructure: Municipal supply lines, sewage systems.",
+          "Industrial Manufacturing: Chemical plant piping, HVAC ducting.",
+          "Construction: Tunnel boring pipelines, geothermal installations.",
+          "Energy: CO2 transport lines, hydrogen fuel pipelines."
+        ]
+      }
     },
     "big-pipe-gauging-and-sizing-machine": {
       category: "Special Purpose Machines",
@@ -367,7 +605,23 @@ const productsData = {
       specifications: [
         { "Max pipe diameter": "2500 mm", "Max Pipe Pressure": "5-50 bar", "Automation level": "Semi", "Motor Power": "50 hp" },
         { "Max pipe diameter": "Custom Size", "Max Pipe Pressure": "-", "Automation level": "Semi / auto cycle", "Motor Power": "-" }
-      ]
+      ],
+      applications: {
+        materials: [
+          "Metal pipes: Steel, ductile iron, stainless steel.",
+          "Plastics: PVC, HDPE, reinforced composites.",
+          "Concrete/Steel Hybrids: Pre-stressed or lined pipelines.",
+          "Coated Pipes: Anti-corrosion layers, epoxy finishes."
+        ],
+        industries: [
+          "Pipe manufacturing plants.",
+          "Oil & Gas: Subsea pipelines, refinery networks.",
+          "Water Infrastructure: Municipal supply lines, sewage systems.",
+          "Industrial Manufacturing: Chemical plant piping, HVAC ducting.",
+          "Construction: Tunnel boring pipelines, geothermal installations.",
+          "Energy: CO2 transport lines, hydrogen fuel pipelines."
+        ]
+      }
     },
     "hydraulic-press-(customized)": {
       category: "Special Purpose Machines",
@@ -387,7 +641,13 @@ const productsData = {
         { "Pressing Capacity": "150-300 Ton", "Motor Power": "50 Hp" },
         { "Pressing Capacity": "300-500 Ton", "Motor Power": "60 Hp" },
         { "Pressing Capacity": "Custom",  "Motor Power": "" }
-      ]
+      ],
+      applications:["Metal Forming: Stamping, bending, and deep drawing of steel, aluminum, and alloys.",
+                  "Recycling: Crushing scrap metal, breaking boulders, and compacting waste.",
+                  "Manufacturing: Molding, punching, and assembly of automotive or industrial parts.",
+                  "Construction: Testing concrete blocks, crushing aggregates, and forming structural components.",
+                  "Aerospace: Precision pressing of turbine blades, fuselage panels, and landing gear."
+                  ]
     },
     'sheet-plate-bending-machine': {
       category: "Special Purpose Machines",
@@ -396,7 +656,8 @@ const productsData = {
       description: "Designed for shaping metal plates and sheets into arcs, cylinders, or complex profiles, our hydraulic Plate/Sheet Bending Machine delivers features include angle presets, automatic clamping, and overload protection for operator safety. Optional conveyor-fed loading systems streamline high-volume tasks in shipbuilding, construction, and automotive industries. With quick-change tooling and minimal setup time, this machine enhances productivity while maintaining stringent quality standards for structural and decorative components. The machine can process sheets with span of up to 4 meters and 20 mm thickness.",
       image: [sheetbending],
       benifits:[],
-      specifications: []
+      specifications: [],
+      applications:[]
     },
     "manual-paper-baling-machine": {
       category: "Special Purpose Machines",
@@ -408,7 +669,20 @@ const productsData = {
       specifications: [
         { "Max Bale Weight": "500 Kg", "Motor Power": "45 Hp" },
         { "Max Bale Weight": "Custom Size", "Motor Power": "As per req" }
-      ]
+      ],
+      applications: {
+        materials: [
+          "Paper: Office waste, newspapers, magazines.",
+          "Cardboard: Corrugated boxes, packaging materials.",
+          "Plastics: PET bottles, HDPE containers, plastic films."
+        ],
+        industries: [
+          "Small Recycling facilities",
+          "E-commerce warehouse",
+          "City Scale recyclers",
+          "Industrial recyclers"
+        ]
+      }
     },
 
 }

@@ -1,11 +1,10 @@
 // src/components/ImageCarousel.jsx
 import React, { useState, useEffect } from 'react';
-import Continuous_Scrapping_Machine from "../images/bluemach.png";
-import Hydrotest_machine from "../images/PHOTO EDIT 25.png";
-import Cold_Shearing_Machine from "../images/PHOTO EDIT 1.png";
-import Continuous_Baling_Machine from "../images/PHOTO EDIT 6.png";
-import DI_Pipe_Breaking_Machine from "../images/v1_website_photos_data/IND - WM - DI  Pipe Breaking Machine/DIPIPE.png";
-
+import Continuous_Scrapping_Machine from "../images/bluemach.webp";
+import Hydrotest_machine from "../images/PHOTO EDIT 25.webp";
+import Cold_Shearing_Machine from "../images/PHOTO EDIT 1.webp";
+import Continuous_Baling_Machine from "../images/PHOTO EDIT 6.webp";
+import DI_Pipe_Breaking_Machine from "../images/DIPIPE.webp";
 
 const ImageCarousel = () => {
   const images = [
@@ -16,29 +15,29 @@ const ImageCarousel = () => {
     { id: 5, src: DI_Pipe_Breaking_Machine, alt: "Design studio", title: "DI - Pipe Breaking Machine" }
   ];
 
+  // Preload all carousel images for smooth rendering
+  useEffect(() => {
+    images.forEach(({ src }) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const goToSlide = (index) => {
-    setCurrentIndex(index);
-  };
-
+  const goToSlide = (index) => setCurrentIndex(index);
   const goToPrevious = () => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? images.length - 1 : currentIndex - 1;
+    const newIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
   };
-
   const goToNext = () => {
-    const isLastSlide = currentIndex === images.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
+    const newIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
   };
 
-  // Auto slide functionality
+  // Auto-slide every 5 seconds
   useEffect(() => {
-    const interval = setInterval(() => {
-      goToNext();
-    }, 5000);
+    const interval = setInterval(goToNext, 5000);
     return () => clearInterval(interval);
   }, [currentIndex]);
 
@@ -51,23 +50,16 @@ const ImageCarousel = () => {
         <p className="text-gray-600">✦ Made With Excellence</p>
       </div>
 
-      {/* Increased height from h-96 to h-128 (equivalent to 32rem) */}
       <div className="relative h-128" style={{ height: "32rem" }}>
-        {/* Main carousel container with stacked image effect */}
         <div className="relative h-full overflow-hidden">
           {images.map((image, index) => {
-            // Calculate position and z-index for stacked effect
-            let zIndex = 10 - Math.abs(currentIndex - index);
-            let opacity = index === currentIndex ? 1 : 0.5;
-            let scale = index === currentIndex ? 1 : 0.85;
+            const zIndex = 10 - Math.abs(currentIndex - index);
+            const opacity = index === currentIndex ? 1 : 0.5;
+            const scale = index === currentIndex ? 1 : 0.85;
             let translateX = '0%';
-            
-            if (index < currentIndex) {
-              translateX = '-15%';
-            } else if (index > currentIndex) {
-              translateX = '15%';
-            }
-            
+            if (index < currentIndex) translateX = '-15%';
+            if (index > currentIndex) translateX = '15%';
+
             return (
               <div
                 key={image.id}
@@ -77,7 +69,6 @@ const ImageCarousel = () => {
                   zIndex,
                   opacity,
                   display: Math.abs(currentIndex - index) > 2 ? 'none' : 'block',
-                  // Added glass-like background effect with backdrop filter
                   backgroundColor: "rgba(255, 255, 255, 0.1)",
                   backdropFilter: "blur(10px)",
                   border: "1px solid rgba(255, 255, 255, 0.2)",
@@ -86,6 +77,7 @@ const ImageCarousel = () => {
                 <img
                   src={image.src}
                   alt={image.alt}
+                  loading={index === 0 ? "eager" : "lazy"}
                   className="w-full h-full object-contain"
                 />
               </div>
@@ -93,43 +85,44 @@ const ImageCarousel = () => {
           })}
         </div>
 
-        {/* Navigation buttons */}
+        {/* Navigation Buttons */}
         <button
           onClick={goToPrevious}
           className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full z-20 backdrop-blur-md"
           aria-label="Previous slide"
         >
+          {/* SVG left arrow */}
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        
         <button
           onClick={goToNext}
           className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full z-20 backdrop-blur-md"
           aria-label="Next slide"
         >
+          {/* SVG right arrow */}
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
       </div>
 
-      {/* Image Title Section */}
+      {/* Title Dot & Label */}
       <div className="flex justify-center mt-4">
-        <div 
+        <div
           className="px-6 py-2 rounded-full transition-all duration-300"
           style={{
-            backgroundColor: "rgba(229, 231, 235, 0.5)", // Light greyish with opacity
-            backdropFilter: "blur(10px)", // Glassy effect
-            border: "1px solid rgba(229, 231, 235, 0.7)", // Thin border
+            backgroundColor: "rgba(229, 231, 235, 0.5)",
+            backdropFilter: "blur(10px)",
+            border: "1px solid rgba(229, 231, 235, 0.7)",
           }}
         >
           <h3 className="text-gray-800 text-lg font-semibold">{images[currentIndex].title}</h3>
         </div>
       </div>
 
-      {/* Dots navigation */}
+      {/* Dots Navigation */}
       <div className="flex justify-center mt-4 space-x-2">
         {images.map((_, index) => (
           <button
@@ -146,4 +139,4 @@ const ImageCarousel = () => {
   );
 };
 
-export default ImageCarousel;
+export default React.memo(ImageCarousel);
