@@ -1,9 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const Buttons = () => { 
+const Buttons = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [userMessage, setUserMessage] = useState("");
   const [messages, setMessages] = useState([{ text: "How can I help you?", sender: "bot" }]);
+  const [showWhatsApp, setShowWhatsApp] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowWhatsApp(true), 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const halfway = window.innerHeight / 2;
+      setShowBackToTop(window.scrollY > halfway);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleSendMessage = () => {
     if (userMessage.trim() !== "") {
@@ -14,24 +31,29 @@ const Buttons = () => {
 
   return (
     <div>
-      {/* Floating WhatsApp Button */}
-      <div className="fixed bottom-20 right-6">
+      {/* WhatsApp Button */}
+      <div
+        className={`fixed bottom-24 right-6 z-50 transition-all duration-500 transform ${
+          showWhatsApp ? "opacity-100 scale-100" : "opacity-0 scale-75 pointer-events-none"
+        }`}
+      >
         <button
           onClick={() => setIsChatOpen(!isChatOpen)}
-          className="bg-green-500 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-green-600 transition-all duration-200"
+          className="bg-green-500 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-green-600 transition-transform duration-300"
         >
-          📞
+          {/* Replace with actual WhatsApp icon */}
+          💬
         </button>
       </div>
 
       {/* WhatsApp Chat Box */}
       {isChatOpen && (
-        <div className="fixed bottom-36 right-6 bg-white shadow-lg border border-gray-300 rounded-lg w-64 p-4 z-10">
+        <div className="fixed bottom-24 right-20 bg-white shadow-lg border border-gray-300 rounded-lg w-64 p-4 z-50 animate-fade-in">
           <div className="flex justify-between items-center mb-2">
             <h3 className="font-bold text-gray-800">Chat Support</h3>
             <button onClick={() => setIsChatOpen(false)} className="text-gray-500 hover:text-gray-800">✖</button>
           </div>
-          
+
           <div className="h-40 overflow-y-auto border rounded p-2 bg-gray-100">
             {messages.map((msg, index) => (
               <div key={index} className={`mb-2 p-2 rounded ${msg.sender === "bot" ? "bg-gray-200 text-gray-800" : "bg-cyan-500 text-white text-right"}`}>
@@ -39,7 +61,7 @@ const Buttons = () => {
               </div>
             ))}
           </div>
-          
+
           <div className="mt-2 flex">
             <input
               type="text"
@@ -59,10 +81,18 @@ const Buttons = () => {
       )}
 
       {/* Back-to-Top Button */}
-      <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} 
-        className="fixed bottom-6 right-6 bg-cyan-500 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-cyan-600 transition-all duration-200">
-        ⬆
-      </button>
+      <div
+        className={`fixed bottom-6 right-6 z-50 transition-all duration-500 transform ${
+          showBackToTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6 pointer-events-none"
+        }`}
+      >
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="bg-cyan-500 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-cyan-600 transition-transform duration-300"
+        >
+          ↑
+        </button>
+      </div>
     </div>
   );
 };

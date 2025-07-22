@@ -24,6 +24,7 @@ import manualpaperbaler from "../images/Manual Paper Baler Machine.jpg";
 const productsData = {
     //Waste Management
     "triple-action-scrap-baling-press": {
+  videoUrl: "https://www.youtube.com/watch?v=i6Kmm21FPZs&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=35",
       category: "Waste Management",
       name: "Triple Action Scrap Baling Press",
       tagline:"The Ultimate Solution for Metal Scrap Management",
@@ -56,6 +57,7 @@ const productsData = {
     }
     },
     "double-action-scrap-baling-press": {
+  videoUrl: "https://www.youtube.com/watch?v=wNAA8Wb5JNg&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=64",
       category: "Waste Management",
       name: "Double Action Scrap Baling Press",
       tagline:"Dual Compression Power for High Scrap Efficiency",
@@ -86,6 +88,7 @@ const productsData = {
       }
     },
     "pet-bottle-baling-press": {
+  videoUrl: "https://www.youtube.com/watch?v=oB2KDrQjP8E&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=19",
       category: "Waste Management",
       name: "PET Bottle Baling Press",
       tagline:"Transform Bottle Waste into Compact, Recyclable Assets",
@@ -214,6 +217,7 @@ const productsData = {
       }
     },
     "shredder-machine": {
+  videoUrl: "https://www.youtube.com/watch?v=nSfz89qrw0U&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=65",
       category: "Waste Management",
       name: "Shredder Machine",
       tagline:"Cut through anything",
@@ -248,6 +252,7 @@ const productsData = {
       }
     },
     "jumbo-scrap-baling-press": {
+  videoUrl: "https://www.youtube.com/watch?v=YilZOGydn8U&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=6",
       category: "Waste Management",
       name: "Jumbo Scrap Baling Press",
       tagline:"Power Meets Precision in Large-Scale Scrap Management",
@@ -316,6 +321,7 @@ const productsData = {
       }
     },
     "bid-breaking-machine": {
+  videoUrl: "https://www.youtube.com/watch?v=IVgorx7VVTs&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=11",
       category: "Waste Management",
       name: "Bid breaking machine",
       tagline:"Breaking the Unbreakable",
@@ -341,6 +347,7 @@ const productsData = {
       }
     },
     "scrap-shearing-machine-(kechi)": {
+  videoUrl: "https://www.youtube.com/watch?v=Hs1SfCPpDrg&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=4",
       category: "Waste Management",
       name: "Scrap Shearing Machine (kechi)",
       tagline:"A Compact Cutting Solution",
@@ -374,6 +381,7 @@ const productsData = {
 
     //Industrial Machines
     "ring-rolling-machine": {
+  videoUrl: "https://www.youtube.com/watch?v=ND37x0Ajm7A&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=59",
       category: "Industrial Machines",
       name: "Ring Rolling Machine",
       tagline:"Precise Ring Forming",
@@ -467,6 +475,7 @@ const productsData = {
       }
     },
     "number-punching-machine": {
+  videoUrl: "https://www.youtube.com/watch?v=EtuiNHwGpYs&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=9",
       category: "Industrial Machines",
       name: "Number Punching Machine",
       tagline:"Precision Marking, From Micro to Macro",
@@ -497,6 +506,7 @@ const productsData = {
     },
 
     "sheet-slitting-machine": {
+  videoUrl: "https://www.youtube.com/watch?v=TdWAzGiwmxk&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=86",
       category: "Industrial Machines",
       name: "Sheet Slitting Machine",
       tagline:"Precision Slitting, Uninterrupted Productivity",
@@ -528,6 +538,7 @@ const productsData = {
 
     //Special Purpose Machines
     "di-pipe-breaking-machine": {
+  videoUrl: "https://www.youtube.com/watch?v=bnyDFZJaJ_k&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=25",
       category: "Special Purpose Machines",
       name: "DI Pipe Breaking Machine",
       tagline:"Revolutionizing Pipe Recycling and boosting operational efficiency",
@@ -624,6 +635,7 @@ const productsData = {
       }
     },
     "hydraulic-press-(customized)": {
+  videoUrl: "https://www.youtube.com/watch?v=W4PyX6B_4lY",
       category: "Special Purpose Machines",
       name: "Hydraulic Press (customized)",
       tagline:"Power Meets Precision for Every Industrial Challenge",
@@ -660,6 +672,7 @@ const productsData = {
       applications:[]
     },
     "manual-paper-baling-machine": {
+  videoUrl: "https://www.youtube.com/watch?v=qZm_yNlncs8&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=32",
       category: "Special Purpose Machines",
       name: "Manual paper baling machine",
       tagline:"Compact, Efficient, and Built for Small-Scale Recycling",

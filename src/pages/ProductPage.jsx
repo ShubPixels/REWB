@@ -93,6 +93,7 @@ const ProductPage = () => {
               description={product.description}
               specifications={product.specifications}
               applications={product.applications}
+              videoUrl={product.videoUrl}
             />
           </div>
         </section>

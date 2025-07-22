@@ -9,6 +9,7 @@ export default function TabComponent(props) {
     { id: "description", label: "Description" },
     { id: "specifications", label: "Specifications" },
     { id: "applications", label: "Applications" },
+    ...(props.videoUrl ? [{ id: "video", label: "🎥 Watch Video", isLink: true, href: props.videoUrl }] : []),
   ];
 
   // This function dynamically renders the specifications based on their data type
@@ -72,17 +73,30 @@ export default function TabComponent(props) {
       {/* Tab Headers */}
       <div className="flex border-b">
         {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            className={`px-4 py-2 text-sm font-medium ${
-              activeTab === tab.id
-                ? "text-blue-600 border-b-2 border-blue-600"
-                : "text-gray-500"
-            } focus:outline-none`}
-            onClick={() => setActiveTab(tab.id)}
-          >
-            {tab.label}
-          </button>
+          tab.isLink ? (
+              <a
+                key={tab.id}
+                href={tab.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 text-sm font-medium text-teal-600 hover:underline"
+              >
+                {tab.label}
+              </a>
+            ) : (
+              <button
+                key={tab.id}
+                className={`px-4 py-2 text-sm font-medium ${
+                  activeTab === tab.id
+                    ? "text-blue-600 border-b-2 border-blue-600"
+                    : "text-gray-500"
+                } focus:outline-none`}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.label}
+              </button>
+            )
+
         ))}
       </div>
 
@@ -120,6 +134,24 @@ export default function TabComponent(props) {
               )}
             </div>
           </div>
+        )}
+
+        {activeTab === "video" && (
+          <div>
+              {props.videoUrl && (
+                <div className="px-4 pb-4">
+                  <a
+                    href={props.videoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-teal-500 text-black px-4 py-2 rounded-md hover:bg-teal-600 transition"
+                  >
+                    🎥 Watch Video
+                  </a>
+                </div>
+              )}
+          </div>
+        
         )}
       </div>
 
