@@ -67,12 +67,12 @@ const NAVBAR = () => {
   const categories = [
     {
       title: "Waste Management",
-      image: [threeAscarpbaling, twoAscrapbaling, petbottlingpress, Contpaperbaler, Contbaler, Conscraper, shredder, jumboscrapbaling, bidbreaking, carbalingmachine, scrapshreaing],
+      image: [threeAscarpbaling, twoAscrapbaling, petbottlingpress, Contbaler, Conscraper, shredder, jumboscrapbaling, carbalingmachine, bidbreaking, scrapshreaing],
       products: [
         "Triple Action Scrap Baling Press",
         "Double Action Scrap Baling Press",
         "PET Bottle Baling Press",
-        "Continuous Paper Baling Machine",
+        // "Continuous Paper Baling Machine",
         "Continuous Baling Machine",
         "Continuous Scrapping Machine",
         "Shredder Machine",

@@ -18,7 +18,7 @@ const ProductsPage = () => {
     { id: 0, name: 'Waste Management', image: wastemanageimg, count: 11,
       products: [
         "triple-action-scrap-baling-press", "double-action-scrap-baling-press", "pet-bottle-baling-press",
-        "continuous-paper-baling-machine", "continuous-baling-machine", "continuous-scrapping-machine",
+        "continuous-baling-machine", "continuous-scrapping-machine",
         "shredder-machine", "jumbo-scrap-baling-press", "car-baler-machine", "bid-breaking-machine",
         "scrap-shearing-machine-(kechi)"
       ]

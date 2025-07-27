@@ -24,7 +24,7 @@ import manualpaperbaler from "../images/Manual Paper Baler Machine.jpg";
 const productsData = {
     //Waste Management
     "triple-action-scrap-baling-press": {
-  videoUrl: "https://www.youtube.com/watch?v=i6Kmm21FPZs&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=35",
+      videoUrl: "https://www.youtube.com/watch?v=i6Kmm21FPZs&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=35",
       category: "Waste Management",
       name: "Triple Action Scrap Baling Press",
       tagline:"The Ultimate Solution for Metal Scrap Management",
@@ -57,7 +57,7 @@ const productsData = {
     }
     },
     "double-action-scrap-baling-press": {
-  videoUrl: "https://www.youtube.com/watch?v=wNAA8Wb5JNg&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=64",
+      videoUrl: "https://www.youtube.com/watch?v=wNAA8Wb5JNg&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=64",
       category: "Waste Management",
       name: "Double Action Scrap Baling Press",
       tagline:"Dual Compression Power for High Scrap Efficiency",
@@ -88,7 +88,7 @@ const productsData = {
       }
     },
     "pet-bottle-baling-press": {
-     videoUrl: "https://www.youtube.com/watch?v=oB2KDrQjP8E&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=19",
+      videoUrl: "https://www.youtube.com/watch?v=oB2KDrQjP8E&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=19",
       category: "Waste Management",
       name: "PET Bottle Baling Press",
       tagline:"Transform Bottle Waste into Compact, Recyclable Assets",
@@ -115,39 +115,40 @@ const productsData = {
         ]
       }
     },
-    "continuous-paper-baling-machine": {
-      category: "Waste Management",
-      name: "Continuous Paper Baling Machine",
-      tagline:"Uninterrupted Efficiency for Paper Recycling",
-      description: "The Continuous Paper Baler Machine is equipped with an automatic paper tying system, often complemented by a conveyor system for effortless material handling. This machine is designed to streamline the baling process for paper and cardboard waste, making it an excellent choice for high-volume paper recycling operations. On the starting capacity, It processes 30 bales a day on the with bale weight 100 Kg.",
-      image: [Contpaperbaler],
-      benifits:[
-        "Maximize Throughput without operators",
-        "Reduce Waste Volume by 85%",
-        "Sustainability Compliance",
-        "Scalable Solutions"
-      ],
-      specifications: [
+    // "continuous-paper-baling-machine": {
+    //   category: "Waste Management",
+    //   name: "Continuous Paper Baling Machine",
+    //   tagline:"Uninterrupted Efficiency for Paper Recycling",
+    //   description: "The Continuous Paper Baler Machine is equipped with an automatic paper tying system, often complemented by a conveyor system for effortless material handling. This machine is designed to streamline the baling process for paper and cardboard waste, making it an excellent choice for high-volume paper recycling operations. On the starting capacity, It processes 30 bales a day on the with bale weight 100 Kg.",
+    //   image: [Contpaperbaler],
+    //   benifits:[
+    //     "Maximize Throughput without operators",
+    //     "Reduce Waste Volume by 85%",
+    //     "Sustainability Compliance",
+    //     "Scalable Solutions"
+    //   ],
+    //   specifications: [
         
-        {  "Bale Weight": "1 Ton", "Motor HP": "60 Hp", "Conveyor HP": "10 Hp" },
-        {  "Bale Weight": "Custom", "Motor HP": "As per req", "Conveyor HP": "As per req" }
-      ],
-      applications: {
-        materials: [
-          "Corrugated Cardboard",
-          "Office Paper, Newspapers, Magazines",
-          "Mixed Paper Streams (sorted/unsorted)",
-          "Lightweight Packaging Materials (e.g., kraft paper, fiberboard)"
-        ],
-        industries: [
-          "Recycling Facilities",
-          "E-commerce Warehouses (cardboard waste)",
-          "Printing/Publishing Companies",
-          "Municipal Waste Management Centers"
-        ]
-      }
-    },
+    //     {  "Bale Weight": "1 Ton", "Motor HP": "60 Hp", "Conveyor HP": "10 Hp" },
+    //     {  "Bale Weight": "Custom", "Motor HP": "As per req", "Conveyor HP": "As per req" }
+    //   ],
+    //   applications: {
+    //     materials: [
+    //       "Corrugated Cardboard",
+    //       "Office Paper, Newspapers, Magazines",
+    //       "Mixed Paper Streams (sorted/unsorted)",
+    //       "Lightweight Packaging Materials (e.g., kraft paper, fiberboard)"
+    //     ],
+    //     industries: [
+    //       "Recycling Facilities",
+    //       "E-commerce Warehouses (cardboard waste)",
+    //       "Printing/Publishing Companies",
+    //       "Municipal Waste Management Centers"
+    //     ]
+    //   }
+    // },
     "continuous-baling-machine": {
+      videoUrl: "https://www.youtube.com/watch?v=LEvW1g1pInQ&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=81",
       category: "Waste Management",
       name: "Continuous Baling Machine",
       tagline:"Relentless Power for High-Volume Metal Recycling",
@@ -182,6 +183,7 @@ const productsData = {
       }
     },
     "continuous-scrapping-machine": {
+      videoUrl: "https://www.youtube.com/watch?v=P7Uyso0uCIU&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=18",
       category: "Waste Management",
       name: "Continuous Scrapping Machine",
       tagline:"Unstoppable Efficiency for Scrap Cutting",
@@ -217,7 +219,7 @@ const productsData = {
       }
     },
     "shredder-machine": {
-  videoUrl: "https://www.youtube.com/watch?v=nSfz89qrw0U&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=65",
+      videoUrl: "https://www.youtube.com/watch?v=nSfz89qrw0U&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=65",
       category: "Waste Management",
       name: "Shredder Machine",
       tagline:"Cut through anything",
@@ -252,7 +254,7 @@ const productsData = {
       }
     },
     "jumbo-scrap-baling-press": {
-  videoUrl: "https://www.youtube.com/watch?v=YilZOGydn8U&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=6",
+      videoUrl: "https://www.youtube.com/watch?v=YilZOGydn8U&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=6",
       category: "Waste Management",
       name: "Jumbo Scrap Baling Press",
       tagline:"Power Meets Precision in Large-Scale Scrap Management",
@@ -289,6 +291,7 @@ const productsData = {
       }
     },
     "car-baler-machine": {
+      videoUrl: "https://www.youtube.com/watch?v=5duNf0eaYC0&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=30",
       category: "Waste Management",
       name: "Car Baler Machine",
       tagline:"Transform End-of-Life Vehicles into Compact, Recyclable Assets",
@@ -381,7 +384,7 @@ const productsData = {
 
     //Industrial Machines
     "ring-rolling-machine": {
-  videoUrl: "https://www.youtube.com/watch?v=ND37x0Ajm7A&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=59",
+      videoUrl: "https://www.youtube.com/watch?v=ND37x0Ajm7A&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=59",
       category: "Industrial Machines",
       name: "Ring Rolling Machine",
       tagline:"Precise Ring Forming",
@@ -414,6 +417,7 @@ const productsData = {
     },
 
     "cold-shearing-machine": {
+      videoUrl: "https://www.youtube.com/watch?v=63yRDWemk58&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=68",
       category: "Industrial Machines",
       name: "Cold Shearing Machine",
       tagline:"Cut Billets at Unmatched Speed, Zero Heat, Zero Waste.",
