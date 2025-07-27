@@ -1,7 +1,7 @@
 // File: CategoriesPage.jsx
 
 import React, { useState, useEffect, useRef } from 'react';
-import wastemanageimg from "../images/bluemach.png";
+import wastemanageimg from "../images/bluemach.webp";
 import industrialimg from "../images/Cold Shearing Machine.jpg";
 import specialpurpimg from "../images/Pipe Sizing and Guaging Machine.jpg";
 import productsData from './ProductData';
@@ -18,7 +18,7 @@ const ProductsPage = () => {
     { id: 0, name: 'Waste Management', image: wastemanageimg, count: 11,
       products: [
         "triple-action-scrap-baling-press", "double-action-scrap-baling-press", "pet-bottle-baling-press",
-        "continuous-paper-baler-machine", "continuous-baler-machine", "continuous-scrapper-machine",
+        "continuous-paper-baling-machine", "continuous-baling-machine", "continuous-scrapping-machine",
         "shredder-machine", "jumbo-scrap-baling-press", "car-baler-machine", "bid-breaking-machine",
         "scrap-shearing-machine-(kechi)"
       ]
@@ -183,7 +183,7 @@ const ProductsPage = () => {
               {activeCategory !== 3 ? (
                 <div>
                   <div className="p-6 rounded-lg mb-8 border shadow-lg bg-white border-gray-100">
-                    <p className="text-black font-bold text-2xl mb-3">Categoty Description:</p>
+                    <p className="text-black font-bold text-2xl mb-3">Category Description:</p>
                     <p className="text-gray-600 text-[clamp(1rem,2vw,1.25rem)]">{categoryDescriptions[activeCategory]}</p>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

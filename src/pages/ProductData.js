@@ -3,7 +3,7 @@ import twoAscrapbaling from "../images/2 action.png";
 import petbottlingpress from "../images/PHOTO EDIT 22.png";
 import Contpaperbaler from "../images/Manual Paper Baler Machine.jpg";
 import Contbaler from "../images/Automatic  Continuous Baling Machine.jpg";
-import Conscraper from "../images/Continuous Scrapping  automatic Scrapper Machine.jpg";
+import Conscraper from "../images/bluemach.webp";
 import shredder from "../images/Shredder Machine.jpg";
 import jumboscrapbaling from "../images/Jumbo Scrap Baling Machine.jpg";
 import bidbreaking from "../images/Bid Breaking Machine.jpg";
@@ -88,7 +88,7 @@ const productsData = {
       }
     },
     "pet-bottle-baling-press": {
-  videoUrl: "https://www.youtube.com/watch?v=oB2KDrQjP8E&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=19",
+     videoUrl: "https://www.youtube.com/watch?v=oB2KDrQjP8E&list=PL0HiGy1JO9LHUZOR3pLKlErnsftIGL-VE&index=19",
       category: "Waste Management",
       name: "PET Bottle Baling Press",
       tagline:"Transform Bottle Waste into Compact, Recyclable Assets",
@@ -115,7 +115,7 @@ const productsData = {
         ]
       }
     },
-    "continuous-paper-baler-machine": {
+    "continuous-paper-baling-machine": {
       category: "Waste Management",
       name: "Continuous Paper Baling Machine",
       tagline:"Uninterrupted Efficiency for Paper Recycling",
@@ -147,9 +147,9 @@ const productsData = {
         ]
       }
     },
-    "continuous-baler-machine": {
+    "continuous-baling-machine": {
       category: "Waste Management",
-      name: "Continuous Metal Baling Machine",
+      name: "Continuous Baling Machine",
       tagline:"Relentless Power for High-Volume Metal Recycling",
       description: "The Continuous Metal Baler Machine is an automated solution tailored for high-standard, manpower-free plants. Integrated with a feeding conveyor system, this machine ensures seamless and efficient metal baling operations. Designed to handle large quantities of scrap metal with minimal human intervention, it enhances productivity and operational efficiency, making it ideal for large-scale recycling facilities that prioritize automation and quality. It can output 10 tons of scrap and more, depending on custom requirements.",
       image: [Contbaler],
@@ -181,7 +181,7 @@ const productsData = {
         ]
       }
     },
-    "continuous-scrapper-machine": {
+    "continuous-scrapping-machine": {
       category: "Waste Management",
       name: "Continuous Scrapping Machine",
       tagline:"Unstoppable Efficiency for Scrap Cutting",

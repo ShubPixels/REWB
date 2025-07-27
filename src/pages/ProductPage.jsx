@@ -8,7 +8,7 @@ import DisplayComponent from "../Components/DisplayComponent";
 import FadeInSection from "./Fadeinsection";
 
 // --- STEP 1: Import the category images ---
-import wastemanageimg from "../images/bluemach.png";
+import wastemanageimg from "../images/bluemach.webp";
 import industrialimg from "../images/Cold Shearing Machine.jpg";
 import specialpurpimg from "../images/Pipe Sizing and Guaging Machine.jpg";
 

@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import Continuous_Scrapping_Machine from "../images/bluemach.webp";
 import Hydrotest_machine from "../images/PHOTO EDIT 25.webp";
-import Cold_Shearing_Machine from "../images/PHOTO EDIT 1.webp";
-import Continuous_Baling_Machine from "../images/PHOTO EDIT 6.webp";
+import Cold_Shearing_Machine from "../images/PHOTO_EDIT_1_resized.png";
+import Continuous_Baling_Machine from "../images/PHOTO_EDIT_6_resized.png";
 import DI_Pipe_Breaking_Machine from "../images/DIPIPE.webp";
 
 const ImageCarousel = () => {

@@ -19,7 +19,7 @@ import twoAscrapbaling from "../images/2 action.png";
 import petbottlingpress from "../images/PHOTO EDIT 22.png";
 import Contpaperbaler from "../images/Manual Paper Baler Machine.jpg";
 import Contbaler from "../images/Automatic  Continuous Baling Machine.jpg";
-import Conscraper from "../images/Continuous Scrapping  automatic Scrapper Machine.jpg";
+import Conscraper from "../images/bluemach.webp";
 import shredder from "../images/Shredder Machine.jpg";
 import jumboscrapbaling from "../images/Jumbo Scrap Baling Machine.jpg";
 import bidbreaking from "../images/Bid Breaking Machine.jpg";
@@ -72,9 +72,9 @@ const NAVBAR = () => {
         "Triple Action Scrap Baling Press",
         "Double Action Scrap Baling Press",
         "PET Bottle Baling Press",
-        "Continuous Paper Baler Machine",
-        "Continuous Baler Machine",
-        "Continuous Scrapper Machine",
+        "Continuous Paper Baling Machine",
+        "Continuous Baling Machine",
+        "Continuous Scrapping Machine",
         "Shredder Machine",
         "Jumbo Scrap Baling Press",
         "Car Baler Machine",
@@ -101,7 +101,7 @@ const NAVBAR = () => {
         "Pipe Hydrotest Machine",
         "Big Pipe Gauging and Sizing Machine",
         "Hydraulic Press (Customized)",
-        "Sheet  Plate Bending Machine",
+        "Sheet Plate Bending Machine",
         "Manual Paper Baling Machine"
       ]
     }

@@ -23,7 +23,7 @@ import FadeInSection from "./Fadeinsection";
 import ImageCarousel from '../Components/ImageCarousel';
 import slide_image_5 from "../images/PHOTO EDIT 6.png";
 import worldmap from "../images/world map.png";
-import wastemanageimg from "../images/bluemach.png";
+import wastemanageimg from "../images/bluemach.webp";
 import industrialimg from "../images/Cold Shearing Machine.jpg";
 import specialpurpimg from "../images/Pipe Sizing and Guaging Machine.jpg";
 import productsData from './ProductData';
