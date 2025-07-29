@@ -44,6 +44,8 @@ const NAVBAR = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [socialOpen, setSocialOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
+
 
 
   useEffect(() => {
@@ -122,8 +124,8 @@ const NAVBAR = () => {
       <header className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${isNavVisible ? "translate-y-0" : "-translate-y-full"} bg-white shadow-md`}>
         <div className="bg-white py-2 relative">
         <div className="container mx-auto flex flex-wrap justify-between text-sm px-4 md:px-8 text-gray-700">
-          {/* Contact Info */}
-          <div className="flex items-center gap-4">
+          {/* Contact Info - Desktop and medium+ screens */}
+          <div className="hidden min-[380px]:flex items-center gap-4">
             <span className="flex items-center gap-2">
               <img src={call} alt="call" className="w-4 h-4" /> +918000920222
             </span>
@@ -131,6 +133,14 @@ const NAVBAR = () => {
               <img src={email} alt="email" className="w-4 h-4" /> mail@ranganiindia.com
             </span>
           </div>
+
+          {/* Contact Info Toggle - Small screens only */}
+          <div className="flex min-[380px]:hidden items-center">
+            <button onClick={() => setContactOpen(!contactOpen)} className="mr-2">
+              <img src={call} alt="Toggle Contact Info" className="w-6 h-6" />
+            </button>
+          </div>
+
 
           {/* Desktop Social Icons - now with dynamic links */}
           <div className="hidden sm:flex gap-4 items-center">
@@ -164,6 +174,17 @@ const NAVBAR = () => {
             ))}
           </div>
         )}
+        {contactOpen && (
+          <div className="absolute left-4 top-full mt-2 bg-white shadow-lg rounded-lg p-3 flex flex-col gap-2 sm:hidden transition-all duration-300 z-10 text-sm">
+            <div className="flex items-center gap-2">
+              <img src={call} alt="call" className="w-4 h-4" /> +918000920222
+            </div>
+            <div className="flex items-center gap-2">
+              <img src={email} alt="email" className="w-4 h-4" /> mail@ranganiindia.com
+            </div>
+          </div>
+        )}
+
       </div>
 
         {/* Navigation */}

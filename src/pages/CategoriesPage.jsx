@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import wastemanageimg from "../images/bluemach.webp";
 import industrialimg from "../images/Cold Shearing Machine.jpg";
+import manufaclog from "../images/manufaclogo_CTP.png";
 import specialpurpimg from "../images/Pipe Sizing and Guaging Machine.jpg";
 import productsData from './ProductData';
 import manufacimagequ from "../images/Illustration.png";
@@ -35,7 +36,7 @@ const ProductsPage = () => {
         "hydraulic-press-(customized)", "sheet-plate-bending-machine", "manual-paper-baling-machine"
       ]
     },
-    { id: 3, name: 'Manufacturing Services', image: specialpurpimg, count: 0 }
+    { id: 3, name: 'Manufacturing Services', image: manufaclog, count: 0 }
   ];
 
   // --- FIX: The missing categoryDescriptions array is re-added here ---

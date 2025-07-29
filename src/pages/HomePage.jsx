@@ -282,7 +282,7 @@ const HomePage = () => {
                       whileTap={{ scale: 0.95 }}
                     >
                       <Link to="/category-page" className="hover:text-white">
-                        View Machines
+                        Our Machines
                       </Link>
                     </motion.button>
 
@@ -290,9 +290,11 @@ const HomePage = () => {
                       className="bg-teal-500 text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity duration-300"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
+                      onClick={() => window.open('https://www.youtube.com/@RanganiEngineeringPvtLtd', '_blank')}
                     >
                       Watch Video
                     </motion.button>
+
                   </motion.div>
                 </motion.div>
 
