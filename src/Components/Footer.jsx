@@ -46,7 +46,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="text-center text-gray-500 mt-6">
-        <p>&copy; 2024, Rangani Engineering. All rights reserved.</p>
+        <p>&copy; 2025, Rangani Engineering. All rights reserved.</p>
       </div>
     </footer>
   );

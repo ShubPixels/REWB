@@ -13,7 +13,7 @@ load_dotenv()
 
 EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
-RECIPIENT_EMAIL = "codingdemos17@gmail.com"
+RECIPIENT_EMAIL = "shadowlit7@gmail.com"
 
 @app.route("/")
 def home():
