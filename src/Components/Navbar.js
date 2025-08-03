@@ -41,7 +41,7 @@ const NAVBAR = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [socialOpen, setSocialOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
@@ -108,6 +108,7 @@ const NAVBAR = () => {
       ]
     }
   ];
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
 
   // Centralized social media links with icons and URLs
   const socialMediaLinks = [

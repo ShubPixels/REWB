@@ -155,7 +155,7 @@ const ContactUs = () => {
                   placeholder="Your Message"
                   className="input-style md:col-span-2 h-24"
                 />
-                <div className="flex items-center md:col-span-2">
+                {/* <div className="flex items-center md:col-span-2">
                   <input
                     type="checkbox"
                     name="terms"
@@ -166,7 +166,7 @@ const ContactUs = () => {
                   <label className="text-sm text-gray-600">
                     Agree to our terms and conditions
                   </label>
-                </div>
+                </div> */}
                 {formError && (
                   <p className="text-red-500 text-sm md:col-span-2">{formError}</p>
                 )}
@@ -203,9 +203,15 @@ const ContactUs = () => {
               <div className="text-gray-700">
                 <h4 className="font-bold mb-2">Address:</h4>
                 <p>Survey No. 258, Plot No. 5 To 11, NH-8B, Gondal Road, Near Priyesh Cotton, Shapar, Rajkot-360024, Gujarat, India.</p>
-                <a href="#" className="text-teal-500 font-semibold mt-2 inline-block hover:underline">
+                <a
+                  href="https://maps.app.goo.gl/8QFjE7BRMg3AC63E9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-teal-500 font-semibold mt-2 inline-block hover:underline"
+                >
                   Get Directions →
                 </a>
+
               </div>
             </div>
           </div>

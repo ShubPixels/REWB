@@ -23,7 +23,7 @@ export default function TabComponent(props) {
     { id: "description", label: "Description" },
     { id: "specifications", label: "Specifications" },
     { id: "applications", label: "Applications" },
-    ...(props.videoUrl ? [{ id: "video", label: "🎥 Watch Video", isLink: true, href: props.videoUrl }] : []),
+    // ...(props.videoUrl ? [{ id: "video", label: "🎥 Watch Video", isLink: true, href: props.videoUrl }] : []),
   ];
 
   // This function dynamically renders the specifications based on their data type
@@ -124,7 +124,22 @@ export default function TabComponent(props) {
           transition={{ duration: 0.3 }}
           className="p-4"
         >
-          {activeTab === "description" && <p className="text-gray-700">{props.description}</p>}
+          {activeTab === "description" && (
+            <div className="space-y-4 text-gray-700">
+              <p>{props.description}</p>
+              {props.videoUrl && (
+                <a
+                  href={props.videoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-teal-500 text-black px-4 py-2 rounded-md hover:bg-teal-600 transition"
+                >
+                  🎥 Watch Video
+                </a>
+              )}
+            </div>
+          )}
+
           {activeTab === "specifications" && renderSpecifications(props.specifications)}
           {activeTab === "applications" && (
             <div className="space-y-6">
@@ -148,18 +163,7 @@ export default function TabComponent(props) {
               )}
             </div>
           )}
-          {activeTab === "video" && props.videoUrl && (
-            <div className="px-4 pb-4">
-              <a
-                href={props.videoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-teal-500 text-black px-4 py-2 rounded-md hover:bg-teal-600 transition"
-              >
-                🎥 Watch Video
-              </a>
-            </div>
-          )}
+          
         </motion.div>
       </AnimatePresence>
 

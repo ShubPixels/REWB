@@ -6,13 +6,7 @@ import "../App.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/autoplay";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import BalingPressMachines from "../images/PHOTO EDIT 6.png";
-import ScrapShearingMachine from "../images/PHOTO EDIT 7.png";
-import ForgingRingRollingMachines from "../images/PHOTO EDIT 21.png";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
 import { useInView } from "react-intersection-observer";
-import * as THREE from "three";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
@@ -23,6 +17,7 @@ import FadeInSection from "./Fadeinsection";
 import ImageCarousel from '../Components/ImageCarousel';
 import slide_image_5 from "../images/PHOTO_EDIT_6_resized.png";
 import worldmap from "../images/world map.png";
+import welplogo from "../images/welspun logo.png";
 import wastemanageimg from "../images/bluemach.webp";
 import industrialimg from "../images/PHOTO_EDIT_1_resized.png";
 import specialpurpimg from "../images/Pipe Sizing and Guaging Machine.jpg";
@@ -141,16 +136,16 @@ const HomePage = () => {
       name: "Ally Masi",
       designation: "Director of Industries Events Marketing",
       company: "Al Ma Cabrol LLC, Oman",
-      logo: bajaj,
+      // logo: ,
       text:'Our corrugation line needed three machines and a dozen of operators; bottlenecks everywhere. Rangani proposed a single automated cell—servo-controlled feeder, hydraulic former, and inline shear. Throughput increased by significant margins, while headcount per shift dropped to five. Unit landed in Sohar five months after kick-off.',
-      image: TLDR,
+      // image: TLDR,
     },
     {
       id: 4,
       name: "Ally Masi",
       designation: "Director of Industries Events Marketing",
       company: "Welspun Group",
-      logo: bajaj,
+      logo: welplogo,
       text:'Defect scrap—scale, sand, and odd shapes—was piling up beside our DI pipe mill.Rangani co-engineered a heavy-duty shredder with rotary dirt separators and over-belt magnet in one skid. Now we reclaim clean metal chips ready for the melt shop, cutting virgin charge by 8%. We could reuse the material on further operations, improving margins. Seeing the payback, we’ve budgeted two more lines and are planning to include Rangani in other areas.',
       image: TLDR,
     },
@@ -484,12 +479,12 @@ const HomePage = () => {
                     {/* Correctly using className for the logo styling */}
                     <img
                       src={testimonial.logo}
-                      alt={`${testimonial.company} logo`}
+                      // alt={`${testimonial.company} logo`}
                       className="testimonial-logo"
                     />
                     <div>
                       <p className="font-bold text-gray-800 text-base sm:text-lg">{testimonial.company}</p>
-                      {/* <p className="text-sm text-gray-500">{testimonial.name}, {testimonial.designation}</p> */}
+                      
                     </div>
                   </div>
                 </div>
@@ -582,7 +577,7 @@ const HomePage = () => {
                   placeholder="Your Message"
                   className="input-style md:col-span-2 h-24"
                 />
-                <div className="flex items-center md:col-span-2">
+                {/* <div className="flex items-center md:col-span-2">
                   <input
                     type="checkbox"
                     name="terms"
@@ -593,7 +588,7 @@ const HomePage = () => {
                   <label className="text-sm text-gray-600">
                     Agree to our terms and conditions
                   </label>
-                </div>
+                </div> */}
                 {formError && (
                   <p className="text-red-500 text-sm md:col-span-2">{formError}</p>
                 )}
@@ -630,7 +625,7 @@ const HomePage = () => {
               <div className="text-gray-700">
                 <h4 className="font-bold mb-2">Address:</h4>
                 <p>Survey No. 258, Plot No. 5 To 11, NH-8B, Gondal Road, Near Priyesh Cotton, Shapar, Rajkot-360024, Gujarat, India.</p>
-                <a href="#" className="text-teal-500 font-semibold mt-2 inline-block hover:underline">
+                <a href="#https://maps.app.goo.gl/8QFjE7BRMg3AC63E9" className="text-teal-500 font-semibold mt-2 inline-block hover:underline">
                   Get Directions →
                 </a>
               </div>

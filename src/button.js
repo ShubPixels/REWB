@@ -23,11 +23,26 @@ const Buttons = () => {
   }, []);
 
   const handleSendMessage = () => {
-    if (userMessage.trim() !== "") {
-      setMessages([...messages, { text: userMessage, sender: "user" }]);
-      setUserMessage("");
+    const trimmed = userMessage.trim();
+
+    if (trimmed !== "") {
+      setMessages([...messages, { text: trimmed, sender: "user" }]);
+
+      // Redirect to WhatsApp
+      const encodedMessage = encodeURIComponent(trimmed);
+      const whatsappURL = `https://wa.me/919106914298?text=${encodedMessage}`;
+      const newTab = window.open(whatsappURL, "_blank", "noopener,noreferrer");
+
+      if (!newTab) {
+        alert("Please allow popups for this site to continue to WhatsApp.");
+      }
+
+      setUserMessage(""); // Reset input field
+    } else {
+      alert("Please type a message.");
     }
   };
+
 
   return (
     <div>
