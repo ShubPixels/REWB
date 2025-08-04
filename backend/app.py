@@ -6,6 +6,7 @@ from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
 import os
 
+
 app = Flask(__name__)
 CORS(app)
 
