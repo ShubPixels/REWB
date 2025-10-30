@@ -155,7 +155,7 @@ const ContactUs = () => {
                   placeholder="Your Message"
                   className="input-style md:col-span-2 h-24"
                 />
-                {/* <div className="flex items-center md:col-span-2">
+                <div className="flex items-center md:col-span-2">
                   <input
                     type="checkbox"
                     name="terms"
@@ -166,7 +166,7 @@ const ContactUs = () => {
                   <label className="text-sm text-gray-600">
                     Agree to our terms and conditions
                   </label>
-                </div> */}
+                </div>
                 {formError && (
                   <p className="text-red-500 text-sm md:col-span-2">{formError}</p>
                 )}
