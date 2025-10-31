@@ -39,7 +39,7 @@ const ContactUs = () => {
 
     try {
       // LOCAL TESTING
-      const response = await fetch("http://localhost:8000/api/contact.php", {
+      const response = await fetch("/api/contact.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

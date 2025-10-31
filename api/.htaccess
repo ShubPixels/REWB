@@ -1,13 +1,20 @@
-# Block access to .env and PHPMailer source
+# Block .env
 <Files ".env">
     Order allow,deny
     Deny from all
 </Files>
 
-<FilesMatch "\.php$">
-    # Allow only contact.php and test-smtp.php
-</FilesMatch>
+# Allow only POST to contact.php
+<Files "contact.php">
+    <If "%{REQUEST_METHOD} != 'POST'">
+        Order allow,deny
+        Deny from all
+    </If>
+</Files>
 
-# Optional: Clean URLs (if you want /api/contact instead of .php)
+# React Router fallback
 RewriteEngine On
-RewriteRule ^contact$ contact.php [L]
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+RewriteRule ^ index.html [L]
