@@ -11,7 +11,7 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import TLDR from "../images/tldr.jpg";
 import FadeInSection from "./Fadeinsection";
 import ImageCarousel from '../Components/ImageCarousel';
@@ -40,6 +40,7 @@ import orient from "../images/orient.png";
 import ScrollingLogoBanner from "../Components/ScrollingLogoBanner";
 import CountUp from 'react-countup';
 import { FaUsers, FaGlobeAmericas, FaAward } from 'react-icons/fa';
+import emailjs from "@emailjs/browser"; // ← ADDED EMAILJS
 
 const useCountUp = (start, end, duration) => {
   const [count, setCount] = useState(start);
@@ -72,6 +73,7 @@ const sectionVariants = {
     },
   },
 };
+
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
@@ -112,6 +114,7 @@ const HomePage = () => {
   const [clients, clientsRef] = useCountUp(0, 6000, 2000);
   const [countries, countriesRef] = useCountUp(0, 15, 1500);
   const [years, yearsRef] = useCountUp(0, 30, 1500);
+
   const testimonials = [
     {
       id: 1,
@@ -128,30 +131,26 @@ const HomePage = () => {
       designation: "Director of Industries Events Marketing",
       company: "Toyota Kirloskar Auto Parts Pvt. Ltd.",
       logo: toyota,
-      text: 'We needed a baler that fit our compact ‘Toyota Production System’ cell, not a bulky randomised sized frame. Rangani’s team rebuilt the platen, added poka-yoke sensors, and wrote a JIS-compliant PLC routine in three months. The custom low-height hopper slides under our press shop conveyor without layout change. OEE jumped four points, with zero containment alerts since commissioning. They’re now on our ‘A-rank’ vendor list—one of the very few in India.',
+      text: "We needed a baler that fit our compact ‘Toyota Production System’ cell, not a bulky randomised sized frame. Rangani’s team rebuilt the platen, added poka-yoke sensors, and wrote a JIS-compliant PLC routine in three months. The custom low-height hopper slides under our press shop conveyor without layout change. OEE jumped four points, with zero containment alerts since commissioning. They’re now on our ‘A-rank’ vendor list—one of the very few in India.",
       image: TLDR,
     },
     {
       id: 3,
-      name: "Ally Masi",
-      designation: "Director of Industries Events Marketing",
+      name: "Al Ma Cabrol LLC",
       company: "Al Ma Cabrol LLC, Oman",
-      // logo: ,
-      text:'Our corrugation line needed three machines and a dozen of operators; bottlenecks everywhere. Rangani proposed a single automated cell—servo-controlled feeder, hydraulic former, and inline shear. Throughput increased by significant margins, while headcount per shift dropped to five. Unit landed in Sohar five months after kick-off.',
-      // image: TLDR,
+      text: "Our corrugation line needed three machines and a dozen of operators; bottlenecks everywhere. Rangani proposed a single automated cell—servo-controlled feeder, hydraulic former, and inline shear. Throughput increased by significant margins, while headcount per shift dropped to five. Unit landed in Sohar five months after kick-off.",
     },
     {
       id: 4,
-      name: "Ally Masi",
-      designation: "Director of Industries Events Marketing",
+      name: "Welspun Group",
       company: "Welspun Group",
       logo: welplogo,
-      text:'Defect scrap—scale, sand, and odd shapes—was piling up beside our DI pipe mill.Rangani co-engineered a heavy-duty shredder with rotary dirt separators and over-belt magnet in one skid. Now we reclaim clean metal chips ready for the melt shop, cutting virgin charge by 8%. We could reuse the material on further operations, improving margins. Seeing the payback, we’ve budgeted two more lines and are planning to include Rangani in other areas.',
+      text: "Defect scrap—scale, sand, and odd shapes—was piling up beside our DI pipe mill. Rangani co-engineered a heavy-duty shredder with rotary dirt separators and over-belt magnet in one skid. Now we reclaim clean metal chips ready for the melt shop, cutting virgin charge by 8%. We could reuse the material on further operations, improving margins. Seeing the payback, we’ve budgeted two more lines and are planning to include Rangani in other areas.",
       image: TLDR,
     },
   ];
 
-  // Form state
+  // ========== FORM STATE ==========
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -164,11 +163,10 @@ const HomePage = () => {
     message: "",
     terms: false,
   });
-
   const [formError, setFormError] = useState("");
   const [formSuccess, setFormSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
@@ -177,47 +175,52 @@ const HomePage = () => {
     }));
   };
 
-  // Handle form submission
+  // ========== EMAILJS SUBMIT (NO PHP) ==========
   const handleSubmit = async () => {
-    // Basic validation
+    setFormError("");
+    setFormSuccess("");
+    setLoading(true);
+
     if (!formData.name || !formData.email || !formData.company || !formData.country || !formData.state || !formData.city) {
       setFormError("Please fill in all required fields.");
+      setLoading(false);
       return;
     }
     if (!formData.terms) {
       setFormError("You must agree to the terms and conditions.");
+      setLoading(false);
       return;
     }
 
     try {
-      const response = await fetch("http://localhost:8000/api/contact.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      emailjs.init("2eTUgvvMEs8XCcfvG"); // ← YOUR PUBLIC KEY
 
-      if (response.ok) {
-        setFormSuccess("Your message has been sent successfully!");
-        setFormError("");
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          company: "",
-          country: "",
-          state: "",
-          city: "",
-          category: "General Inquiry",
-          message: "",
-          terms: false,
-        });
-      } else {
-        setFormError("Failed to send your message. Please try again.");
-      }
+      await emailjs.send(
+        "service_5v3kfqa",     // ← YOUR SERVICE ID
+        "template_s8fq6cn",    // ← YOUR TEMPLATE ID
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || "Not provided",
+          company: formData.company,
+          country: formData.country,
+          state: formData.state,
+          city: formData.city,
+          category: formData.category,
+          message: formData.message || "No message",
+        }
+      );
+
+      setFormSuccess("Your message has been sent successfully!");
+      setFormData({
+        name: "", email: "", phone: "", company: "", country: "", state: "", city: "",
+        category: "General Inquiry", message: "", terms: false,
+      });
     } catch (error) {
-      setFormError("An error occurred. Please try again later.");
+      console.error("EmailJS Error:", error);
+      setFormError("Failed to send. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -235,113 +238,101 @@ const HomePage = () => {
 
   return (
     <div className="font-sans bg-cyan-50">
+      {/* HERO SECTION */}
       <FadeInSection>
         <section className="bg-cyan-50 pb-10">
-            <div className="widthforherosec mx-auto flex flex-col lg:flex-row items-center justify-between pt-32 sm:pt-36 lg:pt-40 px-4 md:px-8">
-                {/* Left Side: Text Content */}
-                <motion.div
-                  className="w-full lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0"
-                  initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
+          <div className="widthforherosec mx-auto flex flex-col lg:flex-row items-center justify-between pt-32 sm:pt-36 lg:pt-40 px-4 md:px-8">
+            <motion.div
+              className="w-full lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+            >
+              <motion.h1
+                className="text-[clamp(2.5rem,5vw,4rem)] font-bold text-gray-800 leading-tight mb-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+              >
+                REIMAGINING WASTE, <br />
+                REENGINEERING <span className="text-teal-500">THE FUTURE</span>
+              </motion.h1>
+              <motion.p
+                className="text-gray-600 text-[clamp(1rem,2vw,1.25rem)] mb-8 max-w-xl mx-auto lg:mx-0"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+              >
+                Empowering Industries with Advanced Engineering Solutions
+              </motion.p>
+              <motion.div
+                className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+              >
+                <motion.button
+                  className="border-2 border-teal-500 text-teal-500 px-8 py-3 rounded-lg font-medium hover:bg-teal-500 hover:text-white transition-colors duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <motion.h1
-                    className="text-[clamp(2.5rem,5vw,4rem)] font-bold text-gray-800 leading-tight mb-4"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2, duration: 0.6 }}
-                  >
-                    REIMAGINING WASTE, <br />
-                    REENGINEERING <span className="text-teal-500">THE FUTURE</span>
-                  </motion.h1>
+                  <Link to="/category-page" className="hover:text-white">
+                    Our Machines
+                  </Link>
+                </motion.button>
+                <motion.button
+                  className="bg-teal-500 text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => window.open('https://www.youtube.com/@RanganiEngineeringPvtLtd', '_blank')}
+                >
+                  Watch Video
+                </motion.button>
+              </motion.div>
+            </motion.div>
 
-                  <motion.p
-                    className="text-gray-600 text-[clamp(1rem,2vw,1.25rem)] mb-8 max-w-xl mx-auto lg:mx-0"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.6 }}
-                  >
-                    Empowering Industries with Advanced Engineering Solutions
-                  </motion.p>
-
-                  <motion.div
-                    className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6, duration: 0.6 }}
-                  >
-                    <motion.button
-                      className="border-2 border-teal-500 text-teal-500 px-8 py-3 rounded-lg font-medium hover:bg-teal-500 hover:text-white transition-colors duration-300"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Link to="/category-page" className="hover:text-white">
-                        Our Machines
-                      </Link>
-                    </motion.button>
-
-                    <motion.button
-                      className="bg-teal-500 text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity duration-300"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => window.open('https://www.youtube.com/@RanganiEngineeringPvtLtd', '_blank')}
-                    >
-                      Watch Video
-                    </motion.button>
-
-                  </motion.div>
-                </motion.div>
-
-                {/* Right Side: Image Swiper */}
-                <motion.div className="w-full md:w-3/4 lg:w-1/2" variants={itemVariants}>
-                  <Swiper
-                    modules={[Autoplay]}
-                    autoplay={{ delay: 3000, disableOnInteraction: false }}
-                    loop
-                    slidesPerView={1}
-                    onSlideChange={({ activeIndex }) => setActiveHeroIndex(activeIndex)}
-                    className="max-w-full rounded-lg"
-                  >
-                    {[slide1, slide2, slide3].map((img, i) => (
-                      <SwiperSlide key={i}>
-                        <motion.img
-                          src={img}
-                          alt={`Hero Slide ${i + 1}`}
-                          loading="lazy"
-                          initial={{ opacity: 0.8, scale: 0.95 }}
-                          animate={
-                            activeHeroIndex === i
-                              ? { opacity: 1, scale: 1, transition: { duration: 0.8, ease: 'easeOut' } }
-                              : { opacity: 0.8, scale: 0.95, transition: { duration: 0.8, ease: 'easeOut' } }
-                          }
-                          className="w-full h-auto object-contain rounded-lg"
-                        />
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
-                </motion.div>
-            </div>
+            <motion.div className="w-full md:w-3/4 lg:w-1/2" variants={itemVariants}>
+              <Swiper
+                modules={[Autoplay]}
+                autoplay={{ delay: 3000, disableOnInteraction: false }}
+                loop
+                slidesPerView={1}
+                onSlideChange={({ activeIndex }) => setActiveHeroIndex(activeIndex)}
+                className="max-w-full rounded-lg"
+              >
+                {[slide1, slide2, slide3].map((img, i) => (
+                  <SwiperSlide key={i}>
+                    <motion.img
+                      src={img}
+                      alt={`Hero Slide ${i + 1}`}
+                      loading="lazy"
+                      initial={{ opacity: 0.8, scale: 0.95 }}
+                      animate={
+                        activeHeroIndex === i
+                          ? { opacity: 1, scale: 1, transition: { duration: 0.8, ease: 'easeOut' } }
+                          : { opacity: 0.8, scale: 0.95, transition: { duration: 0.8, ease: 'easeOut' } }
+                      }
+                      className="w-full h-auto object-contain rounded-lg"
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </motion.div>
+          </div>
         </section>
       </FadeInSection>
 
-      
-      <ScrollingLogoBanner/>
-      
+      <ScrollingLogoBanner />
 
+      {/* STATS SECTION */}
       <FadeInSection>
         <div className="container mx-auto rounded-2xl bg-gradient-to-tr from-teal-500 to-cyan-600 text-white shadow-2xl">
           <div className="mx-auto flex flex-col md:flex-row items-center justify-between p-8 md:p-12 gap-8 md:gap-12">
-
-            {/* Left Side: Image */}
-            {/* We'll make the map feel more integrated and subtle */}
             <div className="w-full md:w-2/5 flex justify-center opacity-80 md:opacity-100">
               <img src={worldmap} alt="World Map" className="max-w-xs md:max-w-full h-auto" />
             </div>
-
-            {/* Right Side: Content */}
             <div className="w-full md:w-3/5 text-center md:text-left">
-              {/* Main Headline & Sub-headline */}
               <div className="space-y-4">
                 <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
                   Ready to take the next step?
@@ -350,10 +341,7 @@ const HomePage = () => {
                   Get a personalized, no-obligation quote from our team today.
                 </p>
               </div>
-
-              {/* Animated Stats Section */}
               <div className="my-8 flex flex-wrap justify-center md:justify-start gap-8 md:gap-10">
-                {/* Stat 1: Unique Clients */}
                 <div className="flex items-center gap-3">
                   <FaUsers className="text-3xl text-cyan-200" />
                   <div>
@@ -363,8 +351,6 @@ const HomePage = () => {
                     <p className="text-sm text-cyan-100">Unique Clients</p>
                   </div>
                 </div>
-
-                {/* Stat 2: Worldwide Reach */}
                 <div className="flex items-center gap-3">
                   <FaGlobeAmericas className="text-3xl text-cyan-200" />
                   <div>
@@ -374,8 +360,6 @@ const HomePage = () => {
                     <p className="text-sm text-cyan-100">Countries Served</p>
                   </div>
                 </div>
-
-                {/* Stat 3: Experience */}
                 <div className="flex items-center gap-3">
                   <FaAward className="text-3xl text-cyan-200" />
                   <div>
@@ -386,20 +370,19 @@ const HomePage = () => {
                   </div>
                 </div>
               </div>
-
-              {/* The Call-to-Action Button */}
               <div>
                 <Link to="/contact">
                   <button className="bg-white text-teal-600 font-bold py-3 px-8 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-cyan-300">
                     Contact Us Now
                   </button>
-                </Link>  
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </FadeInSection>
-      
+
+      {/* SERVICES */}
       <FadeInSection>
         <section className="bg-cyan-50 py-16">
           <h2 className="text-center text-4xl sm:text-5xl font-bold mb-12 sm:mb-16 px-4">
@@ -416,11 +399,11 @@ const HomePage = () => {
                     {service.title}
                   </h3>
                   <p className="text-gray-600 mb-4 flex-grow">{service.description}</p>
-                  <Link 
+                  <Link
                     to={`/category-page?category=${encodeURIComponent(service.title)}`}
                     className="text-teal-500 font-semibold hover:underline mb-4 block"
                   >
-                    SEE MORE →
+                    SEE MORE
                   </Link>
                   <div className="overflow-hidden rounded-lg mt-auto">
                     <img
@@ -441,60 +424,49 @@ const HomePage = () => {
           <ImageCarousel />
         </div>
       </FadeInSection>
-      
-      {/* =================================================================
-          TESTIMONIALS SECTION - REWORKED
-      ================================================================= */}
-      <FadeInSection>
-      <section className="bg-cyan-50 py-12 px-4">
-        <div className="container mx-auto">
-          {/* Heading is now responsive */}
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">
-            Experiences <span className="text-teal-500">That Matter</span>
-          </h2>
 
-          {/* Added back testimonial-swiper class to enable correct styling */}
-          <Swiper
-            modules={[Navigation,  Autoplay]}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
-            loop={true}
-            spaceBetween={30}
-            slidesPerView={1}
-            navigation
-            pagination={{ clickable: true }}
-            className="testimonial-swiper pb-10"
-          >
-            {testimonials.map((testimonial) => (
-              <SwiperSlide key={testimonial.id}>
-                {/* Removed fixed height and adjusted padding for better responsiveness */}
-                <div className="text-center px-6 sm:px-8 md:px-16 py-8 flex flex-col items-center justify-center">
-                  {/* Text size is now responsive */}
-                  <p className="text-gray-700 mb-8 text-base sm:text-lg md:text-xl italic leading-relaxed max-w-3xl mx-auto">
-                    "{testimonial.text}"
-                  </p>
-                  <div className="flex flex-col items-center mt-auto">
-                    {/* Correctly using className for the logo styling */}
-                    <img
-                      src={testimonial.logo}
-                      // alt={`${testimonial.company} logo`}
-                      className="testimonial-logo"
-                    />
-                    <div>
+      {/* TESTIMONIALS */}
+      <FadeInSection>
+        <section className="bg-cyan-50 py-12 px-4">
+          <div className="container mx-auto">
+            <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">
+              Experiences <span className="text-teal-500">That Matter</span>
+            </h2>
+            <Swiper
+              modules={[Navigation, Autoplay]}
+              autoplay={{ delay: 4000, disableOnInteraction: false }}
+              loop={true}
+              spaceBetween={30}
+              slidesPerView={1}
+              navigation
+              pagination={{ clickable: true }}
+              className="testimonial-swiper pb-10"
+            >
+              {testimonials.map((testimonial) => (
+                <SwiperSlide key={testimonial.id}>
+                  <div className="text-center px-6 sm:px-8 md:px-16 py-8 flex flex-col items-center justify-center">
+                    <p className="text-gray-700 mb-8 text-base sm:text-lg md:text-xl italic leading-relaxed max-w-3xl mx-auto">
+                      "{testimonial.text}"
+                    </p>
+                    <div className="flex flex-col items-center mt-auto">
+                      {testimonial.logo && (
+                        <img
+                          src={testimonial.logo}
+                          alt={`${testimonial.company} logo`}
+                          className="testimonial-logo"
+                        />
+                      )}
                       <p className="font-bold text-gray-800 text-base sm:text-lg">{testimonial.company}</p>
-                      
                     </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </section>
-    </FadeInSection>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </section>
+      </FadeInSection>
 
+      {/* CONTACT FORM – EMAILJS */}
       <FadeInSection>
         <section className="bg-cyan-50 py-16 px-4 md:px-12">
           <div className="container mx-auto bg-white shadow-lg rounded-lg p-8 flex flex-col lg:flex-row gap-8">
@@ -503,103 +475,32 @@ const HomePage = () => {
                 Connect <span className="text-teal-500">With Us</span>
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder="Name*"
-                  className="input-style"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="Email*"
-                  className="input-style"
-                />
-                <input
-                  type="text"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  placeholder="Phone"
-                  className="input-style"
-                />
-                <input
-                  type="text"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleInputChange}
-                  placeholder="Company Name*"
-                  className="input-style"
-                />
-                <input
-                  type="text"
-                  name="country"
-                  value={formData.country}
-                  onChange={handleInputChange}
-                  placeholder="Country*"
-                  className="input-style"
-                />
-                <input
-                  type="text"
-                  name="state"
-                  value={formData.state}
-                  onChange={handleInputChange}
-                  placeholder="State*"
-                  className="input-style"
-                />
-                <input
-                  type="text"
-                  name="city"
-                  value={formData.city}
-                  onChange={handleInputChange}
-                  placeholder="City*"
-                  className="input-style"
-                />
-                <select
-                  name="category"
-                  value={formData.category}
-                  onChange={handleInputChange}
-                  className="input-style"
-                >
+                <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Name*" className="input-style" />
+                <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Email*" className="input-style" />
+                <input type="text" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Phone" className="input-style" />
+                <input type="text" name="company" value={formData.company} onChange={handleInputChange} placeholder="Company Name*" className="input-style" />
+                <input type="text" name="country" value={formData.country} onChange={handleInputChange} placeholder="Country*" className="input-style" />
+                <input type="text" name="state" value={formData.state} onChange={handleInputChange} placeholder="State*" className="input-style" />
+                <input type="text" name="city" value={formData.city} onChange={handleInputChange} placeholder="City*" className="input-style" />
+                <select name="category" value={formData.category} onChange={handleInputChange} className="input-style">
                   <option>Select Category</option>
                   <option>General Inquiry</option>
                   <option>Support</option>
                   <option>Feedback</option>
                 </select>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  placeholder="Your Message"
-                  className="input-style md:col-span-2 h-24"
-                />
+                <textarea name="message" value={formData.message} onChange={handleInputChange} placeholder="Your Message" className="input-style md:col-span-2 h-24" />
                 <div className="flex items-center md:col-span-2">
-                  <input
-                    type="checkbox"
-                    name="terms"
-                    checked={formData.terms}
-                    onChange={handleInputChange}
-                    className="mr-2"
-                  />
-                  <label className="text-sm text-gray-600">
-                    Agree to our terms and conditions
-                  </label>
+                  <input type="checkbox" name="terms" checked={formData.terms} onChange={handleInputChange} className="mr-2" />
+                  <label className="text-sm text-gray-600">Agree to our terms and conditions</label>
                 </div>
-                {formError && (
-                  <p className="text-red-500 text-sm md:col-span-2">{formError}</p>
-                )}
-                {formSuccess && (
-                  <p className="text-green-500 text-sm md:col-span-2">{formSuccess}</p>
-                )}
+                {formError && <p className="text-red-500 text-sm md:col-span-2">{formError}</p>}
+                {formSuccess && <p className="text-green-500 text-sm md:col-span-2">{formSuccess}</p>}
                 <button
                   onClick={handleSubmit}
-                  className="bg-teal-500 text-white py-2 px-6 rounded-full shadow-md hover:bg-teal-600 transition md:col-span-2"
+                  disabled={loading}
+                  className="bg-teal-500 text-white py-2 px-6 rounded-full shadow-md hover:bg-teal-600 transition md:col-span-2 disabled:opacity-50"
                 >
-                  Submit Now →
+                  {loading ? "Sending..." : "Submit Now"}
                 </button>
               </div>
             </div>
@@ -609,14 +510,14 @@ const HomePage = () => {
                 24/7 service support and technical assistance. Visit our office for more insights.
               </p>
               <div className="flex items-center bg-teal-500 text-white p-4 rounded-lg shadow-md mb-4">
-                <img src={email} className="pr-4"></img>
+                <img src={email} alt="Email" className="pr-4 w-8 h-8" />
                 <div>
                   <p className="text-sm">EMAIL US</p>
                   <p className="text-lg font-bold">mail@ranganiindia.com</p>
                 </div>
               </div>
               <div className="flex items-center bg-teal-500 text-white p-4 rounded-lg shadow-md mb-4">
-                <img src={call} className="pr-4"></img>
+                <img src={call} alt="Call" className="pr-4 w-8 h-8" />
                 <div>
                   <p className="text-sm">TALK TO US</p>
                   <p className="text-lg font-bold">Mobile: +91-8000920222 - Milan Rangani</p>
@@ -625,8 +526,8 @@ const HomePage = () => {
               <div className="text-gray-700">
                 <h4 className="font-bold mb-2">Address:</h4>
                 <p>Survey No. 258, Plot No. 5 To 11, NH-8B, Gondal Road, Near Priyesh Cotton, Shapar, Rajkot-360024, Gujarat, India.</p>
-                <a href="#https://maps.app.goo.gl/8QFjE7BRMg3AC63E9" className="text-teal-500 font-semibold mt-2 inline-block hover:underline">
-                  Get Directions →
+                <a href="https://maps.app.goo.gl/8QFjE7BRMg3AC63E9" target="_blank" rel="noopener noreferrer" className="text-teal-500 font-semibold mt-2 inline-block hover:underline">
+                  Get Directions
                 </a>
               </div>
             </div>

@@ -1,98 +1,93 @@
 <?php
-// === DEBUG: Show all errors ===
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('log_errors', 1);
-ini_set('error_log', __DIR__ . '/php-error.log');
+file_put_contents("debug_php_output.txt", print_r($_SERVER, true) . "\n\n" . file_get_contents("php://input"));
 
-// === Load PHPMailer ===
-if (!file_exists(__DIR__ . '/PHPMailer/PHPMailer.php')) {
-    die(json_encode(["error" => "PHPMailer.php not found!"]));
-}
-require_once 'PHPMailer/PHPMailer.php';
-require_once 'PHPMailer/SMTP.php';
-require_once 'PHPMailer/Exception.php';
+// contact.php
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-// === Load .env ===
-$EMAIL_ADDRESS = $EMAIL_PASSWORD = '';
-if (file_exists(__DIR__ . '/.env')) {
-    $lines = file(__DIR__ . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-    foreach ($lines as $line) {
-        if (strpos(trim($line), '#') === 0) continue;
-        if (strpos($line, '=') === false) continue;
-        list($key, $value) = explode('=', $line, 2);
-        $_ENV[trim($key)] = trim($value);
-    }
-    $EMAIL_ADDRESS  = $_ENV['EMAIL_ADDRESS'] ?? '';
-    $EMAIL_PASSWORD = $_ENV['EMAIL_PASSWORD'] ?? '';
-}
-
-// === CORS ===
-header("Access-Control-Allow-Origin: *");
+// --- Security and CORS Setup ---
+header("Access-Control-Allow-Origin: https://ranganiindia.com");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
+header("Content-Type: application/json");
+
+// Handle preflight requests (CORS OPTIONS)
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
-    exit();
+    exit;
 }
 
-// === Must be POST ===
+// Simulate browser form header for some security systems
+if (empty($_SERVER['HTTP_USER_AGENT'])) {
+  header('HTTP/1.1 403 Forbidden');
+  echo json_encode(["error" => "Invalid request source"]);
+  exit;
+}
+
+// --- Read Input (Handles JSON or Form Data) ---
+$raw = file_get_contents("php://input");
+$data = json_decode($raw, true);
+
+// If JSON, convert to $_POST format
+if ($data && is_array($data)) {
+    $_POST = $data;
+}
+
+// --- Validate Request Type ---
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
-    echo json_encode(["error" => "Method not allowed"]);
-    exit();
+    echo json_encode(["error" => "Only POST requests are allowed."]);
+    exit;
 }
 
-// === Read JSON ===
-$input = json_decode(file_get_contents('php://input'), true);
-if (!$input) {
-    http_response_code(400);
-    echo json_encode(["error" => "Invalid JSON"]);
-    exit();
+// --- Required Fields Validation ---
+$required_fields = ['name', 'email', 'company', 'country', 'state', 'city'];
+foreach ($required_fields as $field) {
+    if (empty($_POST[$field])) {
+        http_response_code(400);
+        echo json_encode(["error" => "Missing required field: $field"]);
+        exit;
+    }
 }
 
-// === Extract fields ===
-$name     = $input['name'] ?? '';
-$email    = $input['email'] ?? '';
-$company  = $input['company'] ?? '';
-$country  = $input['country'] ?? '';
-$state    = $input['state'] ?? '';
-$city     = $input['city'] ?? '';
-$category = $input['category'] ?? '';
-$message  = $input['message'] ?? '';
+// --- Collect Data ---
+$name = htmlspecialchars(trim($_POST['name']));
+$email = htmlspecialchars(trim($_POST['email']));
+$phone = htmlspecialchars(trim($_POST['phone'] ?? ''));
+$company = htmlspecialchars(trim($_POST['company']));
+$country = htmlspecialchars(trim($_POST['country']));
+$state = htmlspecialchars(trim($_POST['state']));
+$city = htmlspecialchars(trim($_POST['city']));
+$category = htmlspecialchars(trim($_POST['category'] ?? 'General Inquiry'));
+$message = htmlspecialchars(trim($_POST['message'] ?? ''));
 
-// === Validate ===
-if (empty($name) || empty($email) || empty($company) || empty($country) || empty($state) || empty($city)) {
-    http_response_code(400);
-    echo json_encode(["error" => "All required fields must be filled"]);
-    exit();
-}
+// --- Email Setup ---
+$to = "mail@ranganiindia.com"; // Change this to your desired email
+$subject = "New Contact Form Submission - $category";
+$body = "
+You have received a new contact form submission from Rangani India website.
 
-// === Send Email ===
-try {
-    $mail = new PHPMailer(true);
-    $mail->isSMTP();
-    $mail->Host       = 'smtp.gmail.com';
-    $mail->SMTPAuth   = true;
-    $mail->Username   = $EMAIL_ADDRESS;
-    $mail->Password   = $EMAIL_PASSWORD;
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port       = 587;
+Name: $name
+Email: $email
+Phone: $phone
+Company: $company
+Country: $country
+State: $state
+City: $city
+Category: $category
 
-    $mail->setFrom($EMAIL_ADDRESS, 'Contact Form');
-    $mail->addAddress('vatan@ranganiindia.com');
-    $mail->Subject = "New Contact - $category";
-    $mail->Body    = "Name: $name\nEmail: $email\nCompany: $company\nCountry: $country\nState: $state\nCity: $city\nCategory: $category\n\nMessage:\n$message";
+Message:
+$message
+";
 
-    $mail->send();
+$headers = "From: noreply@ranganiindia.com\r\n";
+$headers .= "Reply-To: $email\r\n";
+$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+
+// --- Send Email ---
+if (mail($to, $subject, $body, $headers)) {
+    http_response_code(200);
     echo json_encode(["message" => "Your message has been sent successfully!"]);
-
-} catch (Exception $e) {
-    error_log("PHPMailer Error: " . $e->getMessage());
+} else {
     http_response_code(500);
-    echo json_encode(["error" => "Email failed: " . $e->getMessage()]);
+    echo json_encode(["error" => "Failed to send email. Please try again later."]);
 }
 ?>

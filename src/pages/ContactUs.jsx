@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import FadeInSection from "./Fadeinsection";
+import emailjs from "@emailjs/browser";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -14,9 +15,9 @@ const ContactUs = () => {
     message: "",
     terms: false,
   });
-
   const [formError, setFormError] = useState("");
   const [formSuccess, setFormSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -26,39 +27,64 @@ const ContactUs = () => {
     }));
   };
 
-  const handleSubmit = async () => {
-    // Validation
-    if (!formData.name || !formData.email || !formData.company || !formData.country || !formData.state || !formData.city) {
-      setFormError("Please fill in all required fields.");
-      return;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormError("");
+    setFormSuccess("");
+    setLoading(true);
+
+    const required = ["name", "email", "company", "country", "state", "city"];
+    for (const f of required) {
+      if (!formData[f].trim()) {
+        setFormError(`Please fill in ${f}.`);
+        setLoading(false);
+        return;
+      }
     }
     if (!formData.terms) {
       setFormError("You must agree to the terms and conditions.");
+      setLoading(false);
       return;
     }
 
     try {
-      // LOCAL TESTING
-      const response = await fetch("/api/contact.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+      // Initialize EmailJS with your Public Key
+      emailjs.init("2eTUgvvMEs8XCcfvG");
+
+      await emailjs.send(
+        "service_5v3kfqa",     // Your Service ID
+        "template_s8fq6cn",    // Your Template ID
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || "Not provided",
+          company: formData.company,
+          country: formData.country,
+          state: formData.state,
+          city: formData.city,
+          category: formData.category,
+          message: formData.message || "No message",
+        }
+      );
+
+      setFormSuccess("Thank you! Your message has been sent.");
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        country: "",
+        state: "",
+        city: "",
+        category: "General Inquiry",
+        message: "",
+        terms: false,
       });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setFormSuccess(result.message || "Your message has been sent successfully!");
-        setFormError("");
-        setFormData({
-          name: "", email: "", phone: "", company: "", country: "", state: "", city: "",
-          category: "General Inquiry", message: "", terms: false
-        });
-      } else {
-        setFormError(result.error || "Failed to send message.");
-      }
     } catch (error) {
-      setFormError("Network error. Please try again.");
+      console.error("EmailJS Error:", error);
+      setFormError("Failed to send. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -66,39 +92,81 @@ const ContactUs = () => {
     <FadeInSection>
       <section className="bg-cyan-50 py-16 pt-32 px-4 md:px-12">
         <div className="container mx-auto bg-white shadow-lg rounded-lg mt-10 p-8 flex flex-col lg:flex-row gap-8">
+          {/* Left Side Form */}
           <div className="w-full lg:w-1/2">
             <h2 className="text-4xl font-bold text-gray-800 mb-6">
               Connect <span className="text-teal-500">With Us</span>
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Name*" className="input-style" />
-              <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Email*" className="input-style" />
-              <input type="text" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Phone" className="input-style" />
-              <input type="text" name="company" value={formData.company} onChange={handleInputChange} placeholder="Company Name*" className="input-style" />
-              <input type="text" name="country" value={formData.country} onChangeacity={handleInputChange} placeholder="Country*" className="input-style" />
-              <input type="text" name="state" value={formData.state} onChange={handleInputChange} placeholder="State*" className="input-style" />
-              <input type="text" name="city" value={formData.city} onChange={handleInputChange} placeholder="City*" className="input-style" />
-              <select name="category" value={formData.category} onChange={handleInputChange} className="input-style">
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {["name", "email", "phone", "company", "country", "state", "city"].map((f) => (
+                <input
+                  key={f}
+                  type={f === "email" ? "email" : "text"}
+                  name={f}
+                  value={formData[f]}
+                  onChange={handleInputChange}
+                  placeholder={`${f.charAt(0).toUpperCase() + f.slice(1)}${
+                    ["name", "email", "company", "country", "state", "city"].includes(f) ? "*" : ""
+                  }`}
+                  className="input-style"
+                  required={["name", "email", "company", "country", "state", "city"].includes(f)}
+                />
+              ))}
+              <select
+                name="category"
+                value={formData.category}
+                onChange={handleInputChange}
+                className="input-style"
+              >
                 <option>Select Category</option>
                 <option>General Inquiry</option>
                 <option>Support</option>
                 <option>Feedback</option>
               </select>
-              <textarea name="message" value={formData.message} onChange={handleInputChange} placeholder="Your Message" className="input-style md:col-span-2 h-24" />
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleInputChange}
+                placeholder="Your Message"
+                className="input-style md:col-span-2 h-24"
+              />
               <div className="flex items-center md:col-span-2">
-                <input type="checkbox" name="terms" checked={formData.terms} onChange={handleInputChange} className="mr-2" />
-                <label className="text-sm text-gray-600">Agree to our terms and conditions</label>
+                <input
+                  type="checkbox"
+                  name="terms"
+                  checked={formData.terms}
+                  onChange={handleInputChange}
+                  className="mr-2"
+                  required
+                />
+                <label className="text-sm text-gray-600">
+                  I agree to the terms and conditions
+                </label>
               </div>
-              {formError && <p className="text-red-500 text-sm md:col-span-2">{formError}</p>}
-              {formSuccess && <p className="text-green-500 text-sm md:col-span-2">{formSuccess}</p>}
-              <button onClick={handleSubmit} className="bg-teal-500 text-white py-2 px-6 rounded-full shadow-md hover:bg-teal-600 transition md:col-span-2">
-                Submit Now
+
+              {formError && (
+                <p className="text-red-500 text-sm md:col-span-2">{formError}</p>
+              )}
+              {formSuccess && (
+                <p className="text-green-500 text-sm md:col-span-2">{formSuccess}</p>
+              )}
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="bg-teal-500 text-white py-2 px-6 rounded-full shadow-md hover:bg-teal-600 transition md:col-span-2 disabled:opacity-50"
+              >
+                {loading ? "Sending..." : "Submit Now"}
               </button>
-            </div>
+            </form>
           </div>
+
+          {/* Right Side Info */}
           <div className="w-full lg:w-5/12">
             <h3 className="text-2xl font-bold text-gray-800 mb-4">Happy to Help</h3>
-            <p className="text-gray-600 mb-6">24/7 service support and technical assistance. Visit our office for more insights.</p>
+            <p className="text-gray-600 mb-6">
+              24/7 service support and technical assistance. Visit our office for more insights.
+            </p>
             <div className="flex items-center bg-teal-500 text-white p-4 rounded-lg shadow-md mb-4">
               <span className="material-icons mr-4">email</span>
               <div>
@@ -107,7 +175,7 @@ const ContactUs = () => {
               </div>
             </div>
             <div className="flex items-center bg-teal-500 text-white p-4 rounded-lg shadow-md mb-4">
-              <span className="material-iconsronter-4">phone</span>
+              <span className="material-icons mr-4">phone</span>
               <div>
                 <p className="text-sm">TALK TO US</p>
                 <p className="text-lg font-bold">Mobile: +91-8000920222 - Milan Rangani</p>
@@ -115,8 +183,16 @@ const ContactUs = () => {
             </div>
             <div className="text-gray-700">
               <h4 className="font-bold mb-2">Address:</h4>
-              <p>Survey No. 258, Plot No. 5 To 11, NH-8B, Gondal Road, Near Priyesh Cotton, Shapar, Rajkot-360024, Gujarat, India.</p>
-              <a href="https://maps.app.goo.gl/8QFjE7BRMg3AC63E9" target="_blank" rel="noopener noreferrer" className="text-teal-500 font-semibold mt-2 inline-block hover:underline">
+              <p>
+                Survey No. 258, Plot No. 5 To 11, NH-8B, Gondal Road, Near Priyesh Cotton,
+                Shapar, Rajkot-360024, Gujarat, India.
+              </p>
+              <a
+                href="https://maps.app.goo.gl/8QFjE7BRMg3AC63E9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-teal-500 font-semibold mt-2 inline-block hover:underline"
+              >
                 Get Directions
               </a>
             </div>
@@ -127,4 +203,4 @@ const ContactUs = () => {
   );
 };
 
-export default ContactUs; // THIS LINE WAS MISSING OR BROKEN
+export default ContactUs;

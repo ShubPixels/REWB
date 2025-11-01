@@ -1,20 +1,17 @@
 # Block .env
 <Files ".env">
-    Order allow,deny
-    Deny from all
+    Require all denied
 </Files>
 
-# Allow only POST to contact.php
+# Allow ONLY POST and OPTIONS to contact.php
 <Files "contact.php">
-    <If "%{REQUEST_METHOD} != 'POST'">
-        Order allow,deny
-        Deny from all
+    <If "%{REQUEST_METHOD} != 'POST' && %{REQUEST_METHOD} != 'OPTIONS'">
+        Require all denied
     </If>
 </Files>
 
 # React Router fallback
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.html [L]
