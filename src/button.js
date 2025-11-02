@@ -30,7 +30,7 @@ const Buttons = () => {
 
       // Redirect to WhatsApp
       const encodedMessage = encodeURIComponent(trimmed);
-      const whatsappURL = `https://wa.me/919106914298?text=${encodedMessage}`;
+      const whatsappURL = `https://wa.me/918000920222?text=${encodedMessage}`;
       const newTab = window.open(whatsappURL, "_blank", "noopener,noreferrer");
 
       if (!newTab) {

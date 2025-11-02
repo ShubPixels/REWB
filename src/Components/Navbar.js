@@ -25,7 +25,7 @@ import jumboscrapbaling from "../images/Jumbo Scrap Baling Machine.jpg";
 import bidbreaking from "../images/Bid Breaking Machine.jpg";
 import carbalingmachine from "../images/Car Baling Machine.jpg";
 import scrapshreaing from "../images/Scrap Shearing Machine (kechi).jpg";
-import ringrolling from "../images/Ring Rolling Machine.jpg";
+import ringrolling from "../images/PHOTO EDIT 21.png";
 import coldshearing from "../images/Cold Shearing Machine.jpg";
 import heavylathe from "../images/Heavy Duty Lathe Machine.jpg";
 import numberpunch from "../images/Number Punching Machine.jpg";
@@ -128,7 +128,7 @@ const NAVBAR = () => {
           {/* Contact Info - Desktop and medium+ screens */}
           <div className="hidden min-[380px]:flex items-center gap-4">
             <span className="flex items-center gap-2">
-              <img src={call} alt="call" className="w-4 h-4" /> +918000920222
+              <img src={call} alt="call" className="w-4 h-4" /> +91 8000920222
             </span>
             <span className="flex items-center gap-2">
               <img src={email} alt="email" className="w-4 h-4" /> mail@ranganiindia.com
@@ -178,7 +178,7 @@ const NAVBAR = () => {
         {contactOpen && (
           <div className="absolute left-4 top-full mt-2 bg-white shadow-lg rounded-lg p-3 flex flex-col gap-2 sm:hidden transition-all duration-300 z-10 text-sm">
             <div className="flex items-center gap-2">
-              <img src={call} alt="call" className="w-4 h-4" /> +918000920222
+              <img src={call} alt="call" className="w-4 h-4" /> +91 8000920222
             </div>
             <div className="flex items-center gap-2">
               <img src={email} alt="email" className="w-4 h-4" /> mail@ranganiindia.com
@@ -196,8 +196,8 @@ const NAVBAR = () => {
               <Link to="/"><img src={rewblogo} alt="Logo" className="w-10 h-10 md:w-14 md:h-14" /></Link>
               <Link to="/">
                 <h1 className="text-xl md:text-2xl font-bold text-gray-800">
-                  RANGANI <br />
-                  <span className="text-teal-500">ENGINEERING</span>
+                  <span className="text-teal-500">RANGANI</span> <br />
+                  ENGINEERING PVT LTD
                 </h1>
               </Link>  
             </div>
@@ -260,6 +260,12 @@ const NAVBAR = () => {
               </li>
               <li><Link to="/about" className="hover:text-teal-500">About Us</Link></li>
               <li><Link to="/contact" className="hover:text-teal-500">Contact</Link></li>
+              <li>
+                  <a href="/Rangani Brochure.pdf" download className="hover:text-teal-500">
+                      Get Brochure 
+                  </a>
+              </li>
+
             </ul>
 
             {/* Search Box - COMMENTED OUT */}
@@ -320,6 +326,7 @@ const NAVBAR = () => {
 
               <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="block text-gray-800 hover:text-teal-500">About Us</Link>
               <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="block text-gray-800 hover:text-teal-500">Contact</Link>
+
             </div>
           )}
         </nav>

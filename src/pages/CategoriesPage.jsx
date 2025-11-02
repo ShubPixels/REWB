@@ -9,6 +9,9 @@ import productsData from './ProductData';
 import manufacimagequ from "../images/Illustration.png";
 import { Link, useLocation } from "react-router-dom";
 import FadeInSection from "./Fadeinsection";
+import DI_Pipe_Breaking_Machine from "../images/DIPIPE.webp";
+import threeAscarpbaling from "../images/3 Action Scrap Baling Press.png";
+import ringrolling from "../images/PHOTO EDIT 21.png";
 
 const ProductsPage = () => {
   const location = useLocation();
@@ -16,7 +19,7 @@ const ProductsPage = () => {
 
   // The categories array remains the same
   const categories = [
-    { id: 0, name: 'Waste Management', image: wastemanageimg, count: 11,
+    { id: 0, name: 'Waste Management', image: threeAscarpbaling, count: 11,
       products: [
         "triple-action-scrap-baling-press", "double-action-scrap-baling-press", "pet-bottle-baling-press",
         "continuous-baling-machine", "continuous-scrapping-machine",
@@ -24,13 +27,13 @@ const ProductsPage = () => {
         "scrap-shearing-machine-(kechi)"
       ]
     },
-    { id: 1, name: 'Industrial Machines', image: industrialimg, count: 5,
+    { id: 1, name: 'Industrial Machines', image: ringrolling, count: 5,
       products: [
         "ring-rolling-machine", "cold-shearing-machine", "heavy-duty-lathe-machine",
         "number-punching-machine", "sheet-slitting-machine"
       ]
     },
-    { id: 2, name: 'Special Purpose Machines', image: specialpurpimg, count: 6,
+    { id: 2, name: 'Special Purpose Machines', image: DI_Pipe_Breaking_Machine, count: 6,
       products: [
         "di-pipe-breaking-machine", "pipe-hydrotest-machine", "big-pipe-gauging-and-sizing-machine",
         "hydraulic-press-(customized)", "sheet-plate-bending-machine", "manual-paper-baling-machine"

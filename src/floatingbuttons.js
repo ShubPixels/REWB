@@ -3,7 +3,7 @@
       {/* WhatsApp Chat Box */}
       
       <a
-        href="https://wa.me/919106914298?text=Hi%20there"
+        href="https://wa.me/918000920222?text=Hi%20there"
         target="_blank"
         rel="noopener noreferrer"
         className="bg-green-500 text-white px-3 py-2 rounded ml-2 flex items-center justify-center"

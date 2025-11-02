@@ -4,6 +4,14 @@ import email from "../images/Vector 2.png";
 import { Link } from "react-router-dom";
 import "../App.css";
 import { Swiper, SwiperSlide } from "swiper/react";
+// --- Awards images (from AboutUs) ---
+import starperformer from "../images/Awards.jpg";
+import rattanaward from "../images/DSC_0023.JPG";
+import prideofIND from "../images/DSC_0022.JPG";
+import IOBRD from "../images/DSC_0020.JPG";
+
+// --- Background image for the parallax awards section ---
+import ctaaboutus from "../images/awardsiimage.JPG"; // or any bg you prefer
 import "swiper/css/autoplay";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { useInView } from "react-intersection-observer";
@@ -20,7 +28,11 @@ import worldmap from "../images/world map.png";
 import welplogo from "../images/welspun logo.png";
 import wastemanageimg from "../images/bluemach.webp";
 import industrialimg from "../images/PHOTO_EDIT_1_resized.png";
+import DI_Pipe_Breaking_Machine from "../images/DIPIPE.webp";
 import specialpurpimg from "../images/Pipe Sizing and Guaging Machine.jpg";
+import manufacimagequ from "../images/Illustration.png";
+import threeAscarpbaling from "../images/3 Action Scrap Baling Press.png";
+import ringrolling from "../images/PHOTO EDIT 21.png";
 import productsData from './ProductData';
 import toyota from "../images/toyota.png";
 import tata from "../images/tata.png";
@@ -31,6 +43,7 @@ import bajaj from "../images/bajaj.png";
 import laval from "../images/laval.png";
 import slide1 from "../images/Group 9245.png";
 import slide2 from "../images/Group 9246.png";
+import manufaclog from "../images/manufaclogo_CTP.png";
 import slide3 from "../images/Group 9247.png";
 import koh from "../images/kohler.png";
 import herocorp from "../images/Hero MotoCorp logo.jpeg";
@@ -84,25 +97,25 @@ const services = [
     title: "Waste Management",
     description:
       "Our waste-management products with high hydraulic power and efficient engineering empowers scrap and waste management industries. From high-density balers and drum crushers to shredders and compactors, our machines cut disposal costs, boost recycling yields, and help clients meet environmental compliance targets while advancing their sustainability commitments and CSR. We empower the metal recycling industry worldwide.",
-    image: wastemanageimg,
+    image: threeAscarpbaling,
   },
   {
     title: "Industrial Machines",
     description:
       "Our industrial-machine portfolio covers various industries, from forging, machining sheet metal works, etc. Heavy-tonnage hydraulic presses, precision trimming machines, ring rollers, number punchers, etc are engineered for continuous duty, and low maintenance. Each solution integrates energy-efficient hydraulics. We empower industrial manufacturing companies, strengthening their operations.",
-    image: industrialimg,
+    image: ringrolling,
   },
   {
     title: "Special Purpose Machines",
     description:
       "When standard equipment can’t meet your process, we design and build special-purpose machines that do. Our expertise in industrial automation powered by hydraulics and electrical systems, we will engineer a product that fits your constraints. We will understand your requirements, and facilitate special features in our robust design, ready to ship within 3 to 6 months*.",
-    image: specialpurpimg,
+    image: DI_Pipe_Breaking_Machine,
   },
   {
     title: "Manufacturing Services",
     description:
       "We manufacture industrial products that can be forged or casted, our cross-holded partner SBUs specialise in industrial components. We have been exporting for 20+ years and follow strict quality, ensuring that every component meets specification, schedule, and cost goals while exceeding client expectations.",
-    image: slide_image_5,
+    image: manufaclog,
   },
 ];
 
@@ -114,6 +127,14 @@ const HomePage = () => {
   const [clients, clientsRef] = useCountUp(0, 6000, 2000);
   const [countries, countriesRef] = useCountUp(0, 15, 1500);
   const [years, yearsRef] = useCountUp(0, 30, 1500);
+
+  const awardsHome = [
+  { id: 1, image: starperformer, title: "'Star Performer'" },
+  { id: 2, image: rattanaward,  title: "'National Rattan Award'" },
+  { id: 3, image: prideofIND,   title: "'Pride Of India'" },
+  { id: 4, image: IOBRD,        title: "'IOBRD-2007'" },
+];
+
 
   const testimonials = [
     {
@@ -134,12 +155,12 @@ const HomePage = () => {
       text: "We needed a baler that fit our compact ‘Toyota Production System’ cell, not a bulky randomised sized frame. Rangani’s team rebuilt the platen, added poka-yoke sensors, and wrote a JIS-compliant PLC routine in three months. The custom low-height hopper slides under our press shop conveyor without layout change. OEE jumped four points, with zero containment alerts since commissioning. They’re now on our ‘A-rank’ vendor list—one of the very few in India.",
       image: TLDR,
     },
-    {
-      id: 3,
-      name: "Al Ma Cabrol LLC",
-      company: "Al Ma Cabrol LLC, Oman",
-      text: "Our corrugation line needed three machines and a dozen of operators; bottlenecks everywhere. Rangani proposed a single automated cell—servo-controlled feeder, hydraulic former, and inline shear. Throughput increased by significant margins, while headcount per shift dropped to five. Unit landed in Sohar five months after kick-off.",
-    },
+    // {
+    //   id: 3,
+    //   name: "Al Ma Cabrol LLC",
+    //   company: "Al Ma Cabrol LLC, Oman",
+    //   text: "Our corrugation line needed three machines and a dozen of operators; bottlenecks everywhere. Rangani proposed a single automated cell—servo-controlled feeder, hydraulic former, and inline shear. Throughput increased by significant margins, while headcount per shift dropped to five. Unit landed in Sohar five months after kick-off.",
+    // },
     {
       id: 4,
       name: "Welspun Group",
@@ -386,7 +407,7 @@ const HomePage = () => {
       <FadeInSection>
         <section className="bg-cyan-50 py-16">
           <h2 className="text-center text-4xl sm:text-5xl font-bold mb-12 sm:mb-16 px-4">
-            Our Wide <span className="text-teal-500">Range of Services</span>
+            Our Wide <span className="text-teal-500">Range of Categories</span>
           </h2>
           <div className="container mx-auto px-4 md:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -403,7 +424,7 @@ const HomePage = () => {
                     to={`/category-page?category=${encodeURIComponent(service.title)}`}
                     className="text-teal-500 font-semibold hover:underline mb-4 block"
                   >
-                    SEE MORE
+                    MORE MACHINES
                   </Link>
                   <div className="overflow-hidden rounded-lg mt-auto">
                     <img
@@ -424,6 +445,58 @@ const HomePage = () => {
           <ImageCarousel />
         </div>
       </FadeInSection>
+
+      {/* AWARDS – taller hero, content at bottom */}
+      <FadeInSection>
+        <section className="relative w-full">
+          {/* background image (behind everything) */}
+          <img
+            src={ctaaboutus}
+            alt="Awards background"
+            className="absolute inset-0 w-full h-full object-contain"
+            // tweak this to bias what part of the photo stays visible
+            style={{ objectPosition: "center 30%" }}
+          />
+
+          {/* dark overlay for readability */}
+          <div className="absolute inset-0 bg-black/40" />
+
+          {/* hero container with fixed/taller height; content sits at the bottom */}
+          <div className="relative container mx-auto px-4 md:px-8
+                          h-[520px] sm:h-[560px] md:h-[620px] lg:h-[700px]
+                          flex flex-col justify-end pb-10">
+            {/* title */}
+            <h2 className="text-white text-3xl sm:text-4xl font-bold drop-shadow-md text-center mb-6">
+              Our <span className="text-teal-300">Achievements</span>
+            </h2>
+
+            {/* awards row – stays at the bottom of the image */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 justify-items-center">
+              {awardsHome.map((award) => (
+                <div
+                  key={award.id}
+                  className="bg-white/90 backdrop-blur rounded-2xl shadow-md p-4 flex flex-col items-center hover:shadow-lg transition-shadow"
+                >
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 overflow-hidden rounded-md flex items-center justify-center">
+                    <img
+                      src={award.image}
+                      alt={award.title}
+                      className="w-full h-full object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                  <p className="mt-3 text-center text-sm sm:text-base font-semibold text-gray-800">
+                    {award.title}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </FadeInSection>
+
+
+
 
       {/* TESTIMONIALS */}
       <FadeInSection>
