@@ -49,11 +49,11 @@ const ContactUs = () => {
 
     try {
       // Initialize EmailJS with your Public Key
-      emailjs.init("2eTUgvvMEs8XCcfvG");
+      emailjs.init("y6GrE9es5mRRflaKm");
 
       await emailjs.send(
-        "service_5v3kfqa",     // Your Service ID
-        "template_s8fq6cn",    // Your Template ID
+        "service_yvae06b",     // Your Service ID
+        "template_yy2moko",    // Your Template ID
         {
           name: formData.name,
           email: formData.email,

@@ -214,11 +214,11 @@ const HomePage = () => {
     }
 
     try {
-      emailjs.init("2eTUgvvMEs8XCcfvG"); // ← YOUR PUBLIC KEY
+      emailjs.init("y6GrE9es5mRRflaKm"); // ← YOUR PUBLIC KEY
 
       await emailjs.send(
-        "service_5v3kfqa",     // ← YOUR SERVICE ID
-        "template_s8fq6cn",    // ← YOUR TEMPLATE ID
+        "service_yvae06b",     // ← YOUR SERVICE ID
+        "template_yy2moko",    // ← YOUR TEMPLATE ID
         {
           name: formData.name,
           email: formData.email,
