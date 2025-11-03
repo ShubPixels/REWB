@@ -446,57 +446,61 @@ const HomePage = () => {
         </div>
       </FadeInSection>
 
-      {/* AWARDS – taller hero, content at bottom */}
+      {/* AWARDS – on-brand card hero (no crop) */}
       <FadeInSection>
-        <section className="relative w-full">
-          {/* background image (behind everything) */}
-          <img
-            src={ctaaboutus}
-            alt="Awards background"
-            className="absolute inset-0 w-full h-full object-contain"
-            // tweak this to bias what part of the photo stays visible
-            style={{ objectPosition: "center 30%" }}
-          />
+        <section className="bg-cyan-50 py-14">
+          <div className="container mx-auto px-4 md:px-8">
+            {/* framed hero card, not full-bleed */}
+            <div className="relative mx-auto max-w-6xl rounded-3xl overflow-hidden shadow-xl">
+              {/* brand-tinted background to gracefully fill any gaps when image 'fits' */}
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700" />
 
-          {/* dark overlay for readability */}
-          <div className="absolute inset-0 bg-black/40" />
+              {/* foreground image that FITS (no cropping) */}
+              <img
+                src={ctaaboutus}
+                alt="Awards background"
+                className="relative z-10 w-full h-[460px] sm:h-[520px] md:h-[560px] object-contain"
+                style={{ objectPosition: "center" }}
+              />
 
-          {/* hero container with fixed/taller height; content sits at the bottom */}
-          <div className="relative container mx-auto px-4 md:px-8
-                          h-[520px] sm:h-[560px] md:h-[620px] lg:h-[700px]
-                          flex flex-col justify-end pb-10">
-            {/* title */}
-            <h2 className="text-white text-3xl sm:text-4xl font-bold drop-shadow-md text-center mb-6">
-              Our <span className="text-teal-300">Achievements</span>
-            </h2>
+              {/* subtle overlay for contrast */}
+              <div className="absolute inset-0 z-20 bg-gradient-to-b from-black/20 via-black/15 to-black/5" />
 
-            {/* awards row – stays at the bottom of the image */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 justify-items-center">
-              {awardsHome.map((award) => (
-                <div
-                  key={award.id}
-                  className="bg-white/90 backdrop-blur rounded-2xl shadow-md p-4 flex flex-col items-center hover:shadow-lg transition-shadow"
-                >
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 overflow-hidden rounded-md flex items-center justify-center">
-                    <img
-                      src={award.image}
-                      alt={award.title}
-                      className="w-full h-full object-contain"
-                      loading="lazy"
-                    />
-                  </div>
-                  <p className="mt-3 text-center text-sm sm:text-base font-semibold text-gray-800">
-                    {award.title}
-                  </p>
+              {/* content pinned to the bottom of the image */}
+              <div className="absolute inset-x-0 bottom-0 z-30 px-4 sm:px-8 pb-8">
+                {/* title chip, centered and compact like the rest of your site */}
+                <div className="mx-auto mb-6 w-fit rounded-full bg-white/90 backdrop-blur px-6 py-2 shadow">
+                  <h2 className="text-slate-900 text-lg sm:text-xl font-semibold tracking-wide">
+                    Our <span className="text-teal-600 font-bold">Achievements</span>
+                  </h2>
                 </div>
-              ))}
+
+                {/* awards row */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 justify-items-center">
+                  {awardsHome.map((award) => (
+                    <div
+                      key={award.id}
+                      className="bg-white/95 backdrop-blur rounded-2xl shadow-md p-4 flex flex-col items-center hover:shadow-lg transition-shadow"
+                    >
+                      <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 overflow-hidden rounded-md flex items-center justify-center">
+                        <img
+                          src={award.image}
+                          alt={award.title}
+                          className="w-full h-full object-contain"
+                          loading="lazy"
+                        />
+                      </div>
+                      <p className="mt-3 text-center text-sm sm:text-base font-semibold text-slate-800">
+                        {award.title}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
       </FadeInSection>
-
-
-
 
       {/* TESTIMONIALS */}
       <FadeInSection>
